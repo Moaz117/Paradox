@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width,initial-scale=1"/>
+  <title>فريق Paradox - رصد الكويكبات وحماية الأرض</title>
+  <meta name="description" content="فريق Paradox العربي المتخصص في رصد الكويكبات والأجرام القريبة من الأرض، البحث العلمي، والمشاريع الفضائية المستقبلية"/>
+  <link rel="stylesheet" href="styles.css">
+  <script src="js/app.js" defer></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+
+<body>
+  <!-- النجوم المتلألئة -->
+  <div class="stars" id="stars"></div>
+  
+  <div class="site">
+    <header class="header">
+      <div class="brand">
+        <div class="logo">🪐</div>
+        <div class="title">Paradox Team</div>
+      </div>
+
+      <nav class="nav">
+        <a href="index.html"><i class="fas fa-home"></i> الرئيسية</a>
+        <a href="asteroids.html"><i class="fas fa-meteor"></i> الكويكبات</a>
+        <a href="search-asteroids.html"><i class="fas fa-search"></i> البحث المتقدم</a>
+        <a href="projects.html"><i class="fas fa-satellite"></i> المشاريع</a>
+        <a href="reports.html"><i class="fas fa-file-alt"></i> التقارير</a>
+        <a href="teams.html"><i class="fas fa-users"></i> فرقنا</a>
+        <a href="about-us.html"><i class="fas fa-info-circle"></i> من نحن</a>
+        <a href="AESA.html"><i class="fas fa-globe-africa"></i> وكالة الفضاء الأفريقية</a>
+        <a href="EGSA.html"><i class="fas fa-globe-africa"></i> وكالة الفضاء المصرية</a>
+      </nav>
+
+      <div class="cta">
+        <a href="login.html" class="btn ghost"><i class="fas fa-sign-in-alt"></i> تسجيل دخول</a>
+        <a href="join.html" class="btn primary"><i class="fas fa-user-plus"></i> انضم للفريق</a>
+      </div>
+    </header>
+
+    <main>
+      <section class="hero">
+        <div class="hero-text">
+          <h1>نكتشف ما حول الأرض... ونحمي مستقبلها</h1>
+          <p class="muted">
+            فريق Paradox يجمع علماء وهواة لبناء أدوات رصد وتحليل الكويكبات والأجرام القريبة من الأرض.
+            نحن نعمل على تطوير تقنيات الرصد والمحاكاة، وبناء شراكات مع وكالات الفضاء العالمية.
+          </p>
+
+          <div class="hero-actions">
+            <a href="asteroids.html" class="btn primary"><i class="fas fa-rocket"></i> استكشف الكويكبات</a>
+            <a href="dashboard.html" class="btn"><i class="fas fa-tachometer-alt"></i> لوحة التحكم</a>
+            <a href="join.html" class="btn secondary"><i class="fas fa-handshake"></i> انضم إلينا</a>
+          </div>
+
+          <div class="features">
+            <div class="feature">
+              <i class="fas fa-satellite-dish"></i><br>
+              رصد الكويكبات<br>
+              <small>شبكة تلسكوبات ذكية</small>
+            </div>
+            <div class="feature">
+              <i class="fas fa-project-diagram"></i><br>
+              محاكاة المدارات<br>
+              <small>نمذجة الاصطدام والمسار</small>
+            </div>
+            <div class="feature">
+              <i class="fas fa-graduation-cap"></i><br>
+              التعليم والبحث<br>
+              <small>ورش عمل ودورات تدريبية</small>
+            </div>
+            <div class="feature">
+              <i class="fas fa-lightbulb"></i><br>
+              الابتكار<br>
+              <small>مشاريع مستقبلية رائدة</small>
+            </div>
+          </div>
+        </div>
+
+        <div class="hero-media">
+          <div class="map-placeholder">
+            <div style="text-align: center; padding: 20px;">
+              <i class="fas fa-globe-americas" style="font-size: 60px; margin-bottom: 20px; color: var(--accent);"></i>
+              <h3 style="color: white; margin-bottom: 10px;">خريطة الكويكبات الحية</h3>
+              <p class="small">تتبع الكويكبات في الوقت الحقيقي</p>
+              <a href="asteroids.html" class="btn" style="margin-top: 20px;">
+                <i class="fas fa-play"></i> تشغيل المحاكاة
+              </a>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- الإحصائيات الحية -->
+      <section class="section" style="border-top: none;">
+        <div class="grid">
+          <div class="card">
+            <div class="small"><i class="fas fa-meteor"></i> الكويكبات المكتشفة</div>
+            <div class="count" style="font-size: 3rem; font-weight: 800; color: var(--accent);" id="liveAsteroids">1,245</div>
+            <div class="small">تم تحديثها اليوم</div>
+          </div>
+          
+          <div class="card">
+            <div class="small"><i class="fas fa-exclamation-triangle"></i> الكويكبات الخطرة</div>
+            <div class="count" style="font-size: 3rem; font-weight: 800; color: var(--accent-3);" id="hazardAsteroids">23</div>
+            <div class="small">تحت المراقبة المستمرة</div>
+          </div>
+          
+          <div class="card">
+            <div class="small"><i class="fas fa-users"></i> أعضاء الفريق</div>
+            <div class="count" style="font-size: 3rem; font-weight: 800; color: var(--accent);" id="teamMembers">156</div>
+            <div class="small">علماء ومتطوعون</div>
+          </div>
+          
+          <div class="card">
+            <div class="small"><i class="fas fa-project-diagram"></i> المشاريع النشطة</div>
+            <div class="count" style="font-size: 3rem; font-weight: 800; color: var(--accent);" id="activeProjects">12</div>
+            <div class="small">قيد التنفيذ</div>
+          </div>
+        </div>
+      </section>
+
+      <section class="section">
+        <h2><i class="fas fa-meteor"></i> أحدث الكويكبات المكتشفة</h2>
+        <p class="muted">أحدث الكويكبات التي تم رصدها وتحليلها من قبل فريقنا</p>
+        <div id="asteroidList" class="grid"></div>
+        <div style="text-align: center; margin-top: 30px;">
+          <a href="asteroids.html" class="btn primary"><i class="fas fa-arrow-right"></i> عرض جميع الكويكبات</a>
+        </div>
+      </section>
+
+      <section class="section">
+        <h2><i class="fas fa-satellite"></i> مشاريعنا المستقبلية</h2>
+        <p class="muted">مشاريع رائدة تعمل عليها الفريق لتحقيق رؤيتنا في استكشاف الفضاء</p>
+        <div id="projectsGrid" class="grid"></div>
+      </section>
+
+      <section class="section">
+        <h2><i class="fas fa-handshake"></i> شراكاتنا الاستراتيجية</h2>
+        <p class="muted">نعمل مع وكالات الفضاء والمراكز البحثية العالمية</p>
+        <div class="grid">
+          <div class="card">
+            <h3><i class="fas fa-globe-africa"></i> وكالة الفضاء الأفريقية (AESA)</h3>
+            <p>شراكة استراتيجية لتطوير قدرات الرصد الفضائي في القارة الأفريقية</p>
+            <a href="AESA.html" class="btn">استكشاف الشراكة</a>
+          </div>
+          
+          <div class="card">
+            <h3><i class="fas fa-globe-africa"></i> وكالة الفضاء المصرية (EGSA)</h3>
+            <p>تعاون في مجالات البحث العلمي وتطوير الأقمار الصناعية</p>
+            <a href="EGSA.html" class="btn">معرفة المزيد</a>
+          </div>
+          
+          <div class="card">
+            <h3><i class="fas fa-university"></i> الجامعات البحثية</h3>
+            <p>تعاون مع جامعات عربية وعالمية في أبحاث الفضاء</p>
+            <a href="projects.html" class="btn">عرض المشاريع</a>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="footer">
+      <div>
+        © <span id="year"></span> فريق Paradox - جميع الحقوق محفوظة
+        <br>
+        <small class="muted">مبادرة عربية لرصد الكويكبات وحماية الأرض</small>
+      </div>
+      <div class="links">
+        <a href="https://www.facebook.com/Paradox2026/" target="_blank"><i class="fab fa-facebook"></i> فيسبوك</a> • 
+        <a href="https://www.linkedin.com/company/paradox2024" target="_blank"><i class="fab fa-linkedin"></i> لينكدإن</a> •
+        <a href="https://twitter.com" target="_blank"><i class="fab fa-twitter"></i> تويتر</a> •
+        <a href="contact-us.html"><i class="fas fa-envelope"></i> اتصل بنا</a>
+      </div>
+    </footer>
+  </div>
+</body>
+</html>
