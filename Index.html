@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width,initial-scale=1"/>
+  <title>Paradox Team</title>
+  <link rel="stylesheet" href="styles.css">
+  <script src="app.js" defer></script>
+</head>
+
+<body>
+<div class="site">
+
+  <header class="header">
+    <div class="brand">
+      <div class="logo">🪐</div>
+      <div class="title">Paradox Team</div>
+    </div>
+
+    <nav class="nav">
+      <a href="index.html">الرئيسية</a>
+      <a href="asteroids.html">الكويكبات</a>
+      <a href="search-asteroids.html">بحث</a>
+      <a href="projects.html">المشاريع</a>
+      <a href="reports.html">التقارير</a>
+      <a href="about-us.html">من نحن</a>
+      <a href="dashboard.html">لوحة التحكم</a>
+      <a href="join.html">انضم للفريق</a>
+    </nav>
+
+    <div class="cta">
+      <a data-social="facebook" class="btn" href="#" target="_blank">فيسبوك</a>
+      <a data-social="linkedin" class="btn" href="#" target="_blank">لينكدإن</a>
+      <a href="login.html" class="btn ghost">تسجيل دخول</a>
+      <a href="join.html" class="btn primary">انضم الآن</a>
+    </div>
+  </header>
+
+  <main>
+
+    <section class="hero">
+      <div class="hero-text">
+        <h1>نكتشف ما حول الأرض… ونحمي مستقبلها</h1>
+        <p class="muted">
+          فريق Paradox يجمع علماء وهواة لبناء أدوات رصد وتحليل الكويكبات والأجرام القريبة من الأرض.
+        </p>
+
+        <div class="hero-actions">
+          <a href="asteroids.html" class="btn primary">استكشف الكويكبات</a>
+          <a href="dashboard.html" class="btn">لوحة التحكم</a>
+        </div>
+
+        <div class="features">
+          <div class="feature">رصد<br><small>شبكة تلسكوبات</small></div>
+          <div class="feature">محاكاة مدار<br><small>نمذجة الاصطدام</small></div>
+          <div class="feature">تعليم ومجتمع<br><small>ورش ودورات</small></div>
+          <div class="feature">مشاريع مستقبلية<br><small>مرصد، تتبع آلي</small></div>
+        </div>
+      </div>
+
+      <div class="hero-media">
+        <div class="map-placeholder">3D map preview</div>
+      </div>
+    </section>
+
+    <section class="section">
+      <h2>أحدث الاكتشافات</h2>
+      <div id="asteroidList" class="grid"></div>
+    </section>
+
+    <section class="section">
+      <h2>فرقنا</h2>
+      <div id="teamsGrid" class="grid"></div>
+    </section>
+
+    <section class="section">
+      <h2>مشاريعنا</h2>
+      <div id="projectsGrid" class="grid"></div>
+    </section>
+
+  </main>
+
+  <footer class="footer">
+    <div>© <span id="year"></span> Paradox Team</div>
+    <div class="links">
+      <a data-social="facebook" href="#" target="_blank">فيسبوك</a> • 
+      <a data-social="linkedin" href="#" target="_blank">لينكدإن</a>
+    </div>
+  </footer>
+
+</div>
+</body>
+</html>
