@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width,initial-scale=1"/>
+  <title>انضم للفريق - Paradox</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<div class="site" style="max-width:760px;margin:20px auto">
+
+  <header class="header">
+    <div class="brand">
+      <div class="logo">🪐</div>
+      <div class="title">انضم للفريق</div>
+    </div>
+  </header>
+
+  <main class="section">
+    <h1>نموذج التسجيل للانضمام</h1>
+    <p class="muted">املأ النموذج أدناه وسنراجع طلبك في غضون أيام.</p>
+
+    <div class="card">
+      <form id="joinForm">
+        <label>الاسم الكامل</label>
+        <input id="fullName" required style="width:100%;padding:10px;margin-top:6px;border-radius:8px;background:#07121a;color:white;border:1px solid #1a2330">
+
+        <label style="margin-top:10px">البريد الإلكتروني</label>
+        <input id="email" type="email" required style="width:100%;padding:10px;margin-top:6px;border-radius:8px;background:#07121a;color:white;border:1px solid #1a2330">
+
+        <label style="margin-top:10px">التخصص / المهارة</label>
+        <input id="skill" style="width:100%;padding:10px;margin-top:6px;border-radius:8px;background:#07121a;color:white;border:1px solid #1a2330">
+
+        <label style="margin-top:10px">رسالة تعريفية</label>
+        <textarea id="bio" style="width:100%;height:120px;padding:10px;margin-top:6px;border-radius:8px;background:#07121a;color:white;border:1px solid #1a2330"></textarea>
+
+        <div style="display:flex;gap:10px;margin-top:12px">
+          <button class="btn primary" type="button" onclick="submitJoin()">أرسل الطلب</button>
+          <button class="btn" type="reset">إعادة</button>
+        </div>
+      </form>
+    </div>
+  </main>
+
+  <footer class="footer">
+    <div>© <span id="year"></span> Paradox Team</div>
+  </footer>
+
+</div>
+
+<script>
+function submitJoin(){
+  const name = document.getElementById('fullName').value.trim();
+  const email = document.getElementById('email').value.trim();
+  if(!name || !email) return alert('الرجاء ملء الحقول المطلوبة (الاسم والبريد).');
+
+  // هنا يمكنك تغيير السلوك لإرسال الطلب إلى backend فعلي
+  const payload = {
+    name,
+    email,
+    skill: document.getElementById('skill').value.trim(),
+    bio: document.getElementById('bio').value.trim(),
+    date: new Date().toISOString()
+  };
+
+  // للمحاكاة فقط: نعرض رسالة تأكيد
+  alert('تم استلام طلب الانضمام — سنتواصل معك إلى ' + email + ' (تجريبي).');
+  console.log('Join request:', payload);
+  document.getElementById('joinForm').reset();
+}
+</script>
+</body>
+</html>

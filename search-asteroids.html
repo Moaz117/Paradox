@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width,initial-scale=1"/>
+    <title>بحث الكويكبات - Paradox</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="app.js" defer></script>
+</head>
+
+<body>
+<div class="site">
+
+    <header class="header">
+        <div class="brand">
+            <div class="logo">🪐</div>
+            <div class="title">البحث عن كويكب</div>
+        </div>
+
+        <nav class="nav">
+            <a href="index.html">الرئيسية</a>
+            <a href="asteroids.html">الكويكبات</a>
+            <a href="search-asteroids.html">بحث</a>
+            <a href="projects.html">المشاريع</a>
+            <a href="reports.html">التقارير</a>
+            <a href="about-us.html">من نحن</a>
+            <a href="dashboard.html">لوحة التحكم</a>
+            <a href="join.html">انضم للفريق</a>
+        </nav>
+
+        <div class="cta">
+            <a data-social="facebook" class="btn" target="_blank">فيسبوك</a>
+            <a data-social="linkedin" class="btn" target="_blank">لينكدإن</a>
+        </div>
+    </header>
+
+    <main>
+
+        <section class="section">
+            <h2>البحث عن كويكب</h2>
+            <p class="muted">ابحث بالاسم أو رقم التعريف (ID)</p>
+
+            <input 
+                id="searchInput"
+                type="text" 
+                placeholder="اكتب اسم أو ID الكويكب..."
+                style="
+                    width:100%;
+                    padding:14px;
+                    border-radius:12px;
+                    margin-bottom:14px;
+                    background:#07121a;
+                    border:1px solid #1a2330;
+                    color:white;
+                "
+                oninput="doSearch()"
+            />
+
+            <!-- زر إظهار وإخفاء الفلاتر -->
+            <button 
+                class="btn" 
+                style="margin-bottom:10px" 
+                onclick="toggleFilters()"
+            >
+                🔽 البحث المتقدم
+            </button>
+
+            <!-- الفلاتر المتقدمة -->
+            <div id="advancedFilters" style="
+                display:none;
+                padding:14px;
+                border-radius:12px;
+                background:rgba(255,255,255,0.03);
+                margin-bottom:14px;
+            ">
+
+                <label class="small">درجة الخطورة:</label>
+                <select id="hazardFilter" class="filterInput" onchange="doSearch()">
+                    <option value="">الكل</option>
+                    <option value="آمن">آمن</option>
+                    <option value="منخفض">منخفض</option>
+                    <option value="مراقب">مراقب</option>
+                </select>
+
+                <br><br>
+
+                <label class="small">التصنيف:</label>
+                <select id="classFilter" class="filterInput" onchange="doSearch()">
+                    <option value="">الكل</option>
+                    <option value="NEO">NEO</option>
+                    <option value="PHA">PHA</option>
+                </select>
+
+                <br><br>
+
+                <label class="small">القطر (اختياري):</label>
+                <select id="diameterFilter" class="filterInput" onchange="doSearch()">
+                    <option value="">الكل</option>
+                    <option value="100">أكبر من 100م</option>
+                    <option value="300">أكبر من 300م</option>
+                    <option value="500">أكبر من 500م</option>
+                </select>
+
+            </div>
+
+            <h3 style="margin-top:8px">النتائج: <span id="resultsCount">0</span></h3>
+            <div id="resultsGrid" class="grid"></div>
+        </section>
+
+    </main>
+
+    <footer class="footer">
+        <div>© <span id="year"></span> Paradox Team</div>
+        <div class="links">
+            <a data-social="facebook" target="_blank">فيسبوك</a> • 
+            <a data-social="linkedin" target="_blank">لينكدإن</a>
+        </div>
+    </footer>
+
+</div>
+
+<script>
+
+// فتح/إخفاء البحث المتقدم
+function toggleFilters(){
+    const box = document.getElementById("advancedFilters");
+    box.style.display = box.style.display === "none" ? "block" : "none";
+}
+
+// البحث
+function doSearch(){
+    const text = document.getElementById("searchInput").value.trim().toLowerCase();
+    const hazard = document.getElementById("hazardFilter").value;
+    const cls = document.getElementById("classFilter").value;
+    const diameter = document.getElementById("diameterFilter").value;
+
+    let filtered = sampleAsteroids.filter(a => {
+        const matchText =
+            a.name.toLowerCase().includes(text) ||
+            a.id.toLowerCase().includes(text);
+
+        const matchHazard = hazard === "" || a.hazard === hazard;
+        const matchClass = cls === "" || a.classification === cls;
+
+        let matchDiameter = true;
+        if (diameter !== "") {
+            const d = parseInt(a.diameter);
+            if (!isNaN(d)) {
+                matchDiameter = d >= parseInt(diameter);
+            }
+        }
+
+        return matchText && matchHazard && matchClass && matchDiameter;
+    });
+
+    document.getElementById("resultsCount").textContent = filtered.length;
+
+    const grid = document.getElementById("resultsGrid");
+    grid.innerHTML = "";
+
+    filtered.forEach(a => {
+        const card = document.createElement("div");
+        card.className = "card";
+        card.innerHTML = `
+            <strong>${a.name}</strong><br>
+            <span class="small">ID: ${a.id}</span><br>
+            <span class="small">القطر: ${a.diameter}</span><br>
+            <span class="small">التصنيف: ${a.classification}</span><br>
+            <span class="small">الخطورة: ${a.hazard}</span><br>
+            <a class="btn" style="margin-top:10px" href="asteroid-details.html?id=${a.id}">
+                عرض التفاصيل
+            </a>
+        `;
+        grid.appendChild(card);
+    });
+}
+
+</script>
+
+</body>
+</html>

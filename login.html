@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>تسجيل دخول - Paradox</title>
+  <link rel="stylesheet" href="styles.css">
+  <script src="app.js" defer></script>
+</head>
+<body>
+  <div class="site" style="max-width:520px;margin:28px auto">
+
+    <header class="header">
+      <div class="brand">
+        <div class="logo">🪐</div>
+        <div class="title">تسجيل دخول</div>
+      </div>
+    </header>
+
+    <main class="section">
+      <h1>تسجيل دخول المشرف</h1>
+      <p class="muted">استخدم حساب المشرف للوصول إلى لوحة التحكم وإدارة المحتوى.</p>
+
+      <div class="card">
+        <label>البريد الإلكتروني</label>
+        <input id="email" type="email" placeholder="admin@paradox.local"
+               style="width:100%;padding:10px;margin-top:6px;border-radius:8px;background:#07121a;color:white;border:1px solid #1a2330">
+
+        <label style="margin-top:10px">كلمة المرور</label>
+        <input id="password" type="password" placeholder="••••••••"
+               style="width:100%;padding:10px;margin-top:6px;border-radius:8px;background:#07121a;color:white;border:1px solid #1a2330">
+
+        <div style="display:flex;gap:10px;margin-top:14px">
+          <button class="btn primary" onclick="doLogin()">دخول</button>
+          <a class="btn" href="join.html">انضم الآن</a>
+        </div>
+
+        <div style="margin-top:12px;color:var(--muted);font-size:13px">
+          بيانات تجريبية: <strong>admin@paradox.local</strong> / <strong>secret</strong>
+        </div>
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div>© <span id="year"></span> Paradox Team</div>
+    </footer>
+  </div>
+
+  <script>
+    // دالة تسجيل دخول تجريبي تتصل بنقطة النهاية /api/login
+    function doLogin(){
+      const email = document.getElementById('email').value.trim();
+      const password = document.getElementById('password').value;
+      if(!email || !password) return alert('الرجاء ملء البريد وكلمة المرور.');
+
+      // محاولة الاتصال بنقطة backend التجريبية (إذا قمت بتشغيلها)
+      fetch('/api/login', {
+        method: 'POST',
+        headers: {'Content-Type':'application/json'},
+        body: JSON.stringify({email, password})
+      })
+      .then(r => r.json())
+      .then(j => {
+        if(j.ok){
+          alert('تم تسجيل الدخول بنجاح — جاري التحويل للوحة التحكم');
+          window.location.href = 'dashboard.html';
+        } else {
+          alert(j.message || 'فشل تسجيل الدخول');
+        }
+      })
+      .catch(() => {
+        // في حالة عدم وجود backend محلي، نسمح بتسجيل الدخول التجريبي محلياً
+        if(email === 'admin@paradox.local' && password === 'secret'){
+          alert('تسجيل دخول تجريبي ناجح (محلي).');
+          window.location.href = 'dashboard.html';
+        } else {
+          alert('خطأ في الاتصال بالخادم أو بيانات غير صحيحة.');
+        }
+      });
+    }
+  </script>
+</body>
+</html>

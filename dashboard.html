@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width,initial-scale=1"/>
+  <title>لوحة التحكم - Paradox</title>
+  <link rel="stylesheet" href="styles.css">
+  <script src="app.js" defer></script>
+</head>
+
+<body>
+<div class="site">
+
+  <header class="header">
+    <div class="brand">
+      <div class="logo">🪐</div>
+      <div class="title">لوحة التحكم</div>
+    </div>
+
+    <nav class="nav">
+      <a href="index.html">الرئيسية</a>
+      <a href="asteroids.html">الكويكبات</a>
+      <a href="search-asteroids.html">بحث</a>
+      <a href="projects.html">المشاريع</a>
+      <a href="reports.html">التقارير</a>
+      <a href="about-us.html">من نحن</a>
+      <a href="join.html">انضم</a>
+    </nav>
+
+    <div class="cta">
+      <a class="btn" href="login.html">تسجيل خروج</a>
+    </div>
+  </header>
+
+  <main class="section">
+
+    <h1>لوحة تحكم الفريق</h1>
+    <p class="muted">عرض إحصائيات سريعة وإدارة البيانات البحثية.</p>
+
+    <!-- إحصائيات -->
+    <div class="grid" style="margin-top:18px">
+      <div class="card">
+        <div class="small">عدد الكويكبات</div>
+        <div class="count" id="countAsteroids">0</div>
+      </div>
+
+      <div class="card">
+        <div class="small">عدد المشاريع</div>
+        <div class="count" id="countProjects">0</div>
+      </div>
+
+      <div class="card">
+        <div class="small">عدد التقارير</div>
+        <div class="count" id="countReports">0</div>
+      </div>
+    </div>
+
+    <!-- كويكبات -->
+    <h2 style="margin-top:28px">الكويكبات المسجلة</h2>
+    <div class="grid" id="dashboardAsteroids">
+      <!-- يتم تعبئتها تلقائياً -->
+    </div>
+
+    <!-- المشاريع -->
+    <h2 style="margin-top:34px">المشاريع</h2>
+    <div class="grid" id="projectsGrid">
+      <!-- من app.js -->
+    </div>
+
+    <!-- التقارير -->
+    <h2 style="margin-top:34px">التقارير العلمية</h2>
+    <div class="grid" id="reportsGrid">
+      <!-- من app.js -->
+    </div>
+
+    <div style="margin-top:28px;text-align:center">
+      <a href="projects.html" class="btn">إدارة المشاريع</a>
+      <a href="reports.html" class="btn">إدارة التقارير</a>
+      <a href="asteroids.html" class="btn">إدارة الكويكبات</a>
+    </div>
+
+  </main>
+
+  <footer class="footer">
+    <div>
+      © <span id="year"></span> Paradox Team — 
+      <a data-social="facebook" target="_blank">فيسبوك</a> • 
+      <a data-social="linkedin" target="_blank">لينكدإن</a>
+    </div>
+  </footer>
+
+</div>
+</body>
+</html>

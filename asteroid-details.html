@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width,initial-scale=1"/>
+    <title>تفاصيل الكويكب - Paradox</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="app.js" defer></script>
+</head>
+
+<body>
+<div class="site">
+
+    <header class="header">
+        <div class="brand">
+            <div class="logo">🪐</div>
+            <div class="title">تفاصيل الكويكب</div>
+        </div>
+
+        <nav class="nav">
+            <a href="index.html">الرئيسية</a>
+            <a href="asteroids.html">الكويكبات</a>
+            <a href="search-asteroids.html">بحث</a>
+            <a href="projects.html">المشاريع</a>
+            <a href="reports.html">التقارير</a>
+            <a href="about-us.html">من نحن</a>
+            <a href="dashboard.html">لوحة التحكم</a>
+            <a href="join.html">انضم للفريق</a>
+        </nav>
+
+        <div class="cta">
+            <a data-social="facebook" class="btn" target="_blank">فيسبوك</a>
+            <a data-social="linkedin" class="btn" target="_blank">لينكدإن</a>
+        </div>
+    </header>
+
+    <main class="section">
+
+        <h2>بيانات الكويكب</h2>
+        <p class="muted">عرض معلومات الكويكب حسب رقم ID</p>
+
+        <div id="contentBox" class="card" style="min-height:200px">
+            جاري تحميل البيانات...
+        </div>
+
+        <div style="margin-top:20px">
+            <a href="search-asteroids.html" class="btn">عودة للبحث</a>
+            <a href="asteroids.html" class="btn">كل الكويكبات</a>
+        </div>
+
+    </main>
+
+    <footer class="footer">
+        <div>© <span id="year"></span> Paradox Team</div>
+        <div class="links">
+            <a data-social="facebook" target="_blank">فيسبوك</a> • 
+            <a data-social="linkedin" target="_blank">لينكدإن</a>
+        </div>
+    </footer>
+
+</div>
+
+<script>
+
+// استخراج ID من الرابط
+function getID() {
+    return new URLSearchParams(window.location.search).get("id");
+}
+
+function loadAsteroid() {
+    const id = getID();
+    const box = document.getElementById("contentBox");
+
+    if (!id) {
+        box.innerHTML = "<p>لا يوجد ID في الرابط.</p>";
+        return;
+    }
+
+    const asteroid = sampleAsteroids.find(a => a.id === id);
+
+    if (!asteroid) {
+        box.innerHTML = `<p>لا يوجد كويكب بهذا الرقم: ${id}</p>`;
+        return;
+    }
+
+    box.innerHTML = `
+        <h3>${asteroid.name}</h3>
+        <p class="small">رقم التعريف (ID): ${asteroid.id}</p>
+
+        <div class="kv"><span>القطر التقريبي:</span><strong>${asteroid.diameter}</strong></div>
+        <div class="kv"><span>درجة الخطورة:</span><strong>${asteroid.hazard}</strong></div>
+        <div class="kv"><span>التصنيف:</span><strong>${asteroid.classification}</strong></div>
+        <div class="kv"><span>المسافة عن الأرض:</span><strong>${asteroid.distance_km.toLocaleString()} كم</strong></div>
+        <div class="kv"><span>تاريخ الاكتشاف:</span><strong>${asteroid.discovery_date}</strong></div>
+
+        <br>
+
+        <button class="btn primary" onclick="track('${asteroid.id}')">
+            بدء تتبع هذا الكويكب
+        </button>
+    `;
+}
+
+window.addEventListener("DOMContentLoaded", loadAsteroid);
+
+</script>
+
+</body>
+</html>
