@@ -1,54 +1,444 @@
 <!DOCTYPE html>
-<html>
+<html lang="ar">
 <head>
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE-edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="description" contact="Paradox Team" />
-    <title>Paradox</title>
-    <script src="app.js"></script>
+    <meta name="description" content="قائمة الكواكب والأجرام القريبة من الأرض التي يدرسها فريق Paradox" />
+    <title>قاعدة بيانات الكويكبات - Paradox</title>
     <link rel="stylesheet" href="styles.css">
-</head> 
+    <script src="js/app.js" defer></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
 <body>
+  <div class="stars" id="stars"></div>
+  
   <div class="site">
     <header class="header">
       <div class="brand">
         <div class="logo">🪐</div>
-        <div class="title">Paradox Team</div>
+        <div class="title">قاعدة بيانات الكويكبات</div>
       </div>
       <nav class="nav">
-        <a href="Index.html">الرئيسية</a>
-        <a href="asteroids.html">الكويكبات</a>
-        <a href="research.html">البحث</a>
-        <a href="projects.html">المشاريع</a>
-        <a href="reports.html">التقارير</a>
-        <a href="about-us.html">من نحن</a>
-        <a href="contact-us.html">تواصل معنا</a>
+        <a href="index.html"><i class="fas fa-home"></i> الرئيسية</a>
+        <a href="asteroids.html" class="active"><i class="fas fa-meteor"></i> الكويكبات</a>
+        <a href="search-asteroids.html"><i class="fas fa-search"></i> بحث</a>
+        <a href="projects.html"><i class="fas fa-satellite"></i> المشاريع</a>
+        <a href="reports.html"><i class="fas fa-file-alt"></i> التقارير</a>
+        <a href="teams.html"><i class="fas fa-users"></i> فرقنا</a>
+        <a href="about-us.html"><i class="fas fa-info-circle"></i> من نحن</a>
+        <a href="dashboard.html"><i class="fas fa-tachometer-alt"></i> لوحة التحكم</a>
       </nav>
       <div class="cta">
-        <button id="loginBtn" class="btn ghost">تسجيل دخول</button>
-        <button id="joinBtn" class="btn primary">Join the Team</button>
+        <a href="login.html" class="btn ghost"><i class="fas fa-sign-in-alt"></i> تسجيل دخول</a>
+        <a href="join.html" class="btn primary"><i class="fas fa-user-plus"></i> انضم للفريق</a>
       </div>
     </header>
 
     <main>
-<!-- Asteroids preview -->
-      <section id="asteroids" class="section">
-        <h2>الكويكبات (معاينة)</h2>
-        <p class="muted">قائمة سريعة للكويكبات القريبة المضافة مؤخراً</p>
-        <div id="asteroidList" class="grid"></div>
+      <section class="hero" style="grid-template-columns: 1fr; text-align: center;">
+        <div class="hero-text">
+          <h1>قاعدة بيانات الكويكبات</h1>
+          <p class="muted" style="max-width: 800px; margin: 0 auto 30px;">
+            قاعدة بيانات شاملة للكويكبات والأجرام القريبة من الأرض التي يتم رصدها ودراستها من قبل فريق Paradox.
+            نعرض معلومات دقيقة عن المدار، الحجم، الخطورة، وأحدث البيانات المتاحة.
+          </p>
+          
+          <div class="hero-actions" style="justify-content: center;">
+            <a href="search-asteroids.html" class="btn primary"><i class="fas fa-search"></i> البحث المتقدم</a>
+            <a href="#stats" class="btn"><i class="fas fa-chart-bar"></i> الإحصائيات</a>
+            <a href="#live" class="btn secondary"><i class="fas fa-satellite"></i> التتبع الحي</a>
+          </div>
+        </div>
       </section>
-      </main>
 
-          <footer class="footer">
-      <div>© <span id="year"></span>Paradox - All rights reserved</div>
-      <div class="links">البريد • تويتر • انستغرام</div>
+      <!-- فلاتر سريعة -->
+      <section class="section" style="background: rgba(255,255,255,0.02); border-radius: 20px; padding: 30px;">
+        <h3 style="margin-top: 0; margin-bottom: 20px;"><i class="fas fa-filter"></i> التصنيف السريع</h3>
+        <div class="grid" style="grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 15px;">
+          <button class="btn" onclick="filterAsteroids('all')" style="justify-content: center;">
+            <i class="fas fa-globe"></i> الكل
+          </button>
+          <button class="btn" onclick="filterAsteroids('PHA')" style="justify-content: center; background: rgba(244, 67, 54, 0.1); color: #F44336;">
+            <i class="fas fa-exclamation-triangle"></i> كويكبات خطرة
+          </button>
+          <button class="btn" onclick="filterAsteroids('NEO')" style="justify-content: center; background: rgba(33, 150, 243, 0.1); color: #2196F3;">
+            <i class="fas fa-satellite"></i> أجرام قريبة
+          </button>
+          <button class="btn" onclick="filterAsteroids('large')" style="justify-content: center; background: rgba(255, 193, 7, 0.1); color: #FFC107;">
+            <i class="fas fa-expand-alt"></i> كبيرة الحجم
+          </button>
+          <button class="btn" onclick="filterAsteroids('monitored')" style="justify-content: center; background: rgba(76, 175, 80, 0.1); color: #4CAF50;">
+            <i class="fas fa-eye"></i> تحت المراقبة
+          </button>
+        </div>
+      </section>
+
+      <!-- إحصائيات -->
+      <section class="section" id="stats">
+        <h2><i class="fas fa-chart-pie"></i> إحصائيات الكويكبات</h2>
+        <p class="muted">نظرة عامة على قاعدة بيانات الكويكبات</p>
+        
+        <div class="grid">
+          <div class="card">
+            <div style="display: flex; align-items: center; gap: 15px;">
+              <div style="
+                width: 60px;
+                height: 60px;
+                border-radius: 15px;
+                background: rgba(33, 150, 243, 0.1);
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                font-size: 1.8rem;
+                color: #2196F3;
+              ">
+                <i class="fas fa-meteor"></i>
+              </div>
+              <div>
+                <div style="font-size: 2.5rem; font-weight: 800;">1,847</div>
+                <div class="small">كويكب في قاعدة البيانات</div>
+              </div>
+            </div>
+            <div class="small" style="margin-top: 15px; color: var(--muted);">
+              <i class="fas fa-arrow-up" style="color: #4CAF50;"></i> +24 هذا الشهر
+            </div>
+          </div>
+          
+          <div class="card">
+            <div style="display: flex; align-items: center; gap: 15px;">
+              <div style="
+                width: 60px;
+                height: 60px;
+                border-radius: 15px;
+                background: rgba(244, 67, 54, 0.1);
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                font-size: 1.8rem;
+                color: #F44336;
+              ">
+                <i class="fas fa-radiation-alt"></i>
+              </div>
+              <div>
+                <div style="font-size: 2.5rem; font-weight: 800;">143</div>
+                <div class="small">كويكب خطير محتمل (PHA)</div>
+              </div>
+            </div>
+            <div class="small" style="margin-top: 15px; color: var(--muted);">
+              <i class="fas fa-eye"></i> جميعها تحت المراقبة
+            </div>
+          </div>
+          
+          <div class="card">
+            <div style="display: flex; align-items: center; gap: 15px;">
+              <div style="
+                width: 60px;
+                height: 60px;
+                border-radius: 15px;
+                background: rgba(255, 193, 7, 0.1);
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                font-size: 1.8rem;
+                color: #FFC107;
+              ">
+                <i class="fas fa-ruler-combined"></i>
+              </div>
+              <div>
+                <div style="font-size: 2.5rem; font-weight: 800;">58</div>
+                <div class="small">أكبر من 1 كم</div>
+              </div>
+            </div>
+            <div class="small" style="margin-top: 15px; color: var(--muted);">
+              <i class="fas fa-chart-line"></i> 3 اكتشافات جديدة
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- قائمة الكويكبات -->
+      <section class="section">
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 25px;">
+          <h2 style="margin: 0;"><i class="fas fa-list"></i> الكويكبات المسجلة</h2>
+          <div class="small" id="asteroidCount">عرض 6 كويكبات</div>
+        </div>
+        
+        <div id="asteroidList" class="grid"></div>
+        
+        <!-- التتبع الحي -->
+        <div id="live" class="card" style="margin-top: 40px; background: linear-gradient(135deg, rgba(10, 14, 22, 0.9), rgba(6, 9, 14, 0.9));">
+          <div style="display: flex; align-items: center; gap: 15px; margin-bottom: 20px;">
+            <div style="
+              width: 50px;
+              height: 50px;
+              border-radius: 12px;
+              background: rgba(110, 231, 243, 0.1);
+              display: flex;
+              align-items: center;
+              justify-content: center;
+              font-size: 1.5rem;
+              color: var(--accent);
+            ">
+              <i class="fas fa-satellite"></i>
+            </div>
+            <div>
+              <div style="font-weight: 800; font-size: 1.2rem;">التتبع الحي للكويكبات</div>
+              <div class="small">معلومات محدثة كل ساعة من مراكز الرصد العالمية</div>
+            </div>
+          </div>
+          
+          <div class="grid" style="grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 20px;">
+            <div style="text-align: center;">
+              <div style="font-size: 2.5rem; font-weight: 800; color: var(--accent);">7</div>
+              <div class="small">كويكبات نشطة الآن</div>
+            </div>
+            <div style="text-align: center;">
+              <div style="font-size: 2.5rem; font-weight: 800; color: #4CAF50;">0.4</div>
+              <div class="small">مليون كم (أقرب كويكب)</div>
+            </div>
+            <div style="text-align: center;">
+              <div style="font-size: 2.5rem; font-weight: 800; color: #FFC107;">3.2</div>
+              <div class="small">كم/ثانية (متوسط السرعة)</div>
+            </div>
+            <div style="text-align: center;">
+              <div style="font-size: 2.5rem; font-weight: 800; color: #2196F3;">42%</div>
+              <div class="small">زيادة في معدل الاكتشاف</div>
+            </div>
+          </div>
+          
+          <div style="text-align: center; margin-top: 25px;">
+            <button class="btn primary" onclick="showLiveTracker()">
+              <i class="fas fa-play-circle"></i> تشغيل التتبع الحي
+            </button>
+          </div>
+        </div>
+      </section>
+
+      <!-- مصادر البيانات -->
+      <section class="section">
+        <h2><i class="fas fa-database"></i> مصادر البيانات</h2>
+        <p class="muted">نحصل على بيانات الكويكبات من مصادر بحثية عالمية موثوقة</p>
+        
+        <div class="grid">
+          <div class="card">
+            <h3><i class="fas fa-university"></i> NASA JPL</h3>
+            <p>مختبر الدفع النفاث التابع لوكالة ناسا</p>
+            <div class="small" style="margin-top: 10px;">
+              <i class="fas fa-check-circle" style="color: #4CAF50;"></i> بيانات المدارات
+            </div>
+            <a href="https://ssd.jpl.nasa.gov/" target="_blank" class="btn" style="margin-top: 15px;">
+              <i class="fas fa-external-link-alt"></i> زيارة الموقع
+            </a>
+          </div>
+          
+          <div class="card">
+            <h3><i class="fas fa-satellite-dish"></i> Minor Planet Center</h3>
+            <p>المركز الدولي للكواكب الصغيرة</p>
+            <div class="small" style="margin-top: 10px;">
+              <i class="fas fa-check-circle" style="color: #4CAF50;"></i> اكتشافات جديدة
+            </div>
+            <a href="https://minorplanetcenter.net/" target="_blank" class="btn" style="margin-top: 15px;">
+              <i class="fas fa-external-link-alt"></i> زيارة الموقع
+            </a>
+          </div>
+          
+          <div class="card">
+            <h3><i class="fas fa-network-wired"></i> شبكة رصد Paradox</h3>
+            <p>شبكة التلسكوبات التابعة لفريقنا</p>
+            <div class="small" style="margin-top: 10px;">
+              <i class="fas fa-check-circle" style="color: #4CAF50;"></i> رصد مباشر
+            </div>
+            <a href="projects.html" class="btn" style="margin-top: 15px;">
+              <i class="fas fa-external-link-alt"></i> تعرف على الشبكة
+            </a>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="footer">
+      <div>
+        © <span id="year"></span> فريق Paradox - قاعدة بيانات الكويكبات
+        <br>
+        <small class="muted">بيانات علمية دقيقة ومحدثة باستمرار</small>
+      </div>
+      <div class="links">
+        <a href="index.html"><i class="fas fa-home"></i> الرئيسية</a> • 
+        <a href="search-asteroids.html"><i class="fas fa-search"></i> بحث متقدم</a> •
+        <a href="contact-us.html"><i class="fas fa-envelope"></i> اقتراح إضافة بيانات</a>
+      </div>
     </footer>
   </div>
 
   <script>
-  window.addEventListener('DOMContentLoaded', renderAsteroids);
-</script>
-
-    </body>
-    </html>
+  // تصفية الكويكبات
+  function filterAsteroids(type){
+    let filtered = sampleAsteroids;
+    let title = "جميع الكويكبات";
+    
+    switch(type){
+      case 'PHA':
+        filtered = sampleAsteroids.filter(a => a.classification === 'PHA');
+        title = "الكويكبات الخطرة المحتملة (PHA)";
+        break;
+      case 'NEO':
+        filtered = sampleAsteroids.filter(a => a.classification === 'NEO');
+        title = "الأجرام القريبة من الأرض (NEO)";
+        break;
+      case 'large':
+        filtered = sampleAsteroids.filter(a => {
+          const size = parseInt(a.diameter);
+          return !isNaN(size) && size >= 300;
+        });
+        title = "الكويكبات كبيرة الحجم (300م+)";
+        break;
+      case 'monitored':
+        filtered = sampleAsteroids.filter(a => a.hazard === 'مراقب');
+        title = "الكويكبات تحت المراقبة";
+        break;
+    }
+    
+    // تحديث العنوان
+    document.querySelector('h1').textContent = title;
+    document.getElementById('asteroidCount').textContent = `عرض ${filtered.length} كويكبات`;
+    
+    // إعادة عرض الكويكبات
+    const root = document.getElementById('asteroidList');
+    root.innerHTML = '';
+    
+    filtered.forEach(a => {
+      const card = document.createElement('div');
+      card.className = 'card asteroid';
+      card.innerHTML = `
+        <div style="display: flex; justify-content: space-between; align-items: flex-start;">
+          <div>
+            <div style="font-weight:800; font-size: 1.2rem;">${a.name}</div>
+            <div class="small">ID: ${a.id}</div>
+          </div>
+          <span class="tag" style="background: ${getHazardColor(a.hazard)}">${a.hazard}</span>
+        </div>
+        
+        <div style="margin-top: 15px;">
+          <div class="kv">
+            <span class="small">القطر:</span>
+            <span style="font-weight:600;">${a.diameter}</span>
+          </div>
+          <div class="kv">
+            <span class="small">المسافة:</span>
+            <span style="font-weight:600;">${a.distance_km.toLocaleString()} كم</span>
+          </div>
+          <div class="kv">
+            <span class="small">التصنيف:</span>
+            <span style="font-weight:600;">${a.classification}</span>
+          </div>
+        </div>
+        
+        <div style="margin-top: 15px; display:flex; gap:10px; flex-wrap: wrap;">
+          <a class="btn" href="asteroid-details.html?id=${encodeURIComponent(a.id)}">
+            <i class="fas fa-info-circle"></i> التفاصيل
+          </a>
+          <button class="btn primary" onclick="trackAsteroid('${a.id}')">
+            <i class="fas fa-satellite"></i> تتبع
+          </button>
+        </div>
+      `;
+      root.appendChild(card);
+    });
+  }
+  
+  // عرض التتبع الحي
+  function showLiveTracker(){
+    alert('جاري فتح منصة التتبع الحي...\n\n(هذه محاكاة - في الواقع ستظهر خريطة تفاعلية للكويكبات)');
+    
+    // محاكاة فتح منصة التتبع
+    const modal = document.createElement('div');
+    modal.style.cssText = `
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0,0,0,0.9);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 10000;
+      padding: 20px;
+    `;
+    
+    modal.innerHTML = `
+      <div style="
+        background: var(--card);
+        border-radius: 20px;
+        padding: 30px;
+        max-width: 800px;
+        width: 100%;
+        border: 1px solid rgba(255,255,255,0.1);
+        position: relative;
+      ">
+        <button onclick="this.parentElement.parentElement.remove()" style="
+          position: absolute;
+          top: 15px;
+          left: 15px;
+          background: rgba(255,255,255,0.1);
+          border: none;
+          color: white;
+          width: 40px;
+          height: 40px;
+          border-radius: 50%;
+          cursor: pointer;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+        ">
+          <i class="fas fa-times"></i>
+        </button>
+        
+        <h2 style="margin-top: 0; text-align: center;">
+          <i class="fas fa-satellite"></i> منصة التتبع الحي
+        </h2>
+        
+        <div style="
+          height: 400px;
+          background: linear-gradient(135deg, #0a0e16, #1a1035);
+          border-radius: 15px;
+          border: 1px solid rgba(255,255,255,0.1);
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          margin: 20px 0;
+        ">
+          <div style="text-align: center;">
+            <i class="fas fa-satellite" style="font-size: 4rem; color: var(--accent); margin-bottom: 20px;"></i>
+            <h3>منصة التتبع قيد التطوير</h3>
+            <p class="small">ستتوفر قريباً خريطة تفاعلية تظهر الكويكبات في الوقت الحقيقي</p>
+          </div>
+        </div>
+        
+        <div style="text-align: center;">
+          <button class="btn primary" onclick="this.parentElement.parentElement.remove()">
+            <i class="fas fa-check"></i> فهمت
+          </button>
+        </div>
+      </div>
+    `;
+    
+    document.body.appendChild(modal);
+  }
+  
+  // تهيئة الصفحة
+  window.addEventListener('DOMContentLoaded', function() {
+    // تحديث عدد الكويكبات
+    document.getElementById('asteroidCount').textContent = `عرض ${sampleAsteroids.length} كويكبات`;
+    
+    // إضافة السنة للفوتر
+    const yearElement = document.getElementById('year');
+    if(yearElement) yearElement.textContent = new Date().getFullYear();
+    
+    // إنشاء النجوم
+    if(typeof createStars === 'function') createStars();
+  });
+  </script>
+</body>
+</html>

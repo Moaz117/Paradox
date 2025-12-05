@@ -3,81 +3,400 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>تسجيل دخول - Paradox</title>
+  <title>تسجيل الدخول إلى Paradox - لوحة التحكم</title>
   <link rel="stylesheet" href="styles.css">
-  <script src="app.js" defer></script>
+  <script src="js/app.js" defer></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 <body>
-  <div class="site" style="max-width:520px;margin:28px auto">
-
-    <header class="header">
+  <!-- النجوم المتلألئة -->
+  <div class="stars" id="stars"></div>
+  
+  <div class="site" style="max-width: 500px; margin: 50px auto; min-height: calc(100vh - 100px); display: flex; flex-direction: column; justify-content: center;">
+    <header class="header" style="margin-bottom: 40px; position: static;">
       <div class="brand">
         <div class="logo">🪐</div>
-        <div class="title">تسجيل دخول</div>
+        <div class="title">تسجيل الدخول</div>
+      </div>
+      <div class="cta">
+        <a href="index.html" class="btn ghost"><i class="fas fa-home"></i> الرئيسية</a>
       </div>
     </header>
 
-    <main class="section">
-      <h1>تسجيل دخول المشرف</h1>
-      <p class="muted">استخدم حساب المشرف للوصول إلى لوحة التحكم وإدارة المحتوى.</p>
+    <main class="section" style="border-top: none; flex: 1;">
+      <div style="text-align: center; margin-bottom: 30px;">
+        <h1 style="font-size: 2.2rem; margin-bottom: 10px;">مرحباً بعودتك!</h1>
+        <p class="muted" style="max-width: 400px; margin: 0 auto;">
+          سجّل دخولك للوصول إلى لوحة التحكم، إدارة البيانات، والمشاركة في مشاريع الفريق
+        </p>
+      </div>
 
-      <div class="card">
-        <label>البريد الإلكتروني</label>
-        <input id="email" type="email" placeholder="admin@paradox.local"
-               style="width:100%;padding:10px;margin-top:6px;border-radius:8px;background:#07121a;color:white;border:1px solid #1a2330">
-
-        <label style="margin-top:10px">كلمة المرور</label>
-        <input id="password" type="password" placeholder="••••••••"
-               style="width:100%;padding:10px;margin-top:6px;border-radius:8px;background:#07121a;color:white;border:1px solid #1a2330">
-
-        <div style="display:flex;gap:10px;margin-top:14px">
-          <button class="btn primary" onclick="doLogin()">دخول</button>
-          <a class="btn" href="join.html">انضم الآن</a>
+      <div class="card" style="position: relative; overflow: hidden;">
+        <!-- تأثير خلفي -->
+        <div style="
+          position: absolute;
+          top: 0;
+          left: 0;
+          width: 100%;
+          height: 5px;
+          background: linear-gradient(90deg, var(--accent-2), var(--accent));
+        "></div>
+        
+        <div style="
+          position: absolute;
+          top: 50%;
+          left: 50%;
+          transform: translate(-50%, -50%);
+          width: 300px;
+          height: 300px;
+          background: radial-gradient(circle, rgba(110, 231, 243, 0.05) 0%, transparent 70%);
+          z-index: 0;
+        "></div>
+        
+        <div style="position: relative; z-index: 1;">
+          <!-- علامات تبويب نوع الحساب -->
+          <div style="display: flex; margin-bottom: 25px; background: rgba(255,255,255,0.03); border-radius: 12px; padding: 5px;">
+            <button id="memberTab" class="tab-btn active" onclick="switchTab('member')" style="flex: 1; padding: 12px; border: none; background: rgba(110, 231, 243, 0.1); color: var(--accent); border-radius: 10px; font-weight: 600; cursor: pointer;">
+              <i class="fas fa-user"></i> عضو
+            </button>
+            <button id="adminTab" class="tab-btn" onclick="switchTab('admin')" style="flex: 1; padding: 12px; border: none; background: transparent; color: var(--muted); border-radius: 10px; font-weight: 600; cursor: pointer;">
+              <i class="fas fa-user-shield"></i> مشرف
+            </button>
+          </div>
+          
+          <!-- نموذج تسجيل الدخول -->
+          <form id="loginForm" onsubmit="return doLogin(event)">
+            <div id="memberForm">
+              <div style="margin-bottom: 20px;">
+                <label style="display: block; margin-bottom: 8px; font-weight: 600;">
+                  <i class="fas fa-envelope"></i> البريد الإلكتروني
+                </label>
+                <div style="position: relative;">
+                  <input id="memberEmail" type="email" required 
+                         placeholder="member@paradox.team"
+                         style="width:100%; padding:14px 14px 14px 45px; border-radius:10px; background:rgba(255,255,255,0.05); color:white; border:1px solid rgba(255,255,255,0.1); font-size: 0.95rem;">
+                  <i class="fas fa-envelope" style="position: absolute; right: 15px; top: 50%; transform: translateY(-50%); color: var(--muted);"></i>
+                </div>
+              </div>
+              
+              <div style="margin-bottom: 25px;">
+                <label style="display: block; margin-bottom: 8px; font-weight: 600;">
+                  <i class="fas fa-lock"></i> كلمة المرور
+                </label>
+                <div style="position: relative;">
+                  <input id="memberPassword" type="password" required 
+                         placeholder="••••••••"
+                         style="width:100%; padding:14px 14px 14px 45px; border-radius:10px; background:rgba(255,255,255,0.05); color:white; border:1px solid rgba(255,255,255,0.1); font-size: 0.95rem;">
+                  <i class="fas fa-lock" style="position: absolute; right: 15px; top: 50%; transform: translateY(-50%); color: var(--muted);"></i>
+                  <button type="button" id="toggleMemberPassword" style="position: absolute; left: 15px; top: 50%; transform: translateY(-50%); background: none; border: none; color: var(--muted); cursor: pointer;">
+                    <i class="fas fa-eye"></i>
+                  </button>
+                </div>
+              </div>
+            </div>
+            
+            <div id="adminForm" style="display: none;">
+              <div style="margin-bottom: 20px;">
+                <label style="display: block; margin-bottom: 8px; font-weight: 600;">
+                  <i class="fas fa-user-shield"></i> بريد المشرف
+                </label>
+                <div style="position: relative;">
+                  <input id="adminEmail" type="email" 
+                         placeholder="admin@paradox.local"
+                         style="width:100%; padding:14px 14px 14px 45px; border-radius:10px; background:rgba(255,255,255,0.05); color:white; border:1px solid rgba(255,255,255,0.1); font-size: 0.95rem;">
+                  <i class="fas fa-user-shield" style="position: absolute; right: 15px; top: 50%; transform: translateY(-50%); color: var(--muted);"></i>
+                </div>
+              </div>
+              
+              <div style="margin-bottom: 25px;">
+                <label style="display: block; margin-bottom: 8px; font-weight: 600;">
+                  <i class="fas fa-key"></i> كلمة مرور المشرف
+                </label>
+                <div style="position: relative;">
+                  <input id="adminPassword" type="password" 
+                         placeholder="••••••••"
+                         style="width:100%; padding:14px 14px 14px 45px; border-radius:10px; background:rgba(255,255,255,0.05); color:white; border:1px solid rgba(255,255,255,0.1); font-size: 0.95rem;">
+                  <i class="fas fa-key" style="position: absolute; right: 15px; top: 50%; transform: translateY(-50%); color: var(--muted);"></i>
+                  <button type="button" id="toggleAdminPassword" style="position: absolute; left: 15px; top: 50%; transform: translateY(-50%); background: none; border: none; color: var(--muted); cursor: pointer;">
+                    <i class="fas fa-eye"></i>
+                  </button>
+                </div>
+                <div class="small" style="margin-top: 10px; color: var(--muted);">
+                  <i class="fas fa-info-circle"></i> بيانات تجريبية: <strong>admin@paradox.local</strong> / <strong>secret</strong>
+                </div>
+              </div>
+            </div>
+            
+            <div style="margin-bottom: 20px;">
+              <label style="display: flex; align-items: center; gap: 10px; cursor: pointer;">
+                <input type="checkbox" id="rememberMe" 
+                       style="margin: 0;">
+                <span class="small">تذكرني على هذا الجهاز</span>
+              </label>
+            </div>
+            
+            <button class="btn primary" type="submit" style="width: 100%; padding: 16px; font-size: 1rem;">
+              <i class="fas fa-sign-in-alt"></i> تسجيل الدخول
+            </button>
+            
+            <div id="loginMessage" style="margin-top: 20px; display: none;"></div>
+          </form>
+          
+          <div style="margin-top: 25px; padding-top: 25px; border-top: 1px solid rgba(255,255,255,0.1);">
+            <div class="small" style="text-align: center; color: var(--muted); margin-bottom: 15px;">
+              <i class="fas fa-question-circle"></i> هل تواجه مشكلة في الدخول؟
+            </div>
+            
+            <div style="display: flex; flex-direction: column; gap: 10px;">
+              <a href="#" class="btn ghost small" style="text-align: center; padding: 10px;">
+                <i class="fas fa-key"></i> نسيت كلمة المرور؟
+              </a>
+              <a href="join.html" class="btn small" style="text-align: center; padding: 10px;">
+                <i class="fas fa-user-plus"></i> ليس لديك حساب؟ انضم إلينا
+              </a>
+            </div>
+          </div>
         </div>
-
-        <div style="margin-top:12px;color:var(--muted);font-size:13px">
-          بيانات تجريبية: <strong>admin@paradox.local</strong> / <strong>secret</strong>
+      </div>
+      
+      <!-- معلومات إضافية -->
+      <div class="card" style="margin-top: 25px; background: rgba(255,255,255,0.02);">
+        <div style="display: flex; align-items: center; gap: 15px;">
+          <div style="
+            width: 50px;
+            height: 50px;
+            border-radius: 12px;
+            background: rgba(110, 231, 243, 0.1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            color: var(--accent);
+          ">
+            <i class="fas fa-shield-alt"></i>
+          </div>
+          <div>
+            <div style="font-weight: 600;">أمان وحماية</div>
+            <div class="small">جميع البيانات مشفرة ونحمي خصوصيتك وفق أعلى المعايير</div>
+          </div>
         </div>
       </div>
     </main>
 
-    <footer class="footer">
-      <div>© <span id="year"></span> Paradox Team</div>
+    <footer class="footer" style="margin-top: 40px; border-top: 1px solid rgba(255,255,255,0.05); padding-top: 30px;">
+      <div>
+        © <span id="year"></span> فريق Paradox
+        <br>
+        <small class="muted">منصة البحث العلمي في علوم الفضاء والكويكبات</small>
+      </div>
+      <div class="links">
+        <a href="index.html"><i class="fas fa-home"></i> الرئيسية</a> • 
+        <a href="about-us.html"><i class="fas fa-info-circle"></i> عن الفريق</a>
+      </div>
     </footer>
   </div>
 
   <script>
-    // دالة تسجيل دخول تجريبي تتصل بنقطة النهاية /api/login
-    function doLogin(){
-      const email = document.getElementById('email').value.trim();
-      const password = document.getElementById('password').value;
-      if(!email || !password) return alert('الرجاء ملء البريد وكلمة المرور.');
-
-      // محاولة الاتصال بنقطة backend التجريبية (إذا قمت بتشغيلها)
-      fetch('/api/login', {
-        method: 'POST',
-        headers: {'Content-Type':'application/json'},
-        body: JSON.stringify({email, password})
-      })
-      .then(r => r.json())
-      .then(j => {
-        if(j.ok){
-          alert('تم تسجيل الدخول بنجاح — جاري التحويل للوحة التحكم');
-          window.location.href = 'dashboard.html';
-        } else {
-          alert(j.message || 'فشل تسجيل الدخول');
-        }
-      })
-      .catch(() => {
-        // في حالة عدم وجود backend محلي، نسمح بتسجيل الدخول التجريبي محلياً
-        if(email === 'admin@paradox.local' && password === 'secret'){
-          alert('تسجيل دخول تجريبي ناجح (محلي).');
-          window.location.href = 'dashboard.html';
-        } else {
-          alert('خطأ في الاتصال بالخادم أو بيانات غير صحيحة.');
-        }
+  // تبديل بين علامات التبويب
+  function switchTab(tab){
+    const memberTab = document.getElementById('memberTab');
+    const adminTab = document.getElementById('adminTab');
+    const memberForm = document.getElementById('memberForm');
+    const adminForm = document.getElementById('adminForm');
+    
+    if(tab === 'member'){
+      memberTab.classList.add('active');
+      memberTab.style.background = 'rgba(110, 231, 243, 0.1)';
+      memberTab.style.color = 'var(--accent)';
+      
+      adminTab.classList.remove('active');
+      adminTab.style.background = 'transparent';
+      adminTab.style.color = 'var(--muted)';
+      
+      memberForm.style.display = 'block';
+      adminForm.style.display = 'none';
+      
+      // تعيين الحقول المطلوبة
+      document.getElementById('memberEmail').required = true;
+      document.getElementById('memberPassword').required = true;
+      document.getElementById('adminEmail').required = false;
+      document.getElementById('adminPassword').required = false;
+      
+    } else {
+      adminTab.classList.add('active');
+      adminTab.style.background = 'rgba(110, 231, 243, 0.1)';
+      adminTab.style.color = 'var(--accent)';
+      
+      memberTab.classList.remove('active');
+      memberTab.style.background = 'transparent';
+      memberTab.style.color = 'var(--muted)';
+      
+      adminForm.style.display = 'block';
+      memberForm.style.display = 'none';
+      
+      // تعيين الحقول المطلوبة
+      document.getElementById('adminEmail').required = true;
+      document.getElementById('adminPassword').required = true;
+      document.getElementById('memberEmail').required = false;
+      document.getElementById('memberPassword').required = false;
+    }
+  }
+  
+  // إظهار/إخفاء كلمة المرور
+  function setupPasswordToggle(){
+    const toggleMember = document.getElementById('toggleMemberPassword');
+    const memberPass = document.getElementById('memberPassword');
+    
+    const toggleAdmin = document.getElementById('toggleAdminPassword');
+    const adminPass = document.getElementById('adminPassword');
+    
+    if(toggleMember && memberPass){
+      toggleMember.addEventListener('click', function(){
+        const type = memberPass.getAttribute('type') === 'password' ? 'text' : 'password';
+        memberPass.setAttribute('type', type);
+        this.innerHTML = type === 'password' ? '<i class="fas fa-eye"></i>' : '<i class="fas fa-eye-slash"></i>';
       });
     }
+    
+    if(toggleAdmin && adminPass){
+      toggleAdmin.addEventListener('click', function(){
+        const type = adminPass.getAttribute('type') === 'password' ? 'text' : 'password';
+        adminPass.setAttribute('type', type);
+        this.innerHTML = type === 'password' ? '<i class="fas fa-eye"></i>' : '<i class="fas fa-eye-slash"></i>';
+      });
+    }
+  }
+  
+  // دالة تسجيل الدخول
+  function doLogin(event){
+    event.preventDefault();
+    
+    const messageDiv = document.getElementById('loginMessage');
+    messageDiv.style.display = 'none';
+    messageDiv.innerHTML = '';
+    
+    // تحديد نوع الحساب
+    const isAdminMode = document.getElementById('adminForm').style.display !== 'none';
+    
+    let email, password;
+    
+    if(isAdminMode){
+      email = document.getElementById('adminEmail').value.trim();
+      password = document.getElementById('adminPassword').value;
+      
+      // بيانات المشرف التجريبية
+      if(email === 'admin@paradox.local' && password === 'secret'){
+        showLoginMessage('تم تسجيل دخول المشرف بنجاح! جاري التحويل...', 'success');
+        
+        // محاكاة الانتقال
+        setTimeout(() => {
+          window.location.href = 'dashboard.html';
+        }, 1500);
+        
+        return false;
+      }
+    } else {
+      email = document.getElementById('memberEmail').value.trim();
+      password = document.getElementById('memberPassword').value;
+      
+      // محاكاة تسجيل دخول العضو
+      if(email && password){
+        showLoginMessage('تم تسجيل الدخول بنجاح! جاري التحويل...', 'success');
+        
+        // محاكاة الانتقال
+        setTimeout(() => {
+          window.location.href = 'dashboard.html';
+        }, 1500);
+        
+        return false;
+      }
+    }
+    
+    // في حالة فشل التسجيل
+    showLoginMessage('البريد الإلكتروني أو كلمة المرور غير صحيحة. حاول مرة أخرى.', 'error');
+    return false;
+  }
+  
+  // عرض رسالة تسجيل الدخول
+  function showLoginMessage(message, type){
+    const messageDiv = document.getElementById('loginMessage');
+    
+    messageDiv.innerHTML = `
+      <div style="
+        padding: 15px;
+        border-radius: 10px;
+        background: ${type === 'success' ? 'rgba(76, 175, 80, 0.1)' : 'rgba(244, 67, 54, 0.1)'};
+        border: 1px solid ${type === 'success' ? 'rgba(76, 175, 80, 0.3)' : 'rgba(244, 67, 54, 0.3)'};
+        color: ${type === 'success' ? '#4CAF50' : '#F44336'};
+        text-align: center;
+      ">
+        <div style="display: flex; align-items: center; justify-content: center; gap: 10px;">
+          <i class="fas ${type === 'success' ? 'fa-check-circle' : 'fa-exclamation-circle'}"></i>
+          <div>${message}</div>
+        </div>
+      </div>
+    `;
+    
+    messageDiv.style.display = 'block';
+    
+    // إخفاء الرسالة تلقائياً بعد 5 ثوانٍ
+    if(type === 'error'){
+      setTimeout(() => {
+        messageDiv.style.opacity = '0';
+        messageDiv.style.transition = 'opacity 0.5s ease';
+        setTimeout(() => {
+          messageDiv.style.display = 'none';
+          messageDiv.style.opacity = '1';
+        }, 500);
+      }, 5000);
+    }
+  }
+  
+  // تهيئة الصفحة
+  window.addEventListener('DOMContentLoaded', function() {
+    // إضافة السنة للفوتر
+    const yearElement = document.getElementById('year');
+    if(yearElement) yearElement.textContent = new Date().getFullYear();
+    
+    // إنشاء النجوم
+    if(typeof createStars === 'function') createStars();
+    
+    // تهيئة تبديل كلمة المرور
+    setupPasswordToggle();
+    
+    // إضافة تأثيرات للحقول
+    const inputs = document.querySelectorAll('input');
+    inputs.forEach(input => {
+      input.addEventListener('focus', function() {
+        this.style.borderColor = 'var(--accent)';
+        this.style.boxShadow = '0 0 0 3px rgba(110, 231, 243, 0.1)';
+      });
+      
+      input.addEventListener('blur', function() {
+        this.style.borderColor = 'rgba(255,255,255,0.1)';
+        this.style.boxShadow = 'none';
+      });
+    });
+    
+    // محاكاة تحميل بيانات تذكرني
+    const rememberMe = localStorage.getItem('paradox_remember');
+    if(rememberMe){
+      try{
+        const data = JSON.parse(rememberMe);
+        if(data.email && data.type){
+          if(data.type === 'admin'){
+            switchTab('admin');
+            document.getElementById('adminEmail').value = data.email;
+          } else {
+            document.getElementById('memberEmail').value = data.email;
+          }
+          document.getElementById('rememberMe').checked = true;
+        }
+      } catch(e){
+        console.log('Error loading saved login data:', e);
+      }
+    }
+  });
   </script>
 </body>
 </html>

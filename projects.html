@@ -1,54 +1,532 @@
 <!DOCTYPE html>
-<html>
+<html lang="ar">
 <head>
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE-edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="description" contact="Paradox Team" />
-    <title>Paradox</title>
-    <script src="app.js"></script>
+    <meta name="description" content="المشاريع البحثية والتطويرية التي يعمل عليها فريق Paradox في مجال علوم الفضاء" />
+    <title>المشاريع البحثية - Paradox</title>
     <link rel="stylesheet" href="styles.css">
-</head> 
+    <script src="js/app.js" defer></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
 <body>
+  <div class="stars" id="stars"></div>
+  
   <div class="site">
     <header class="header">
       <div class="brand">
         <div class="logo">🪐</div>
-        <div class="title">Paradox Team</div>
+        <div class="title">المشاريع البحثية</div>
       </div>
       <nav class="nav">
-        <a href="Index.html">الرئيسية</a>
-        <a href="asteroids.html">الكويكبات</a>
-        <a href="research.html">البحث</a>
-        <a href="projects.html">المشاريع</a>
-        <a href="reports.html">التقارير</a>
-        <a href="about-us.html">من نحن</a>
-        <a href="contact-us.html">تواصل معنا</a>
+        <a href="index.html"><i class="fas fa-home"></i> الرئيسية</a>
+        <a href="asteroids.html"><i class="fas fa-meteor"></i> الكويكبات</a>
+        <a href="search-asteroids.html"><i class="fas fa-search"></i> بحث</a>
+        <a href="projects.html" class="active"><i class="fas fa-satellite"></i> المشاريع</a>
+        <a href="reports.html"><i class="fas fa-file-alt"></i> التقارير</a>
+        <a href="teams.html"><i class="fas fa-users"></i> فرقنا</a>
+        <a href="about-us.html"><i class="fas fa-info-circle"></i> من نحن</a>
+        <a href="dashboard.html"><i class="fas fa-tachometer-alt"></i> لوحة التحكم</a>
       </nav>
       <div class="cta">
-        <button id="loginBtn" class="btn ghost">تسجيل دخول</button>
-        <button id="joinBtn" class="btn primary">Join the Team</button>
+        <a href="login.html" class="btn ghost"><i class="fas fa-sign-in-alt"></i> تسجيل دخول</a>
+        <a href="join.html" class="btn primary"><i class="fas fa-user-plus"></i> انضم للفريق</a>
       </div>
     </header>
 
     <main>
-      <!-- Projects -->
-      <section id="projects" class="section">
-        <h2>المشاريع</h2>
-        <p class="muted">هنا تعرض مشاريع المحاكاة والرصد والتطوير.</p>
+      <section class="hero" style="grid-template-columns: 1fr; text-align: center;">
+        <div class="hero-text">
+          <h1>المشاريع البحثية والتطويرية</h1>
+          <p class="muted" style="max-width: 800px; margin: 0 auto 30px;">
+            يعمل فريق Paradox على مجموعة متنوعة من المشاريع البحثية والتطويرية في مجال علوم الفضاء.
+            من رصد الكويكبات إلى تطوير الأقمار الصناعية، نسعى لتحقيق رؤيتنا في استكشاف الفضاء.
+          </p>
+          
+          <div class="hero-actions" style="justify-content: center;">
+            <a href="#active" class="btn primary"><i class="fas fa-play-circle"></i> المشاريع النشطة</a>
+            <a href="#upcoming" class="btn"><i class="fas fa-calendar-alt"></i> المشاريع القادمة</a>
+            <a href="#participate" class="btn secondary"><i class="fas fa-handshake"></i> المشاركة</a>
+          </div>
+        </div>
+      </section>
+
+      <!-- إحصائيات المشاريع -->
+      <section class="section">
+        <h2><i class="fas fa-chart-line"></i> إحصائيات المشاريع</h2>
+        <p class="muted">نظرة عامة على أداء المشاريع والتقدم المحرز</p>
+        
+        <div class="grid">
+          <div class="card">
+            <div style="display: flex; align-items: center; gap: 15px;">
+              <div style="
+                width: 60px;
+                height: 60px;
+                border-radius: 15px;
+                background: rgba(76, 175, 80, 0.1);
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                font-size: 1.8rem;
+                color: #4CAF50;
+              ">
+                <i class="fas fa-tasks"></i>
+              </div>
+              <div>
+                <div style="font-size: 2.5rem; font-weight: 800;" id="activeProjectsCount">12</div>
+                <div class="small">مشروع نشط</div>
+              </div>
+            </div>
+            <div class="small" style="margin-top: 15px; color: var(--muted);">
+              <i class="fas fa-arrow-up" style="color: #4CAF50;"></i> 65% معدل الإنجاز
+            </div>
+          </div>
+          
+          <div class="card">
+            <div style="display: flex; align-items: center; gap: 15px;">
+              <div style="
+                width: 60px;
+                height: 60px;
+                border-radius: 15px;
+                background: rgba(33, 150, 243, 0.1);
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                font-size: 1.8rem;
+                color: #2196F3;
+              ">
+                <i class="fas fa-users"></i>
+              </div>
+              <div>
+                <div style="font-size: 2.5rem; font-weight: 800;">86</div>
+                <div class="small">باحث مشارك</div>
+              </div>
+            </div>
+            <div class="small" style="margin-top: 15px; color: var(--muted);">
+              <i class="fas fa-user-plus" style="color: #2196F3;"></i> +14 هذا الشهر
+            </div>
+          </div>
+          
+          <div class="card">
+            <div style="display: flex; align-items: center; gap: 15px;">
+              <div style="
+                width: 60px;
+                height: 60px;
+                border-radius: 15px;
+                background: rgba(255, 193, 7, 0.1);
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                font-size: 1.8rem;
+                color: #FFC107;
+              ">
+                <i class="fas fa-money-bill-wave"></i>
+              </div>
+              <div>
+                <div style="font-size: 2.5rem; font-weight: 800;">4.2</div>
+                <div class="small">مليون دولار تمويل</div>
+              </div>
+            </div>
+            <div class="small" style="margin-top: 15px; color: var(--muted);">
+              <i class="fas fa-chart-pie" style="color: #FFC107;"></i> 72% تم إنفاقه
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- المشاريع النشطة -->
+      <section class="section" id="active">
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 25px;">
+          <h2 style="margin: 0;"><i class="fas fa-play-circle"></i> المشاريع النشطة</h2>
+          <div class="small">مرتبة حسب الأولوية</div>
+        </div>
+        
         <div id="projectsGrid" class="grid"></div>
       </section>
-      </main>
 
-          <footer class="footer">
-      <div>© <span id="year"></span>Paradox - All rights reserved</div>
-      <div class="links">البريد • تويتر • انستغرام</div>
+      <!-- المشاريع القادمة -->
+      <section class="section" id="upcoming">
+        <h2><i class="fas fa-calendar-alt"></i> المشاريع القادمة</h2>
+        <p class="muted">مشاريع قيد التخطيط والتمويل</p>
+        
+        <div class="grid">
+          <div class="card">
+            <div style="display: flex; justify-content: space-between; align-items: flex-start;">
+              <div>
+                <div style="font-weight: 800; font-size: 1.2rem;">مشروع "سِراج" للتنبؤ بالكويكبات</div>
+                <div class="small">نظام ذكاء اصطناعي للتنبؤ بمسارات الكويكبات الخطرة</div>
+              </div>
+              <span class="tag" style="background: rgba(33, 150, 243, 0.1); color: #2196F3;">
+                قيد التخطيط
+              </span>
+            </div>
+            
+            <div style="margin: 20px 0;">
+              <div class="kv">
+                <span class="small">الميزانية المطلوبة:</span>
+                <span style="font-weight:600;">$850,000</span>
+              </div>
+              <div class="kv">
+                <span class="small">المدة المتوقعة:</span>
+                <span style="font-weight:600;">24 شهراً</span>
+              </div>
+              <div class="kv">
+                <span class="small">بداية التنفيذ:</span>
+                <span style="font-weight:600;">Q3 2025</span>
+              </div>
+            </div>
+            
+            <div class="progress-bar">
+              <div class="progress-fill" style="width: 15%; background: linear-gradient(90deg, #2196F3, #21CBF3);"></div>
+            </div>
+            <div class="small" style="text-align: center; margin-top: 8px;">15% تمويل</div>
+            
+            <button class="btn" style="margin-top: 15px; width: 100%;" onclick="showProjectDetails('siraj')">
+              <i class="fas fa-info-circle"></i> معرفة المزيد
+            </button>
+          </div>
+          
+          <div class="card">
+            <div style="display: flex; justify-content: space-between; align-items: flex-start;">
+              <div>
+                <div style="font-weight: 800; font-size: 1.2rem;">قمر "فلك 1" الصناعي</div>
+                <div class="small">قمر صناعي عربي مخصص لرصد الكويكبات</div>
+              </div>
+              <span class="tag" style="background: rgba(156, 39, 176, 0.1); color: #9C27B0;">
+                قيد التصميم
+              </span>
+            </div>
+            
+            <div style="margin: 20px 0;">
+              <div class="kv">
+                <span class="small">الميزانية المطلوبة:</span>
+                <span style="font-weight:600;">$2,500,000</span>
+              </div>
+              <div class="kv">
+                <span class="small">المدة المتوقعة:</span>
+                <span style="font-weight:600;">36 شهراً</span>
+              </div>
+              <div class="kv">
+                <span class="small">الإطلاق المتوقع:</span>
+                <span style="font-weight:600;">Q4 2026</span>
+              </div>
+            </div>
+            
+            <div class="progress-bar">
+              <div class="progress-fill" style="width: 8%; background: linear-gradient(90deg, #9C27B0, #E040FB);"></div>
+            </div>
+            <div class="small" style="text-align: center; margin-top: 8px;">8% تمويل</div>
+            
+            <button class="btn" style="margin-top: 15px; width: 100%;" onclick="showProjectDetails('falak1')">
+              <i class="fas fa-info-circle"></i> معرفة المزيد
+            </button>
+          </div>
+          
+          <div class="card">
+            <div style="display: flex; justify-content: space-between; align-items: flex-start;">
+              <div>
+                <div style="font-weight: 800; font-size: 1.2rem;">مركز "الفرقد" للتدريب</div>
+                <div class="small">مركز تدريبي متخصص في علوم الفلك والفضاء</div>
+              </div>
+              <span class="tag" style="background: rgba(76, 175, 80, 0.1); color: #4CAF50;">
+                قيد الدراسة
+              </span>
+            </div>
+            
+            <div style="margin: 20px 0;">
+              <div class="kv">
+                <span class="small">الميزانية المطلوبة:</span>
+                <span style="font-weight:600;">$1,200,000</span>
+              </div>
+              <div class="kv">
+                <span class="small">المدة المتوقعة:</span>
+                <span style="font-weight:600;">18 شهراً</span>
+              </div>
+              <div class="kv">
+                <span class="small">الانتهاء المتوقع:</span>
+                <span style="font-weight:600;">Q2 2026</span>
+              </div>
+            </div>
+            
+            <div class="progress-bar">
+              <div class="progress-fill" style="width: 5%; background: linear-gradient(90deg, #4CAF50, #8BC34A);"></div>
+            </div>
+            <div class="small" style="text-align: center; margin-top: 8px;">5% تمويل</div>
+            
+            <button class="btn" style="margin-top: 15px; width: 100%;" onclick="showProjectDetails('farkad')">
+              <i class="fas fa-info-circle"></i> معرفة المزيد
+            </button>
+          </div>
+        </div>
+      </section>
+
+      <!-- المشاركة في المشاريع -->
+      <section class="section" id="participate" style="background: rgba(255,255,255,0.02); border-radius: 20px; padding: 40px;">
+        <h2 style="text-align: center;"><i class="fas fa-handshake"></i> كيفية المشاركة في المشاريع</h2>
+        <p class="muted" style="text-align: center; max-width: 700px; margin: 0 auto 40px;">
+          يمكنك المشاركة في مشاريع Paradox كباحث، داعم، أو متطوع
+        </p>
+        
+        <div class="grid" style="grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px;">
+          <div class="card">
+            <h3><i class="fas fa-user-graduate"></i> كباحث أو متخصص</h3>
+            <p>شارك بخبراتك في أحد المشاريع البحثية</p>
+            <ul style="margin: 15px 0; padding-right: 20px;">
+              <li>تقديم مقترح بحثي</li>
+              <li>الانضمام لفريق بحثي قائم</li>
+              <li>الإشراف على طلاب وباحثين</li>
+            </ul>
+            <a href="join.html" class="btn primary" style="margin-top: 15px; width: 100%; text-align: center;">
+              <i class="fas fa-user-plus"></i> تقديم طلب مشاركة
+            </a>
+          </div>
+          
+          <div class="card">
+            <h3><i class="fas fa-hand-holding-usd"></i> كداعم أو ممول</h3>
+            <p>ادعم مشاريعنا البحثية مادياً أو تقنياً</p>
+            <ul style="margin: 15px 0; padding-right: 20px;">
+              <li>دعم مالي للمشاريع</li>
+              <li>توفير معدات وتقنيات</li>
+              <li>شراكات مؤسسية</li>
+            </ul>
+            <a href="contact-us.html" class="btn secondary" style="margin-top: 15px; width: 100%; text-align: center;">
+              <i class="fas fa-envelope"></i> تواصل للدعم
+            </a>
+          </div>
+          
+          <div class="card">
+            <h3><i class="fas fa-hands-helping"></i> كمتطوع أو هاوي</h3>
+            <p>ساهم بوقتك ومهاراتك في مشاريع الفريق</p>
+            <ul style="margin: 15px 0; padding-right: 20px;">
+              <li>جمع وتحليل البيانات</li>
+              <li>التوعية والتثقيف</li>
+              <li>الدعم التقني والإداري</li>
+            </ul>
+            <a href="join.html" class="btn" style="margin-top: 15px; width: 100%; text-align: center;">
+              <i class="fas fa-user-check"></i> التسجيل كمتطوع
+            </a>
+          </div>
+        </div>
+      </section>
+
+      <!-- الشراكات والممولين -->
+      <section class="section">
+        <h2 style="text-align: center;"><i class="fas fa-handshake"></i> شركاؤنا وداعمونا</h2>
+        <p class="muted" style="text-align: center; margin-bottom: 40px;">مؤسسات وشركات تدعم مشاريع Paradox</p>
+        
+        <div class="grid" style="grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 20px;">
+          <div class="card" style="text-align: center; padding: 30px 20px;">
+            <i class="fas fa-university" style="font-size: 3rem; color: var(--accent); margin-bottom: 15px;"></i>
+            <div style="font-weight: 800;">جامعة الملك عبدالله</div>
+            <div class="small">دعم بحثي وتقني</div>
+          </div>
+          
+          <div class="card" style="text-align: center; padding: 30px 20px;">
+            <i class="fas fa-globe-africa" style="font-size: 3rem; color: #FFD700; margin-bottom: 15px;"></i>
+            <div style="font-weight: 800;">وكالة الفضاء المصرية</div>
+            <div class="small">شراكة في المشاريع</div>
+          </div>
+          
+          <div class="card" style="text-align: center; padding: 30px 20px;">
+            <i class="fas fa-satellite" style="font-size: 3rem; color: #2196F3; margin-bottom: 15px;"></i>
+            <div style="font-weight: 800;">شركة الفلكي</div>
+            <div class="small">معدات وتلسكوبات</div>
+          </div>
+          
+          <div class="card" style="text-align: center; padding: 30px 20px;">
+            <i class="fas fa-microchip" style="font-size: 3rem; color: #4CAF50; margin-bottom: 15px;"></i>
+            <div style="font-weight: 800;">مركز الحوسبة الفائقة</div>
+            <div class="small">قدرات حاسوبية</div>
+          </div>
+        </div>
+        
+        <div style="text-align: center; margin-top: 30px;">
+          <a href="contact-us.html" class="btn primary">
+            <i class="fas fa-handshake"></i> كن شريكاً لنا
+          </a>
+        </div>
+      </section>
+    </main>
+
+    <footer class="footer">
+      <div>
+        © <span id="year"></span> فريق Paradox - المشاريع البحثية
+        <br>
+        <small class="muted">نحو مستقبل أفضل لاستكشاف الفضاء العربي</small>
+      </div>
+      <div class="links">
+        <a href="index.html"><i class="fas fa-home"></i> الرئيسية</a> • 
+        <a href="join.html"><i class="fas fa-user-plus"></i> انضم للمشاريع</a> •
+        <a href="contact-us.html"><i class="fas fa-envelope"></i> اقتراح مشروع</a>
+      </div>
     </footer>
   </div>
-  
-<script>
-  window.addEventListener('DOMContentLoaded', renderProjects);
-</script>
 
-    </body>
-    </html>
+  <script>
+  // تفاصيل المشروع
+  function showProjectDetails(projectId){
+    let title = '';
+    let description = '';
+    let details = '';
+    
+    switch(projectId){
+      case 'siraj':
+        title = 'مشروع "سِراج" للتنبؤ بالكويكبات';
+        description = 'نظام ذكاء اصطناعي متقدم للتنبؤ بمسارات الكويكبات الخطرة';
+        details = `
+          <h3>تفاصيل المشروع</h3>
+          <p>يهدف مشروع "سِراج" إلى تطوير نظام ذكاء اصطناعي يمكنه:</p>
+          <ul>
+            <li>تحليل بيانات المدارات التاريخية للكويكبات</li>
+            <li>التنبؤ بالمسار المستقبلي للكويكبات الخطرة</li>
+            <li>تقدير احتمالات الاصطدام مع الأرض</li>
+            <li>توفير إنذارات مبكرة قبل 5-10 سنوات من الاقتراب الخطير</li>
+          </ul>
+          
+          <h3>المخرجات المتوقعة</h3>
+          <ul>
+            <li>منصة برمجية مفتوحة المصدر</li>
+            <li>قاعدة بيانات محسنة للمدارات</li>
+            <li>5 أبحاث علمية محكمة</li>
+            <li>تدريب 20 باحثاً عربياً</li>
+          </ul>
+        `;
+        break;
+        
+      case 'falak1':
+        title = 'قمر "فلك 1" الصناعي';
+        description = 'أول قمر صناعي عربي مخصص لرصد الكويكبات';
+        details = `
+          <h3>تفاصيل المشروع</h3>
+          <p>قمر "فلك 1" سيكون أول قمر صناعي عربي مخصص لرصد الكويكبات، وسيتميز بـ:</p>
+          <ul>
+            <li>كاميرا عالية الدقة بدقة 1 متر/بكسل</li>
+            <li>نظام تتبع تلقائي للكويكبات</li>
+            <li>اتصال مباشر مع محطات الرصد الأرضية</li>
+            <li>قدرة على رصد كويكبات بقطر 10 متر من مدار منخفض</li>
+          </ul>
+          
+          <h3>المخرجات المتوقعة</h3>
+          <ul>
+            <li>قمر صناعي كامل التشغيل</li>
+            <li>محطة أرضية للتحكم</li>
+            <li>نظام معالجة بيانات متكامل</li>
+            <li>تأهيل فريق عربي كامل</li>
+          </ul>
+        `;
+        break;
+        
+      case 'farkad':
+        title = 'مركز "الفرقد" للتدريب';
+        description = 'مركز تدريبي متخصص في علوم الفلك والفضاء';
+        details = `
+          <h3>تفاصيل المشروع</h3>
+          <p>مركز "الفرقد" سيكون أول مركز تدريبي عربي متخصص في علوم الفضاء، وسيقدم:</p>
+          <ul>
+            <li>برامج تدريبية عملية في رصد الكويكبات</li>
+            <li>ورش عمل في تحليل بيانات الفضاء</li>
+            <li>تدريب على استخدام التلسكوبات المتقدمة</li>
+            <li>برامج تأهيل للباحثين الشباب</li>
+          </ul>
+          
+          <h3>المخرجات المتوقعة</h3>
+          <ul>
+            <li>مركز تدريبي متكامل</li>
+            <li>5 برامج تدريبية معتمدة</li>
+            <li>تدريب 500 باحث عربي سنوياً</li>
+            <li>شبكة مراكز تدريب إقليمية</li>
+          </ul>
+        `;
+        break;
+    }
+    
+    // عرض تفاصيل المشروع
+    const modal = document.createElement('div');
+    modal.style.cssText = `
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0,0,0,0.9);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 10000;
+      padding: 20px;
+      overflow-y: auto;
+    `;
+    
+    modal.innerHTML = `
+      <div style="
+        background: var(--card);
+        border-radius: 20px;
+        padding: 30px;
+        max-width: 800px;
+        width: 100%;
+        border: 1px solid rgba(255,255,255,0.1);
+        position: relative;
+        max-height: 90vh;
+        overflow-y: auto;
+      ">
+        <button onclick="this.parentElement.parentElement.remove()" style="
+          position: absolute;
+          top: 15px;
+          left: 15px;
+          background: rgba(255,255,255,0.1);
+          border: none;
+          color: white;
+          width: 40px;
+          height: 40px;
+          border-radius: 50%;
+          cursor: pointer;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+        ">
+          <i class="fas fa-times"></i>
+        </button>
+        
+        <h2 style="margin-top: 0;">
+          <i class="fas fa-project-diagram"></i> ${title}
+        </h2>
+        <p class="muted">${description}</p>
+        
+        <div style="margin-top: 25px;">
+          ${details}
+        </div>
+        
+        <div style="margin-top: 30px; display: flex; gap: 15px; flex-wrap: wrap;">
+          <button class="btn primary" onclick="alert('تم تسجيل اهتمامك بالمشروع. سنتواصل معك قريباً.')">
+            <i class="fas fa-handshake"></i> التقدم للمشاركة
+          </button>
+          <button class="btn" onclick="alert('سيتم تحويلك إلى نموذج الدعم المالي.')">
+            <i class="fas fa-donate"></i> دعم المشروع
+          </button>
+          <button class="btn ghost" onclick="this.parentElement.parentElement.parentElement.remove()">
+            <i class="fas fa-times"></i> إغلاق
+          </button>
+        </div>
+      </div>
+    `;
+    
+    document.body.appendChild(modal);
+  }
+  
+  // تهيئة الصفحة
+  window.addEventListener('DOMContentLoaded', function() {
+    // تحديث عدد المشاريع النشطة
+    const activeProjects = sampleProjects.filter(p => p.progress > 0 && p.progress < 100).length;
+    document.getElementById('activeProjectsCount').textContent = activeProjects;
+    
+    // إضافة السنة للفوتر
+    const yearElement = document.getElementById('year');
+    if(yearElement) yearElement.textContent = new Date().getFullYear();
+    
+    // إنشاء النجوم
+    if(typeof createStars === 'function') createStars();
+  });
+  </script>
+</body>
+</html>

@@ -3,91 +3,363 @@
 <head>
   <meta charset="utf-8"/>
   <meta name="viewport" content="width=device-width,initial-scale=1"/>
-  <title>Paradox Team</title>
+  <title>فرق Paradox - تعرف على فريقنا</title>
+  <meta name="description" content="تعرف على فرق العمل في فريق Paradox المتخصصة في رصد الكويكبات والبحث العلمي"/>
   <link rel="stylesheet" href="styles.css">
-  <script src="app.js" defer></script>
+  <script src="js/app.js" defer></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 
 <body>
-<div class="site">
+  <div class="stars" id="stars"></div>
+  
+  <div class="site">
+    <header class="header">
+      <div class="brand">
+        <div class="logo">🪐</div>
+        <div class="title">فرق Paradox</div>
+      </div>
 
-  <header class="header">
-    <div class="brand">
-      <div class="logo">🪐</div>
-      <div class="title">Paradox Team</div>
-    </div>
+      <nav class="nav">
+        <a href="index.html"><i class="fas fa-home"></i> الرئيسية</a>
+        <a href="asteroids.html"><i class="fas fa-meteor"></i> الكويكبات</a>
+        <a href="search-asteroids.html"><i class="fas fa-search"></i> البحث المتقدم</a>
+        <a href="projects.html"><i class="fas fa-satellite"></i> المشاريع</a>
+        <a href="reports.html"><i class="fas fa-file-alt"></i> التقارير</a>
+        <a href="teams.html" class="active"><i class="fas fa-users"></i> فرقنا</a>
+        <a href="about-us.html"><i class="fas fa-info-circle"></i> من نحن</a>
+        <a href="dashboard.html"><i class="fas fa-tachometer-alt"></i> لوحة التحكم</a>
+      </nav>
 
-    <nav class="nav">
-      <a href="index.html">الرئيسية</a>
-      <a href="asteroids.html">الكويكبات</a>
-      <a href="search-asteroids.html">بحث</a>
-      <a href="projects.html">المشاريع</a>
-      <a href="reports.html">التقارير</a>
-      <a href="about-us.html">من نحن</a>
-      <a href="dashboard.html">لوحة التحكم</a>
-      <a href="join.html">انضم للفريق</a>
-    </nav>
+      <div class="cta">
+        <a href="login.html" class="btn ghost"><i class="fas fa-sign-in-alt"></i> تسجيل دخول</a>
+        <a href="join.html" class="btn primary"><i class="fas fa-user-plus"></i> انضم للفريق</a>
+      </div>
+    </header>
 
-    <div class="cta">
-      <a data-social="facebook" class="btn" href="#" target="_blank">فيسبوك</a>
-      <a data-social="linkedin" class="btn" href="#" target="_blank">لينكدإن</a>
-      <a href="login.html" class="btn ghost">تسجيل دخول</a>
-      <a href="join.html" class="btn primary">انضم الآن</a>
-    </div>
-  </header>
+    <main>
+      <section class="hero" style="grid-template-columns: 1fr; text-align: center;">
+        <div class="hero-text">
+          <h1>فريق واحد... رؤية واحدة</h1>
+          <p class="muted" style="max-width: 800px; margin: 0 auto;">
+            فريق Paradox يتكون من مجموعة من العلماء، الباحثين، المهندسين، والمتحمسين لعلوم الفضاء.
+            نعمل معاً لتحقيق رؤيتنا في استكشاف الفضاء وحماية الأرض من الكويكبات.
+          </p>
+          
+          <div class="hero-actions" style="justify-content: center;">
+            <a href="#teams" class="btn primary"><i class="fas fa-users"></i> تعرف على فرقنا</a>
+            <a href="join.html" class="btn secondary"><i class="fas fa-user-plus"></i> انضم إلى فريق</a>
+          </div>
+        </div>
+      </section>
 
-  <main>
+      <!-- إحصائيات الفرق -->
+      <section class="section">
+        <div class="grid">
+          <div class="card">
+            <div style="display: flex; align-items: center; gap: 15px;">
+              <div style="
+                width: 60px;
+                height: 60px;
+                border-radius: 15px;
+                background: rgba(110, 231, 243, 0.1);
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                font-size: 1.8rem;
+                color: var(--accent);
+              ">
+                <i class="fas fa-users"></i>
+              </div>
+              <div>
+                <div style="font-size: 2.5rem; font-weight: 800;" id="totalMembers">0</div>
+                <div class="small">عضو في الفريق</div>
+              </div>
+            </div>
+          </div>
+          
+          <div class="card">
+            <div style="display: flex; align-items: center; gap: 15px;">
+              <div style="
+                width: 60px;
+                height: 60px;
+                border-radius: 15px;
+                background: rgba(124, 58, 237, 0.1);
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                font-size: 1.8rem;
+                color: var(--accent-2);
+              ">
+                <i class="fas fa-project-diagram"></i>
+              </div>
+              <div>
+                <div style="font-size: 2.5rem; font-weight: 800;" id="totalProjects">0</div>
+                <div class="small">مشروع نشط</div>
+              </div>
+            </div>
+          </div>
+          
+          <div class="card">
+            <div style="display: flex; align-items: center; gap: 15px;">
+              <div style="
+                width: 60px;
+                height: 60px;
+                border-radius: 15px;
+                background: rgba(255, 107, 107, 0.1);
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                font-size: 1.8rem;
+                color: var(--accent-3);
+              ">
+                <i class="fas fa-globe"></i>
+              </div>
+              <div>
+                <div style="font-size: 2.5rem; font-weight: 800;" id="totalCountries">0</div>
+                <div class="small">دولة ممثلة</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
 
-    <section class="hero">
-      <div class="hero-text">
-        <h1>نكتشف ما حول الأرض… ونحمي مستقبلها</h1>
-        <p class="muted">
-          فريق Paradox يجمع علماء وهواة لبناء أدوات رصد وتحليل الكويكبات والأجرام القريبة من الأرض.
+      <!-- الفرق الرئيسية -->
+      <section class="section" id="teams">
+        <h2><i class="fas fa-users"></i> فرق العمل الرئيسية</h2>
+        <p class="muted">فرق متخصصة تعمل في مجالات مختلفة من علوم الفضاء ورصد الكويكبات</p>
+        
+        <div id="teamsGrid" class="grid"></div>
+      </section>
+
+      <!-- كيفية الانضمام للفرق -->
+      <section class="section" style="background: rgba(255,255,255,0.02); border-radius: 20px; padding: 40px;">
+        <h2 style="text-align: center;"><i class="fas fa-user-plus"></i> كيف تنضم إلى أحد الفرق؟</h2>
+        <p class="muted" style="text-align: center; max-width: 700px; margin: 0 auto 40px;">
+          اتبع هذه الخطوات البسيطة لتصبح جزءاً من فريق Paradox
         </p>
-
-        <div class="hero-actions">
-          <a href="asteroids.html" class="btn primary">استكشف الكويكبات</a>
-          <a href="dashboard.html" class="btn">لوحة التحكم</a>
+        
+        <div class="grid" style="grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 30px;">
+          <div style="text-align: center;">
+            <div style="
+              width: 80px;
+              height: 80px;
+              border-radius: 50%;
+              background: linear-gradient(135deg, var(--accent-2), var(--accent));
+              display: flex;
+              align-items: center;
+              justify-content: center;
+              margin: 0 auto 20px;
+              font-size: 2rem;
+              color: #021124;
+              font-weight: 800;
+            ">
+              1
+            </div>
+            <div style="font-weight: 800; margin-bottom: 10px;">تقديم الطلب</div>
+            <p class="small">املأ نموذج الانضمام وأخبرنا عن مهاراتك واهتماماتك</p>
+          </div>
+          
+          <div style="text-align: center;">
+            <div style="
+              width: 80px;
+              height: 80px;
+              border-radius: 50%;
+              background: linear-gradient(135deg, var(--accent-2), var(--accent));
+              display: flex;
+              align-items: center;
+              justify-content: center;
+              margin: 0 auto 20px;
+              font-size: 2rem;
+              color: #021124;
+              font-weight: 800;
+            ">
+              2
+            </div>
+            <div style="font-weight: 800; margin-bottom: 10px;">المقابلة</div>
+            <p class="small">مقابلة مع قائد الفريق المناسب لمهاراتك</p>
+          </div>
+          
+          <div style="text-align: center;">
+            <div style="
+              width: 80px;
+              height: 80px;
+              border-radius: 50%;
+              background: linear-gradient(135deg, var(--accent-2), var(--accent));
+              display: flex;
+              align-items: center;
+              justify-content: center;
+              margin: 0 auto 20px;
+              font-size: 2rem;
+              color: #021124;
+              font-weight: 800;
+            ">
+              3
+            </div>
+            <div style="font-weight: 800; margin-bottom: 10px;">التدريب الأولي</div>
+            <p class="small">برنامج تدريبي تمهيدي عن الفريق وأهدافه</p>
+          </div>
+          
+          <div style="text-align: center;">
+            <div style="
+              width: 80px;
+              height: 80px;
+              border-radius: 50%;
+              background: linear-gradient(135deg, var(--accent-2), var(--accent));
+              display: flex;
+              align-items: center;
+              justify-content: center;
+              margin: 0 auto 20px;
+              font-size: 2rem;
+              color: #021124;
+              font-weight: 800;
+            ">
+              4
+            </div>
+            <div style="font-weight: 800; margin-bottom: 10px;">بدء العمل</div>
+            <p class="small">الانضمام للفريق والمشاركة في المشاريع</p>
+          </div>
         </div>
-
-        <div class="features">
-          <div class="feature">رصد<br><small>شبكة تلسكوبات</small></div>
-          <div class="feature">محاكاة مدار<br><small>نمذجة الاصطدام</small></div>
-          <div class="feature">تعليم ومجتمع<br><small>ورش ودورات</small></div>
-          <div class="feature">مشاريع مستقبلية<br><small>مرصد، تتبع آلي</small></div>
+        
+        <div style="text-align: center; margin-top: 40px;">
+          <a href="join.html" class="btn primary" style="padding: 16px 30px; font-size: 1.1rem;">
+            <i class="fas fa-rocket"></i> ابدأ رحلتك مع Paradox
+          </a>
         </div>
+      </section>
+
+      <!-- شهادات الأعضاء -->
+      <section class="section">
+        <h2 style="text-align: center;"><i class="fas fa-comment-dots"></i> ماذا يقول أعضاؤنا؟</h2>
+        <p class="muted" style="text-align: center; margin-bottom: 40px;">تجارب حقيقية من أعضاء فريق Paradox</p>
+        
+        <div class="grid">
+          <div class="card">
+            <div style="display: flex; align-items: center; gap: 15px; margin-bottom: 20px;">
+              <div style="
+                width: 60px;
+                height: 60px;
+                border-radius: 50%;
+                background: linear-gradient(135deg, var(--accent-2), var(--accent));
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                font-size: 1.5rem;
+                color: #021124;
+                font-weight: 800;
+              ">
+                د.أ
+              </div>
+              <div>
+                <div style="font-weight: 800;">د. أحمد سليمان</div>
+                <div class="small">قائد فريق الرصد البصري</div>
+              </div>
+            </div>
+            <p style="font-style: italic; color: var(--muted);">
+              "انضممت لـParadox قبل ثلاث سنوات، واليوم أشرف على شبكة من التلسكوبات في 5 دول عربية.
+              الفريق وفر لي الأدوات والدعم لتحويل بحثي الأكاديمي إلى مشروع تطبيقي حقيقي."
+            </p>
+          </div>
+          
+          <div class="card">
+            <div style="display: flex; align-items: center; gap: 15px; margin-bottom: 20px;">
+              <div style="
+                width: 60px;
+                height: 60px;
+                border-radius: 50%;
+                background: linear-gradient(135deg, var(--accent-2), var(--accent));
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                font-size: 1.5rem;
+                color: #021124;
+                font-weight: 800;
+              ">
+                م.س
+              </div>
+              <div>
+                <div style="font-weight: 800;">م. سارة محمد</div>
+                <div class="small">مهندسة برمجيات - فريق المحاكاة</div>
+              </div>
+            </div>
+            <p style="font-style: italic; color: var(--muted);">
+              "كمهندسة برمجيات، وجدت في Paradox منصة فريدة لتطبيق مهاراتي في مجال الفضاء.
+              ساهمت في بناء نظام محاكاة مدارات الكويكبات الذي يستخدمه الآن باحثون من حول العالم."
+            </p>
+          </div>
+          
+          <div class="card">
+            <div style="display: flex; align-items: center; gap: 15px; margin-bottom: 20px;">
+              <div style="
+                width: 60px;
+                height: 60px;
+                border-radius: 50%;
+                background: linear-gradient(135deg, var(--accent-2), var(--accent));
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                font-size: 1.5rem;
+                color: #021124;
+                font-weight: 800;
+              ">
+                ط.خ
+              </div>
+              <div>
+                <div style="font-weight: 800;">طالب علوم - هاوي فلك</div>
+                <div class="small">عضو في فريق التوعية</div>
+              </div>
+            </div>
+            <p style="font-style: italic; color: var(--muted);">
+              "كطالب وهاوي فلك، Paradox فتح لي آفاقاً لم أكن أتخيلها. تعلمت تقنيات رصد حقيقية
+              وساهمت في اكتشاف كويكبين جديدين. اليوم أساعد في تدريب هواة جدد مثلي."
+            </p>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="footer">
+      <div>
+        © <span id="year"></span> فريق Paradox - فرق العمل
+        <br>
+        <small class="muted">مجتمع بحثي عربي متكامل في علوم الفضاء</small>
       </div>
-
-      <div class="hero-media">
-        <div class="map-placeholder">3D map preview</div>
+      <div class="links">
+        <a href="index.html"><i class="fas fa-home"></i> الرئيسية</a> • 
+        <a href="join.html"><i class="fas fa-user-plus"></i> انضم إلينا</a> •
+        <a href="contact-us.html"><i class="fas fa-envelope"></i> اتصل بنا</a>
       </div>
-    </section>
+    </footer>
+  </div>
 
-    <section class="section">
-      <h2>أحدث الاكتشافات</h2>
-      <div id="asteroidList" class="grid"></div>
-    </section>
-
-    <section class="section">
-      <h2>فرقنا</h2>
-      <div id="teamsGrid" class="grid"></div>
-    </section>
-
-    <section class="section">
-      <h2>مشاريعنا</h2>
-      <div id="projectsGrid" class="grid"></div>
-    </section>
-
-  </main>
-
-  <footer class="footer">
-    <div>© <span id="year"></span> Paradox Team</div>
-    <div class="links">
-      <a data-social="facebook" href="#" target="_blank">فيسبوك</a> • 
-      <a data-social="linkedin" href="#" target="_blank">لينكدإن</a>
-    </div>
-  </footer>
-
-</div>
+  <script>
+  // تحديث الإحصائيات
+  function updateTeamStats(){
+    const totalMembers = sampleTeams.reduce((sum, team) => sum + team.members, 0);
+    const totalProjects = sampleTeams.reduce((sum, team) => sum + team.projects, 0);
+    
+    document.getElementById('totalMembers').textContent = totalMembers;
+    document.getElementById('totalProjects').textContent = totalProjects;
+    document.getElementById('totalCountries').textContent = '18'; // افتراضي
+    
+    // تأثير العد
+    animateValue(document.getElementById('totalMembers'), 0, totalMembers, 2000);
+    animateValue(document.getElementById('totalProjects'), 0, totalProjects, 2000);
+    animateValue(document.getElementById('totalCountries'), 0, 18, 2000);
+  }
+  
+  // تهيئة الصفحة
+  window.addEventListener('DOMContentLoaded', function() {
+    // تحديث الإحصائيات
+    updateTeamStats();
+    
+    // إضافة السنة للفوتر
+    const yearElement = document.getElementById('year');
+    if(yearElement) yearElement.textContent = new Date().getFullYear();
+    
+    // إنشاء النجوم
+    if(typeof createStars === 'function') createStars();
+  });
+  </script>
 </body>
 </html>

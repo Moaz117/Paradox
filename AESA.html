@@ -3,91 +3,203 @@
 <head>
   <meta charset="utf-8"/>
   <meta name="viewport" content="width=device-width,initial-scale=1"/>
-  <title>Paradox Team</title>
+  <title>شراكتنا مع وكالة الفضاء الأفريقية - Paradox</title>
+  <meta name="description" content="شراكة فريق Paradox مع وكالة الفضاء الأفريقية (AESA) لتطوير قدرات الرصد الفضائي في القارة الأفريقية"/>
   <link rel="stylesheet" href="styles.css">
-  <script src="app.js" defer></script>
+  <script src="js/app.js" defer></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 
 <body>
-<div class="site">
-
-  <header class="header">
-    <div class="brand">
-      <div class="logo">🪐</div>
-      <div class="title">Paradox Team</div>
-    </div>
-
-    <nav class="nav">
-      <a href="index.html">الرئيسية</a>
-      <a href="asteroids.html">الكويكبات</a>
-      <a href="search-asteroids.html">بحث</a>
-      <a href="projects.html">المشاريع</a>
-      <a href="reports.html">التقارير</a>
-      <a href="about-us.html">من نحن</a>
-      <a href="dashboard.html">لوحة التحكم</a>
-      <a href="join.html">انضم للفريق</a>
-    </nav>
-
-    <div class="cta">
-      <a data-social="facebook" class="btn" href="#" target="_blank">فيسبوك</a>
-      <a data-social="linkedin" class="btn" href="#" target="_blank">لينكدإن</a>
-      <a href="login.html" class="btn ghost">تسجيل دخول</a>
-      <a href="join.html" class="btn primary">انضم الآن</a>
-    </div>
-  </header>
-
-  <main>
-
-    <section class="hero">
-      <div class="hero-text">
-        <h1>نكتشف ما حول الأرض… ونحمي مستقبلها</h1>
-        <p class="muted">
-          فريق Paradox يجمع علماء وهواة لبناء أدوات رصد وتحليل الكويكبات والأجرام القريبة من الأرض.
-        </p>
-
-        <div class="hero-actions">
-          <a href="asteroids.html" class="btn primary">استكشف الكويكبات</a>
-          <a href="dashboard.html" class="btn">لوحة التحكم</a>
-        </div>
-
-        <div class="features">
-          <div class="feature">رصد<br><small>شبكة تلسكوبات</small></div>
-          <div class="feature">محاكاة مدار<br><small>نمذجة الاصطدام</small></div>
-          <div class="feature">تعليم ومجتمع<br><small>ورش ودورات</small></div>
-          <div class="feature">مشاريع مستقبلية<br><small>مرصد، تتبع آلي</small></div>
-        </div>
+  <div class="stars" id="stars"></div>
+  
+  <div class="site">
+    <header class="header">
+      <div class="brand">
+        <div class="logo">🪐</div>
+        <div class="title">Paradox × AESA</div>
       </div>
 
-      <div class="hero-media">
-        <div class="map-placeholder">3D map preview</div>
+      <nav class="nav">
+        <a href="index.html"><i class="fas fa-home"></i> الرئيسية</a>
+        <a href="asteroids.html"><i class="fas fa-meteor"></i> الكويكبات</a>
+        <a href="search-asteroids.html"><i class="fas fa-search"></i> البحث المتقدم</a>
+        <a href="projects.html"><i class="fas fa-satellite"></i> المشاريع</a>
+        <a href="reports.html"><i class="fas fa-file-alt"></i> التقارير</a>
+        <a href="about-us.html"><i class="fas fa-info-circle"></i> من نحن</a>
+        <a href="AESA.html" class="active"><i class="fas fa-globe-africa"></i> وكالة الفضاء الأفريقية</a>
+        <a href="EGSA.html"><i class="fas fa-globe-africa"></i> وكالة الفضاء المصرية</a>
+      </nav>
+
+      <div class="cta">
+        <a href="login.html" class="btn ghost"><i class="fas fa-sign-in-alt"></i> تسجيل دخول</a>
+        <a href="join.html" class="btn primary"><i class="fas fa-user-plus"></i> انضم للفريق</a>
       </div>
-    </section>
+    </header>
 
-    <section class="section">
-      <h2>أحدث الاكتشافات</h2>
-      <div id="asteroidList" class="grid"></div>
-    </section>
+    <main>
+      <section class="hero">
+        <div class="hero-text">
+          <h1>شراكة استراتيجية مع وكالة الفضاء الأفريقية</h1>
+          <p class="muted">
+            نعمل مع وكالة الفضاء الأفريقية (African Space Agency - AESA) لتطوير قدرات الرصد الفضائي 
+            في القارة الأفريقية، وبناء برامج بحثية مشتركة، وتعزيز الأمن الفضائي الأفريقي.
+          </p>
 
-    <section class="section">
-      <h2>فرقنا</h2>
-      <div id="teamsGrid" class="grid"></div>
-    </section>
+          <div class="hero-actions">
+            <a href="#projects" class="btn primary"><i class="fas fa-project-diagram"></i> المشاريع المشتركة</a>
+            <a href="#objectives" class="btn"><i class="fas fa-bullseye"></i> أهداف الشراكة</a>
+            <a href="#contact" class="btn secondary"><i class="fas fa-handshake"></i> التعاون مع AESA</a>
+          </div>
+        </div>
 
-    <section class="section">
-      <h2>مشاريعنا</h2>
-      <div id="projectsGrid" class="grid"></div>
-    </section>
+        <div class="hero-media">
+          <div class="map-placeholder" style="background: linear-gradient(135deg, #0a2e5c, #1a1035);">
+            <div style="text-align: center; padding: 20px;">
+              <i class="fas fa-globe-africa" style="font-size: 80px; margin-bottom: 20px; color: #4CAF50;"></i>
+              <h3 style="color: white; margin-bottom: 10px;">وكالة الفضاء الأفريقية</h3>
+              <p class="small">African Space Agency</p>
+              <div class="tag" style="margin-top: 20px;">شراكة رسمية منذ 2023</div>
+            </div>
+          </div>
+        </div>
+      </section>
 
-  </main>
+      <section class="section" id="objectives">
+        <h2><i class="fas fa-bullseye"></i> أهداف الشراكة</h2>
+        <p class="muted">أهداف استراتيجية تعزز التعاون الفضائي العربي الأفريقي</p>
+        
+        <div class="grid">
+          <div class="card">
+            <h3><i class="fas fa-satellite"></i> تطوير شبكة الرصد الأفريقية</h3>
+            <p>بناء وتطوير شبكة من التلسكوبات عبر القارة الأفريقية لرصد الكويكبات والأجرام القريبة من الأرض</p>
+            <div class="progress-bar">
+              <div class="progress-fill" style="width: 75%;"></div>
+            </div>
+            <span class="small">75% مكتمل</span>
+          </div>
+          
+          <div class="card">
+            <h3><i class="fas fa-graduation-cap"></i> برامج تدريب وتأهيل</h3>
+            <p>تدريب الكوادر الأفريقية في مجال علوم الفضاء ورصد الكويكبات من خلال برامج مشتركة</p>
+            <div class="progress-bar">
+              <div class="progress-fill" style="width: 60%;"></div>
+            </div>
+            <span class="small">60% مكتمل</span>
+          </div>
+          
+          <div class="card">
+            <h3><i class="fas fa-database"></i> مركز بيانات فضائي مشترك</h3>
+            <p>إنشاء قاعدة بيانات موحدة للمعلومات الفضائية والأرصاد الفلكية في أفريقيا</p>
+            <div class="progress-bar">
+              <div class="progress-fill" style="width: 45%;"></div>
+            </div>
+            <span class="small">45% مكتمل</span>
+          </div>
+        </div>
+      </section>
 
-  <footer class="footer">
-    <div>© <span id="year"></span> Paradox Team</div>
-    <div class="links">
-      <a data-social="facebook" href="#" target="_blank">فيسبوك</a> • 
-      <a data-social="linkedin" href="#" target="_blank">لينكدإن</a>
-    </div>
-  </footer>
+      <section class="section" id="projects">
+        <h2><i class="fas fa-project-diagram"></i> المشاريع المشتركة</h2>
+        <p class="muted">مشاريع بحثية وتطويرية تنفذها Paradox بالتعاون مع AESA</p>
+        
+        <div class="grid">
+          <div class="card">
+            <h3><i class="fas fa-telescope"></i> مشروع "عين أفريقيا"</h3>
+            <p>إنشاء شبكة من 10 تلسكوبات ذكية موزعة عبر القارة لرصد الكويكبات</p>
+            <div class="kv">
+              <span class="small">الحالة:</span>
+              <span class="tag">قيد التنفيذ</span>
+            </div>
+            <div class="kv">
+              <span class="small">الميزانية:</span>
+              <span>5 ملايين دولار</span>
+            </div>
+            <a href="project-details.html?id=africa-eye" class="btn" style="margin-top: 15px;">
+              <i class="fas fa-info-circle"></i> تفاصيل المشروع
+            </a>
+          </div>
+          
+          <div class="card">
+            <h3><i class="fas fa-user-graduate"></i> برنامج "رواد الفضاء الأفارقة"</h3>
+            <p>برنامج تدريبي مكثف لتأهيل 100 عالم فضاء أفريقي سنوياً</p>
+            <div class="kv">
+              <span class="small">الحالة:</span>
+              <span class="tag" style="background: rgba(76, 175, 80, 0.1); color: #4CAF50;">نشط</span>
+            </div>
+            <div class="kv">
+              <span class="small">المشاركون:</span>
+              <span>156 متدرباً</span>
+            </div>
+            <a href="project-details.html?id=africa-astronauts" class="btn" style="margin-top: 15px;">
+              <i class="fas fa-info-circle"></i> تفاصيل المشروع
+            </a>
+          </div>
+          
+          <div class="card">
+            <h3><i class="fas fa-shield-alt"></i> مبادرة "الأمن الفضائي الأفريقي"</h3>
+            <p>تطوير أنظمة إنذار مبكر للكويكبات الخطرة التي تهدد المنطقة</p>
+            <div class="kv">
+              <span class="small">الحالة:</span>
+              <span class="tag">في مرحلة التخطيط</span>
+            </div>
+            <div class="kv">
+              <span class="small">النطاق:</span>
+              <span>قاري</span>
+            </div>
+            <a href="project-details.html?id=africa-space-security" class="btn" style="margin-top: 15px;">
+              <i class="fas fa-info-circle"></i> تفاصيل المشروع
+            </a>
+          </div>
+        </div>
+      </section>
 
-</div>
+      <section class="section" id="contact">
+        <h2><i class="fas fa-handshake"></i> التعاون مع AESA</h2>
+        <p class="muted">طرق المشاركة في المشاريع المشتركة</p>
+        
+        <div class="grid">
+          <div class="card">
+            <h3><i class="fas fa-briefcase"></i> للباحثين والمؤسسات</h3>
+            <p>يمكن للباحثين والمؤسسات الأفريقية المشاركة في المشاريع المشتركة</p>
+            <ul style="margin: 15px 0; padding-right: 20px;">
+              <li>تقديم مقترحات بحثية</li>
+              <li>المشاركة في الفرق العلمية</li>
+              <li>استخدام بيانات الرصد</li>
+            </ul>
+            <a href="contact-us.html" class="btn primary">
+              <i class="fas fa-paper-plane"></i> تقديم طلب تعاون
+            </a>
+          </div>
+          
+          <div class="card">
+            <h3><i class="fas fa-user-graduate"></i> للطلاب والمتدربين</h3>
+            <p>برامج تدريبية ومنح دراسية في علوم الفضاء</p>
+            <ul style="margin: 15px 0; padding-right: 20px;">
+              <li>منح دراسية في الجامعات الشريكة</li>
+              <li>تدريب عملي في مراكز الرصد</li>
+              <li>مشاركة في المؤتمرات العلمية</li>
+            </ul>
+            <a href="join.html" class="btn secondary">
+              <i class="fas fa-user-plus"></i> التقدم للبرامج التدريبية
+            </a>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="footer">
+      <div>
+        © <span id="year"></span> فريق Paradox × وكالة الفضاء الأفريقية
+        <br>
+        <small class="muted">شراكة من أجل مستقبل فضائي آمن لأفريقيا</small>
+      </div>
+      <div class="links">
+        <a href="index.html"><i class="fas fa-home"></i> الرئيسية</a> • 
+        <a href="contact-us.html"><i class="fas fa-envelope"></i> اتصل بنا</a> •
+        <a href="https://www.facebook.com/Paradox2026/" target="_blank"><i class="fab fa-facebook"></i> فيسبوك</a>
+      </div>
+    </footer>
+  </div>
 </body>
 </html>

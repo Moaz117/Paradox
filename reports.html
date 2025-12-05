@@ -1,53 +1,745 @@
 <!DOCTYPE html>
-<html>
+<html lang="ar">
 <head>
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE-edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="description" contact="Paradox Team" />
-    <title>Paradox</title>
-    <script src="app.js"></script>
+    <meta name="description" content="التقارير والأبحاث العلمية التي ينشرها فريق Paradox في مجال علوم الفضاء" />
+    <title>الأبحاث والتقارير - Paradox</title>
     <link rel="stylesheet" href="styles.css">
-</head> 
+    <script src="js/app.js" defer></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
 <body>
+  <div class="stars" id="stars"></div>
+  
   <div class="site">
     <header class="header">
       <div class="brand">
         <div class="logo">🪐</div>
-        <div class="title">Paradox Team</div>
+        <div class="title">الأبحاث والتقارير</div>
       </div>
       <nav class="nav">
-        <a href="Index.html">الرئيسية</a>
-        <a href="asteroids.html">الكويكبات</a>
-        <a href="research.html">البحث</a>
-        <a href="projects.html">المشاريع</a>
-        <a href="reports.html">التقارير</a>
-        <a href="about-us.html">من نحن</a>
-        <a href="contact-us.html">تواصل معنا</a>
+        <a href="index.html"><i class="fas fa-home"></i> الرئيسية</a>
+        <a href="asteroids.html"><i class="fas fa-meteor"></i> الكويكبات</a>
+        <a href="search-asteroids.html"><i class="fas fa-search"></i> بحث</a>
+        <a href="projects.html"><i class="fas fa-satellite"></i> المشاريع</a>
+        <a href="reports.html" class="active"><i class="fas fa-file-alt"></i> التقارير</a>
+        <a href="research.html"><i class="fas fa-flask"></i> الأبحاث</a>
+        <a href="about-us.html"><i class="fas fa-info-circle"></i> من نحن</a>
+        <a href="dashboard.html"><i class="fas fa-tachometer-alt"></i> لوحة التحكم</a>
       </nav>
       <div class="cta">
-        <button id="loginBtn" class="btn ghost">تسجيل دخول</button>
-        <button id="joinBtn" class="btn primary">Join the Team</button>
+        <a href="login.html" class="btn ghost"><i class="fas fa-sign-in-alt"></i> تسجيل دخول</a>
+        <a href="join.html" class="btn primary"><i class="fas fa-user-plus"></i> انضم للفريق</a>
       </div>
     </header>
 
     <main>
-      <!-- Reports -->
-      <section id="reports" class="section">
-        <h2>التقارير</h2>
-        <p class="muted">تحميل تقارير الرصد والمحاكاة الشهرية.</p>
-        <div class="grid" id="reportsGrid"></div>
+      <section class="hero" style="grid-template-columns: 1fr; text-align: center;">
+        <div class="hero-text">
+          <h1>المكتبة العلمية لـ Paradox</h1>
+          <p class="muted" style="max-width: 800px; margin: 0 auto 30px;">
+            مجموعة الأبحاث والتقارير العلمية التي ينشرها فريق Paradox في مجالات رصد الكويكبات، 
+            علوم الفضاء، وتكنولوجيا الرصد. جميع الأبحاث متاحة للتحميل والاستخدام العلمي.
+          </p>
+          
+          <div class="hero-actions" style="justify-content: center;">
+            <a href="#recent" class="btn primary"><i class="fas fa-file-alt"></i> أحدث الأبحاث</a>
+            <a href="#categories" class="btn"><i class="fas fa-tags"></i> التصنيفات</a>
+            <a href="#submit" class="btn secondary"><i class="fas fa-upload"></i> نشر بحث</a>
+          </div>
+        </div>
       </section>
-      </main>
 
-          <footer class="footer">
-      <div>© <span id="year"></span>Paradox - All rights reserved</div>
-      <div class="links">البريد • تويتر • انستغرام</div>
+      <!-- إحصائيات المكتبة -->
+      <section class="section">
+        <h2><i class="fas fa-chart-bar"></i> إحصائيات المكتبة العلمية</h2>
+        <p class="muted">نظرة عامة على المحتوى العلمي المنشور</p>
+        
+        <div class="grid">
+          <div class="card">
+            <div style="display: flex; align-items: center; gap: 15px;">
+              <div style="
+                width: 60px;
+                height: 60px;
+                border-radius: 15px;
+                background: rgba(33, 150, 243, 0.1);
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                font-size: 1.8rem;
+                color: #2196F3;
+              ">
+                <i class="fas fa-file-pdf"></i>
+              </div>
+              <div>
+                <div style="font-size: 2.5rem; font-weight: 800;">47</div>
+                <div class="small">تقرير علمي منشور</div>
+              </div>
+            </div>
+            <div class="small" style="margin-top: 15px; color: var(--muted);">
+              <i class="fas fa-arrow-up" style="color: #4CAF50;"></i> +5 هذا الربع
+            </div>
+          </div>
+          
+          <div class="card">
+            <div style="display: flex; align-items: center; gap: 15px;">
+              <div style="
+                width: 60px;
+                height: 60px;
+                border-radius: 15px;
+                background: rgba(156, 39, 176, 0.1);
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                font-size: 1.8rem;
+                color: #9C27B0;
+              ">
+                <i class="fas fa-graduation-cap"></i>
+              </div>
+              <div>
+                <div style="font-size: 2.5rem; font-weight: 800;">12</div>
+                <div class="small">ورقة بحثية محكمة</div>
+              </div>
+            </div>
+            <div class="small" style="margin-top: 15px; color: var(--muted);">
+              <i class="fas fa-star" style="color: #FFC107;"></i> 3.2 متوسط معامل التأثير
+            </div>
+          </div>
+          
+          <div class="card">
+            <div style="display: flex; align-items: center; gap: 15px;">
+              <div style="
+                width: 60px;
+                height: 60px;
+                border-radius: 15px;
+                background: rgba(76, 175, 80, 0.1);
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                font-size: 1.8rem;
+                color: #4CAF50;
+              ">
+                <i class="fas fa-download"></i>
+              </div>
+              <div>
+                <div style="font-size: 2.5rem; font-weight: 800;">8,452</div>
+                <div class="small">تحميل للملفات</div>
+              </div>
+            </div>
+            <div class="small" style="margin-top: 15px; color: var(--muted);">
+              <i class="fas fa-users" style="color: #2196F3;"></i> من 42 دولة
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- تصفية التقارير -->
+      <section class="section" id="categories" style="background: rgba(255,255,255,0.02); border-radius: 20px; padding: 30px;">
+        <h3 style="margin-top: 0; margin-bottom: 20px;"><i class="fas fa-filter"></i> تصفية المحتوى</h3>
+        <div class="grid" style="grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 15px;">
+          <button class="btn" onclick="filterReports('all')" style="justify-content: center;">
+            <i class="fas fa-globe"></i> الكل
+          </button>
+          <button class="btn" onclick="filterReports('research')" style="justify-content: center; background: rgba(156, 39, 176, 0.1); color: #9C27B0;">
+            <i class="fas fa-microscope"></i> أبحاث
+          </button>
+          <button class="btn" onclick="filterReports('reports')" style="justify-content: center; background: rgba(33, 150, 243, 0.1); color: #2196F3;">
+            <i class="fas fa-chart-line"></i> تقارير
+          </button>
+          <button class="btn" onclick="filterReports('guides')" style="justify-content: center; background: rgba(76, 175, 80, 0.1); color: #4CAF50;">
+            <i class="fas fa-book"></i> أدلة
+          </button>
+          <button class="btn" onclick="filterReports('data')" style="justify-content: center; background: rgba(255, 193, 7, 0.1); color: #FFC107;">
+            <i class="fas fa-database"></i> بيانات
+          </button>
+        </div>
+        
+        <div style="margin-top: 25px;">
+          <div style="position: relative;">
+            <input type="text" id="searchReports" placeholder="ابحث في الأبحاث والتقارير..." 
+                   style="width:100%; padding:16px 16px 16px 45px; border-radius:12px; background:rgba(255,255,255,0.05); color:white; border:1px solid rgba(255,255,255,0.1); font-size: 1rem;"
+                   onkeyup="searchReports()">
+            <i class="fas fa-search" style="position: absolute; right: 20px; top: 50%; transform: translateY(-50%); color: var(--muted);"></i>
+          </div>
+        </div>
+      </section>
+
+      <!-- أحدث الأبحاث -->
+      <section class="section" id="recent">
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 25px;">
+          <h2 style="margin: 0;"><i class="fas fa-clock"></i> أحدث الإضافات</h2>
+          <div class="small" id="reportCount">عرض 4 وثائق</div>
+        </div>
+        
+        <div id="reportsGrid" class="grid"></div>
+      </section>
+
+      <!-- الأكثر تحميلاً -->
+      <section class="section">
+        <h2><i class="fas fa-fire"></i> الأكثر تحميلاً</h2>
+        <p class="muted">الأبحاث والتقارير الأكثر شعبية وقراءة</p>
+        
+        <div class="grid">
+          <div class="card">
+            <div style="display: flex; justify-content: space-between; align-items: flex-start;">
+              <div>
+                <div style="font-weight: 800; font-size: 1.2rem;">دليل رصد الكويكبات للمبتدئين</div>
+                <div class="small">دليل عملي شامل لرصد الكويكبات باستخدام تلسكوبات هواة</div>
+              </div>
+              <span class="tag" style="background: rgba(76, 175, 80, 0.1); color: #4CAF50;">
+                <i class="fas fa-download"></i> 1,243
+              </span>
+            </div>
+            
+            <div style="margin: 20px 0;">
+              <div class="kv">
+                <span class="small">تاريخ النشر:</span>
+                <span style="font-weight:600;">مارس 2024</span>
+              </div>
+              <div class="kv">
+                <span class="small">الصفحات:</span>
+                <span style="font-weight:600;">68 صفحة</span>
+              </div>
+              <div class="kv">
+                <span class="small">التصنيف:</span>
+                <span style="font-weight:600;">أدلة عملية</span>
+              </div>
+            </div>
+            
+            <div style="display: flex; gap: 10px; margin-top: 15px;">
+              <button class="btn" onclick="downloadReport('beginner-guide.pdf')" style="flex: 1;">
+                <i class="fas fa-download"></i> تحميل
+              </button>
+              <button class="btn ghost" onclick="previewReport('دليل رصد الكويكبات للمبتدئين')" style="flex: 1;">
+                <i class="fas fa-eye"></i> معاينة
+              </button>
+            </div>
+          </div>
+          
+          <div class="card">
+            <div style="display: flex; justify-content: space-between; align-items: flex-start;">
+              <div>
+                <div style="font-weight: 800; font-size: 1.2rem;">تحليل خطر كويكب أبوفيس 2029</div>
+                <div class="small">دراسة متكاملة لسيناريوهات اقتراب كويكب أبوفيس من الأرض</div>
+              </div>
+              <span class="tag" style="background: rgba(244, 67, 54, 0.1); color: #F44336;">
+                <i class="fas fa-download"></i> 892
+              </span>
+            </div>
+            
+            <div style="margin: 20px 0;">
+              <div class="kv">
+                <span class="small">تاريخ النشر:</span>
+                <span style="font-weight:600;">يناير 2024</span>
+              </div>
+              <div class="kv">
+                <span class="small">الصفحات:</span>
+                <span style="font-weight:600;">45 صفحة</span>
+              </div>
+              <div class="kv">
+                <span class="small">التصنيف:</span>
+                <span style="font-weight:600;">أبحاث علمية</span>
+              </div>
+            </div>
+            
+            <div style="display: flex; gap: 10px; margin-top: 15px;">
+              <button class="btn" onclick="downloadReport('apophis-2029.pdf')" style="flex: 1;">
+                <i class="fas fa-download"></i> تحميل
+              </button>
+              <button class="btn ghost" onclick="previewReport('تحليل خطر كويكب أبوفيس 2029')" style="flex: 1;">
+                <i class="fas fa-eye"></i> معاينة
+              </button>
+            </div>
+          </div>
+          
+          <div class="card">
+            <div style="display: flex; justify-content: space-between; align-items: flex-start;">
+              <div>
+                <div style="font-weight: 800; font-size: 1.2rem;">تقرير الكويكبات الشهري - ديسمبر 2024</div>
+                <div class="small">ملخص اكتشافات ورصد الكويكبات خلال ديسمبر 2024</div>
+              </div>
+              <span class="tag" style="background: rgba(33, 150, 243, 0.1); color: #2196F3;">
+                <i class="fas fa-download"></i> 756
+              </span>
+            </div>
+            
+            <div style="margin: 20px 0;">
+              <div class="kv">
+                <span class="small">تاريخ النشر:</span>
+                <span style="font-weight:600;">ديسمبر 2024</span>
+              </div>
+              <div class="kv">
+                <span class="small">الصفحات:</span>
+                <span style="font-weight:600;">32 صفحة</span>
+              </div>
+              <div class="kv">
+                <span class="small">التصنيف:</span>
+                <span style="font-weight:600;">تقارير دورية</span>
+              </div>
+            </div>
+            
+            <div style="display: flex; gap: 10px; margin-top: 15px;">
+              <button class="btn" onclick="downloadReport('monthly-dec-2024.pdf')" style="flex: 1;">
+                <i class="fas fa-download"></i> تحميل
+              </button>
+              <button class="btn ghost" onclick="previewReport('تقرير الكويكبات الشهري - ديسمبر 2024')" style="flex: 1;">
+                <i class="fas fa-eye"></i> معاينة
+              </button>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- نشر بحث جديد -->
+      <section class="section" id="submit" style="background: rgba(255,255,255,0.02); border-radius: 20px; padding: 40px;">
+        <h2 style="text-align: center;"><i class="fas fa-upload"></i> نشر بحث أو تقرير جديد</h2>
+        <p class="muted" style="text-align: center; max-width: 700px; margin: 0 auto 40px;">
+          يمكنك نشر أبحاثك وتقاريرك العلمية في مكتبة Paradox
+        </p>
+        
+        <div class="grid" style="grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px;">
+          <div class="card">
+            <h3><i class="fas fa-user-graduate"></i> للباحثين والأكاديميين</h3>
+            <p>نشر أبحاث علمية محكمة</p>
+            <ul style="margin: 15px 0; padding-right: 20px;">
+              <li>أبحاث علمية أصلية</li>
+              <li>مراجعات علمية شاملة</li>
+              <li>تحليلات بيانات</li>
+              <li>نماذج ومحاكاة</li>
+            </ul>
+            <button class="btn primary" onclick="showSubmitForm('research')" style="margin-top: 15px; width: 100%;">
+              <i class="fas fa-paper-plane"></i> تقديم بحث
+            </button>
+          </div>
+          
+          <div class="card">
+            <h3><i class="fas fa-chart-line"></i> للهواة والمتحمسين</h3>
+            <p>نشر تقارير رصد وملاحظات</p>
+            <ul style="margin: 15px 0; padding-right: 20px;">
+              <li>تقارير رصد مفصلة</li>
+              <li>أدلة وبرامج تعليمية</li>
+              <li>مراجعات معدات</li>
+              <li>تجارب عملية</li>
+            </ul>
+            <button class="btn" onclick="showSubmitForm('report')" style="margin-top: 15px; width: 100%;">
+              <i class="fas fa-paper-plane"></i> تقديم تقرير
+            </button>
+          </div>
+          
+          <div class="card">
+            <h3><i class="fas fa-database"></i> لمشاركة البيانات</h3>
+            <p>مشاركة مجموعات بيانات علمية</p>
+            <ul style="margin: 15px 0; padding-right: 20px;">
+              <li>صور فلكية عالية الجودة</li>
+              <li>بيانات رصد خام</li>
+              <li>قياسات ونتائج</li>
+              <li>قواعد بيانات</li>
+            </ul>
+            <button class="btn secondary" onclick="showSubmitForm('data')" style="margin-top: 15px; width: 100%;">
+              <i class="fas fa-paper-plane"></i> مشاركة بيانات
+            </button>
+          </div>
+        </div>
+      </section>
+
+      <!-- المجلات الشريكة -->
+      <section class="section">
+        <h2 style="text-align: center;"><i class="fas fa-book-open"></i> المجلات العلمية الشريكة</h2>
+        <p class="muted" style="text-align: center; margin-bottom: 40px;">مجلات علمية تنشر أبحاث فريق Paradox</p>
+        
+        <div class="grid" style="grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px;">
+          <div class="card" style="text-align: center;">
+            <div style="
+              width: 80px;
+              height: 80px;
+              border-radius: 15px;
+              background: rgba(33, 150, 243, 0.1);
+              display: flex;
+              align-items: center;
+              justify-content: center;
+              margin: 0 auto 15px;
+              font-size: 2rem;
+              color: #2196F3;
+            ">
+              <i class="fas fa-globe"></i>
+            </div>
+            <div style="font-weight: 800; margin-bottom: 5px;">Icarus</div>
+            <div class="small">مجلة علوم الكواكب</div>
+            <div class="small" style="margin-top: 10px; color: var(--accent);">
+              <i class="fas fa-star"></i> معامل تأثير: 3.8
+            </div>
+          </div>
+          
+          <div class="card" style="text-align: center;">
+            <div style="
+              width: 80px;
+              height: 80px;
+              border-radius: 15px;
+              background: rgba(156, 39, 176, 0.1);
+              display: flex;
+              align-items: center;
+              justify-content: center;
+              margin: 0 auto 15px;
+              font-size: 2rem;
+              color: #9C27B0;
+            ">
+              <i class="fas fa-star"></i>
+            </div>
+            <div style="font-weight: 800; margin-bottom: 5px;">A&A</div>
+            <div class="small">علم الفلك والفيزياء الفلكية</div>
+            <div class="small" style="margin-top: 10px; color: var(--accent);">
+              <i class="fas fa-star"></i> معامل تأثير: 4.5
+            </div>
+          </div>
+          
+          <div class="card" style="text-align: center;">
+            <div style="
+              width: 80px;
+              height: 80px;
+              border-radius: 15px;
+              background: rgba(76, 175, 80, 0.1);
+              display: flex;
+              align-items: center;
+              justify-content: center;
+              margin: 0 auto 15px;
+              font-size: 2rem;
+              color: #4CAF50;
+            ">
+              <i class="fas fa-satellite"></i>
+            </div>
+            <div style="font-weight: 800; margin-bottom: 5px;">Planetary Science</div>
+            <div class="small">علوم الكواكب</div>
+            <div class="small" style="margin-top: 10px; color: var(--accent);">
+              <i class="fas fa-star"></i> معامل تأثير: 2.9
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="footer">
+      <div>
+        © <span id="year"></span> فريق Paradox - المكتبة العلمية
+        <br>
+        <small class="muted">معرفة علمية مفتوحة للجميع</small>
+      </div>
+      <div class="links">
+        <a href="index.html"><i class="fas fa-home"></i> الرئيسية</a> • 
+        <a href="#" onclick="showSubmitForm('research')"><i class="fas fa-upload"></i> نشر بحث</a> •
+        <a href="contact-us.html"><i class="fas fa-envelope"></i> استفسارات أكاديمية</a>
+      </div>
     </footer>
   </div>
 
   <script>
-  window.addEventListener('DOMContentLoaded', renderReports);
-</script>
-    </body>
-    </html>
+  // بيانات التقارير الإضافية
+  const additionalReports = [
+    { 
+      title: 'تقرير الكويكبات الشهري - نوفمبر 2024', 
+      excerpt: 'ملخص الاكتشافات الأخيرة وتحليل الكويكبات الجديدة',
+      date: '2024-11-30',
+      pages: 28,
+      downloads: 643,
+      category: 'reports',
+      download: 'monthly-nov-2024.pdf'
+    },
+    { 
+      title: 'تحليل مدار كويكب بينو 101955', 
+      excerpt: 'دراسة تفصيلية لمدار وتطور كويكب بينو',
+      date: '2024-10-15',
+      pages: 36,
+      downloads: 521,
+      category: 'research',
+      download: 'bennu-orbit.pdf'
+    },
+    { 
+      title: 'دليل بناء تلسكوب هواة منخفض التكلفة', 
+      excerpt: 'دليل عملي لبناء تلسكوب 8 بوصات بتكلفة منخفضة',
+      date: '2024-09-20',
+      pages: 42,
+      downloads: 892,
+      category: 'guides',
+      download: 'diy-telescope.pdf'
+    },
+    { 
+      title: 'مجموعة بيانات الكويكبات 2023-2024', 
+      excerpt: 'قاعدة بيانات شاملة للكويكبات المكتشفة خلال العامين الماضيين',
+      date: '2024-08-10',
+      pages: 15,
+      downloads: 387,
+      category: 'data',
+      download: 'asteroid-dataset-2024.csv'
+    }
+  ];
+
+  // دمج التقارير
+  const allReports = [...sampleReports, ...additionalReports].map((report, index) => ({
+    ...report,
+    id: index + 1,
+    downloads: report.downloads || Math.floor(Math.random() * 500) + 100
+  }));
+
+  // تصفية التقارير
+  let currentFilter = 'all';
+  let currentSearch = '';
+
+  function filterReports(category){
+    currentFilter = category;
+    renderFilteredReports();
+  }
+
+  function searchReports(){
+    currentSearch = document.getElementById('searchReports').value.toLowerCase();
+    renderFilteredReports();
+  }
+
+  function renderFilteredReports(){
+    let filtered = allReports;
+    
+    // تطبيق التصفية حسب النوع
+    if(currentFilter !== 'all'){
+      filtered = filtered.filter(report => {
+        if(currentFilter === 'research') return report.title.includes('بحث') || report.title.includes('تحليل');
+        if(currentFilter === 'reports') return report.title.includes('تقرير');
+        if(currentFilter === 'guides') return report.title.includes('دليل');
+        if(currentFilter === 'data') return report.title.includes('بيانات') || report.download.includes('.csv');
+        return true;
+      });
+    }
+    
+    // تطبيق البحث
+    if(currentSearch){
+      filtered = filtered.filter(report => 
+        report.title.toLowerCase().includes(currentSearch) || 
+        report.excerpt.toLowerCase().includes(currentSearch)
+      );
+    }
+    
+    // تحديث العداد
+    document.getElementById('reportCount').textContent = `عرض ${filtered.length} وثيقة`;
+    
+    // عرض التقارير
+    const root = document.getElementById('reportsGrid');
+    root.innerHTML = '';
+    
+    filtered.forEach(r => {
+      const card = document.createElement('div');
+      card.className = 'card';
+      
+      // تحديد لون التصنيف
+      let categoryColor = '#2196F3';
+      let categoryBg = 'rgba(33, 150, 243, 0.1)';
+      
+      if(r.title.includes('بحث') || r.title.includes('تحليل')){
+        categoryColor = '#9C27B0';
+        categoryBg = 'rgba(156, 39, 176, 0.1)';
+      } else if(r.title.includes('دليل')){
+        categoryColor = '#4CAF50';
+        categoryBg = 'rgba(76, 175, 80, 0.1)';
+      } else if(r.download.includes('.csv')){
+        categoryColor = '#FFC107';
+        categoryBg = 'rgba(255, 193, 7, 0.1)';
+      }
+      
+      card.innerHTML = `
+        <div style="display: flex; justify-content: space-between; align-items: flex-start;">
+          <div style="flex: 1;">
+            <div style="font-weight: 800; font-size: 1.2rem;">${r.title}</div>
+            <div class="small" style="margin-top: 8px;">${r.excerpt}</div>
+          </div>
+          <span class="tag" style="background: ${categoryBg}; color: ${categoryColor}; white-space: nowrap;">
+            <i class="fas fa-download"></i> ${r.downloads}
+          </span>
+        </div>
+        
+        <div style="margin: 20px 0;">
+          <div class="kv">
+            <span class="small">تاريخ النشر:</span>
+            <span style="font-weight:600;">${r.date}</span>
+          </div>
+          <div class="kv">
+            <span class="small">الصفحات:</span>
+            <span style="font-weight:600;">${r.pages} صفحة</span>
+          </div>
+          <div class="kv">
+            <span class="small">التنسيق:</span>
+            <span style="font-weight:600;">${r.download.split('.').pop().toUpperCase()}</span>
+          </div>
+        </div>
+        
+        <div style="display: flex; gap: 10px; margin-top: 15px;">
+          <button class="btn" onclick="downloadReport('${r.download}')" style="flex: 2;">
+            <i class="fas fa-download"></i> تحميل الملف
+          </button>
+          <button class="btn ghost" onclick="previewReport('${r.title}')" style="flex: 1;">
+            <i class="fas fa-eye"></i> معاينة
+          </button>
+        </div>
+      `;
+      root.appendChild(card);
+    });
+  }
+
+  // نموذج تقديم بحث
+  function showSubmitForm(type){
+    let title = '';
+    let description = '';
+    
+    switch(type){
+      case 'research':
+        title = 'تقديم بحث علمي';
+        description = 'أرسل بحثك العلمي المحكم للنشر في مكتبة Paradox';
+        break;
+      case 'report':
+        title = 'تقديم تقرير رصد';
+        description = 'شارك تقارير رصدك وملاحظاتك الفلكية';
+        break;
+      case 'data':
+        title = 'مشاركة بيانات علمية';
+        description = 'شارك مجموعات البيانات والقياسات العلمية';
+        break;
+    }
+    
+    const modal = document.createElement('div');
+    modal.style.cssText = `
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0,0,0,0.9);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 10000;
+      padding: 20px;
+    `;
+    
+    modal.innerHTML = `
+      <div style="
+        background: var(--card);
+        border-radius: 20px;
+        padding: 30px;
+        max-width: 600px;
+        width: 100%;
+        border: 1px solid rgba(255,255,255,0.1);
+        position: relative;
+      ">
+        <button onclick="this.parentElement.parentElement.remove()" style="
+          position: absolute;
+          top: 15px;
+          left: 15px;
+          background: rgba(255,255,255,0.1);
+          border: none;
+          color: white;
+          width: 40px;
+          height: 40px;
+          border-radius: 50%;
+          cursor: pointer;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+        ">
+          <i class="fas fa-times"></i>
+        </button>
+        
+        <h2 style="margin-top: 0;">
+          <i class="fas fa-upload"></i> ${title}
+        </h2>
+        <p class="muted">${description}</p>
+        
+        <form onsubmit="submitDocument(event, '${type}')">
+          <div style="margin-bottom: 20px;">
+            <label style="display: block; margin-bottom: 8px; font-weight: 600;">
+              <i class="fas fa-heading"></i> عنوان الوثيقة
+            </label>
+            <input type="text" required 
+                   style="width:100%; padding:14px; border-radius:10px; background:rgba(255,255,255,0.05); color:white; border:1px solid rgba(255,255,255,0.1); font-size: 0.95rem;">
+          </div>
+          
+          <div style="margin-bottom: 20px;">
+            <label style="display: block; margin-bottom: 8px; font-weight: 600;">
+              <i class="fas fa-user"></i> اسم المؤلف/المؤلفين
+            </label>
+            <input type="text" required 
+                   style="width:100%; padding:14px; border-radius:10px; background:rgba(255,255,255,0.05); color:white; border:1px solid rgba(255,255,255,0.1); font-size: 0.95rem;">
+          </div>
+          
+          <div style="margin-bottom: 20px;">
+            <label style="display: block; margin-bottom: 8px; font-weight: 600;">
+              <i class="fas fa-envelope"></i> البريد الإلكتروني
+            </label>
+            <input type="email" required 
+                   style="width:100%; padding:14px; border-radius:10px; background:rgba(255,255,255,0.05); color:white; border:1px solid rgba(255,255,255,0.1); font-size: 0.95rem;">
+          </div>
+          
+          <div style="margin-bottom: 20px;">
+            <label style="display: block; margin-bottom: 8px; font-weight: 600;">
+              <i class="fas fa-align-left"></i> ملخص الوثيقة
+            </label>
+            <textarea required rows="4"
+                   style="width:100%; padding:14px; border-radius:10px; background:rgba(255,255,255,0.05); color:white; border:1px solid rgba(255,255,255,0.1); font-size: 0.95rem;"></textarea>
+          </div>
+          
+          <div style="margin-bottom: 20px;">
+            <label style="display: block; margin-bottom: 8px; font-weight: 600;">
+              <i class="fas fa-paperclip"></i> رفع الملف (PDF أو CSV)
+            </label>
+            <input type="file" accept=".pdf,.csv" required 
+                   style="width:100%; padding:14px; border-radius:10px; background:rgba(255,255,255,0.05); color:white; border:1px solid rgba(255,255,255,0.1); font-size: 0.95rem;">
+          </div>
+          
+          <div style="margin-bottom: 25px;">
+            <label style="display: flex; align-items: flex-start; gap: 10px; cursor: pointer;">
+              <input type="checkbox" required 
+                     style="margin-top: 5px;">
+              <span class="small">
+                أوافق على نشر وثيقتي في مكتبة Paradox مع الاحتفاظ بحقوق النشر. 
+                أفهم أن الوثيقة ستمر بمراجعة علمية قبل النشر.
+              </span>
+            </label>
+          </div>
+          
+          <div style="display: flex; gap: 15px;">
+            <button class="btn primary" type="submit" style="flex: 2;">
+              <i class="fas fa-paper-plane"></i> إرسال الوثيقة
+            </button>
+            <button class="btn" type="button" onclick="this.parentElement.parentElement.parentElement.parentElement.remove()" style="flex: 1;">
+              <i class="fas fa-times"></i> إلغاء
+            </button>
+          </div>
+        </form>
+      </div>
+    `;
+    
+    document.body.appendChild(modal);
+  }
+
+  // إرسال وثيقة
+  function submitDocument(event, type){
+    event.preventDefault();
+    alert(`تم استلام وثيقتك بنجاح!\n\nسيتم مراجعتها من قبل الفريق العلمي والاتصال بك خلال 7-14 يوم عمل.\n\nشكراً لمشاركتك في إثراء المكتبة العلمية.`);
+    event.target.reset();
+    setTimeout(() => {
+      const modal = document.querySelector('div[style*="position: fixed"]');
+      if(modal) modal.remove();
+    }, 2000);
+  }
+
+  // تهيئة الصفحة
+  window.addEventListener('DOMContentLoaded', function() {
+    // عرض التقارير
+    renderFilteredReports();
+    
+    // إضافة السنة للفوتر
+    const yearElement = document.getElementById('year');
+    if(yearElement) yearElement.textContent = new Date().getFullYear();
+    
+    // إنشاء النجوم
+    if(typeof createStars === 'function') createStars();
+  });
+  </script>
+</body>
+</html>

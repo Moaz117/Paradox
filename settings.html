@@ -1,0 +1,1087 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width,initial-scale=1"/>
+  <title>الإعدادات - Paradox</title>
+  <link rel="stylesheet" href="styles.css">
+  <script src="js/app.js" defer></script>
+  <style>
+    .settings-container {
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+    
+    .settings-header {
+      text-align: center;
+      margin-bottom: 30px;
+      padding: 20px;
+      background: var(--card);
+      border-radius: 16px;
+      border: 1px solid rgba(255, 255, 255, 0.05);
+    }
+    
+    .settings-tabs {
+      display: flex;
+      gap: 10px;
+      margin-bottom: 30px;
+      overflow-x: auto;
+      padding-bottom: 10px;
+    }
+    
+    .settings-tab {
+      padding: 12px 24px;
+      background: rgba(255, 255, 255, 0.02);
+      border: 1px solid rgba(255, 255, 255, 0.05);
+      border-radius: 12px;
+      color: var(--muted);
+      cursor: pointer;
+      white-space: nowrap;
+      transition: all 0.3s;
+      font-weight: 600;
+    }
+    
+    .settings-tab:hover {
+      background: rgba(255, 255, 255, 0.05);
+      color: var(--text);
+    }
+    
+    .settings-tab.active {
+      background: linear-gradient(90deg, rgba(110, 231, 243, 0.1), rgba(124, 58, 237, 0.1));
+      border-color: rgba(110, 231, 243, 0.3);
+      color: var(--accent);
+    }
+    
+    .settings-content {
+      display: none;
+      animation: fadeIn 0.3s;
+    }
+    
+    .settings-content.active {
+      display: block;
+    }
+    
+    .settings-section {
+      background: var(--card);
+      border-radius: 16px;
+      border: 1px solid rgba(255, 255, 255, 0.05);
+      padding: 25px;
+      margin-bottom: 20px;
+    }
+    
+    .settings-section h3 {
+      margin-top: 0;
+      margin-bottom: 20px;
+      padding-bottom: 10px;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+      color: var(--accent);
+    }
+    
+    .form-group {
+      margin-bottom: 20px;
+    }
+    
+    .form-label {
+      display: block;
+      margin-bottom: 8px;
+      font-weight: 600;
+      color: var(--text);
+    }
+    
+    .form-input, .form-select, .form-textarea {
+      width: 100%;
+      padding: 12px 16px;
+      border-radius: 8px;
+      background: rgba(7, 18, 26, 0.6);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      color: var(--text);
+      font-family: inherit;
+      transition: all 0.3s;
+    }
+    
+    .form-input:focus, .form-select:focus, .form-textarea:focus {
+      outline: none;
+      border-color: var(--accent);
+      box-shadow: 0 0 0 2px rgba(110, 231, 243, 0.1);
+    }
+    
+    .form-textarea {
+      min-height: 120px;
+      resize: vertical;
+    }
+    
+    .form-row {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 20px;
+    }
+    
+    .checkbox-group, .radio-group {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      margin-top: 10px;
+    }
+    
+    .checkbox-item, .radio-item {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    
+    .checkbox-item input, .radio-item input {
+      width: 18px;
+      height: 18px;
+    }
+    
+    .slider-container {
+      padding: 15px 0;
+    }
+    
+    .slider {
+      width: 100%;
+      height: 6px;
+      border-radius: 3px;
+      background: rgba(255, 255, 255, 0.1);
+      outline: none;
+      -webkit-appearance: none;
+    }
+    
+    .slider::-webkit-slider-thumb {
+      -webkit-appearance: none;
+      width: 20px;
+      height: 20px;
+      border-radius: 50%;
+      background: var(--accent);
+      cursor: pointer;
+    }
+    
+    .slider-value {
+      text-align: center;
+      margin-top: 10px;
+      font-weight: 600;
+      color: var(--accent);
+    }
+    
+    .color-picker {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+      margin-top: 10px;
+    }
+    
+    .color-option {
+      width: 40px;
+      height: 40px;
+      border-radius: 8px;
+      cursor: pointer;
+      border: 2px solid transparent;
+      transition: all 0.3s;
+    }
+    
+    .color-option:hover {
+      transform: scale(1.1);
+    }
+    
+    .color-option.active {
+      border-color: var(--text);
+      box-shadow: 0 0 0 2px rgba(255, 255, 255, 0.2);
+    }
+    
+    .theme-preview {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 20px;
+      margin-top: 20px;
+    }
+    
+    .theme-card {
+      background: var(--card);
+      border-radius: 12px;
+      padding: 20px;
+      cursor: pointer;
+      border: 2px solid transparent;
+      transition: all 0.3s;
+      text-align: center;
+    }
+    
+    .theme-card:hover {
+      transform: translateY(-5px);
+      border-color: rgba(110, 231, 243, 0.3);
+    }
+    
+    .theme-card.active {
+      border-color: var(--accent);
+      background: rgba(110, 231, 243, 0.05);
+    }
+    
+    .theme-icon {
+      font-size: 36px;
+      margin-bottom: 10px;
+    }
+    
+    .danger-zone {
+      border: 2px solid rgba(239, 68, 68, 0.3);
+      background: rgba(239, 68, 68, 0.05);
+    }
+    
+    .danger-zone h3 {
+      color: #f87171;
+    }
+    
+    .danger-btn {
+      background: rgba(239, 68, 68, 0.1);
+      color: #f87171;
+      border-color: rgba(239, 68, 68, 0.3);
+    }
+    
+    .danger-btn:hover {
+      background: rgba(239, 68, 68, 0.2);
+    }
+    
+    .settings-actions {
+      display: flex;
+      justify-content: flex-end;
+      gap: 15px;
+      margin-top: 30px;
+      padding-top: 20px;
+      border-top: 1px solid rgba(255, 255, 255, 0.05);
+    }
+    
+    .settings-footer {
+      text-align: center;
+      margin-top: 40px;
+      padding: 20px;
+      color: var(--muted);
+      font-size: 14px;
+    }
+    
+    .reset-btn {
+      background: rgba(245, 158, 11, 0.1);
+      color: #f59e0b;
+      border-color: rgba(245, 158, 11, 0.3);
+    }
+    
+    .reset-btn:hover {
+      background: rgba(245, 158, 11, 0.2);
+    }
+    
+    .api-key {
+      display: flex;
+      gap: 10px;
+      margin-top: 10px;
+    }
+    
+    .api-key input {
+      flex: 1;
+    }
+    
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    
+    @media (max-width: 768px) {
+      .settings-tabs {
+        flex-wrap: nowrap;
+        overflow-x: auto;
+      }
+      
+      .form-row {
+        grid-template-columns: 1fr;
+      }
+      
+      .settings-actions {
+        flex-direction: column;
+      }
+      
+      .settings-actions .btn {
+        width: 100%;
+      }
+    }
+  </style>
+</head>
+
+<body>
+<div class="site">
+  <header class="header">
+    <div class="brand">
+      <div class="logo">🪐</div>
+      <div class="title">الإعدادات</div>
+    </div>
+
+    <nav class="nav">
+      <a href="index.html">الرئيسية</a>
+      <a href="dashboard.html">لوحة التحكم</a>
+      <a href="profile.html">ملفي</a>
+      <a href="settings.html" class="active">الإعدادات</a>
+      <a href="projects.html">المشاريع</a>
+      <a href="reports.html">التقارير</a>
+    </nav>
+
+    <div class="cta">
+      <a href="login.html" class="btn ghost">تسجيل خروج</a>
+    </div>
+  </header>
+
+  <main class="section">
+    <div class="settings-container">
+      <div class="settings-header">
+        <h1>إعدادات النظام</h1>
+        <p class="muted">قم بتخصيص إعدادات الموقع، الحساب، والإشعارات حسب تفضيلاتك</p>
+      </div>
+      
+      <div class="settings-tabs">
+        <div class="settings-tab active" onclick="switchSettingsTab('account')">🛡️ إعدادات الحساب</div>
+        <div class="settings-tab" onclick="switchSettingsTab('appearance')">🎨 المظهر والواجهة</div>
+        <div class="settings-tab" onclick="switchSettingsTab('notifications')">🔔 الإشعارات</div>
+        <div class="settings-tab" onclick="switchSettingsTab('privacy')">👁️ الخصوصية</div>
+        <div class="settings-tab" onclick="switchSettingsTab('api')">🔌 API والمطورين</div>
+        <div class="settings-tab" onclick="switchSettingsTab('danger')">⚠️ المنطقة الخطرة</div>
+      </div>
+      
+      <!-- تبويب إعدادات الحساب -->
+      <div id="settings-account" class="settings-content active">
+        <div class="settings-section">
+          <h3>معلومات الحساب الأساسية</h3>
+          <div class="form-row">
+            <div class="form-group">
+              <label class="form-label">الاسم الكامل</label>
+              <input type="text" class="form-input" id="fullName" value="أحمد محمد" placeholder="أدخل اسمك الكامل">
+            </div>
+            
+            <div class="form-group">
+              <label class="form-label">البريد الإلكتروني</label>
+              <input type="email" class="form-input" id="email" value="ahmed@paradox.team" placeholder="أدخل بريدك الإلكتروني">
+            </div>
+          </div>
+          
+          <div class="form-group">
+            <label class="form-label">رقم الهاتف (اختياري)</label>
+            <input type="tel" class="form-input" id="phone" placeholder="أدخل رقم هاتفك">
+          </div>
+          
+          <div class="form-group">
+            <label class="form-label">الدولة</label>
+            <select class="form-select" id="country">
+              <option value="">اختر الدولة</option>
+              <option value="sa">المملكة العربية السعودية</option>
+              <option value="eg">مصر</option>
+              <option value="ae">الإمارات العربية المتحدة</option>
+              <option value="qa">قطر</option>
+              <option value="kw">الكويت</option>
+              <option value="bh">البحرين</option>
+              <option value="om">عمان</option>
+              <option value="jo">الأردن</option>
+            </select>
+          </div>
+        </div>
+        
+        <div class="settings-section">
+          <h3>تغيير كلمة المرور</h3>
+          <div class="form-row">
+            <div class="form-group">
+              <label class="form-label">كلمة المرور الحالية</label>
+              <input type="password" class="form-input" id="currentPassword" placeholder="أدخل كلمة المرور الحالية">
+            </div>
+            
+            <div class="form-group">
+              <label class="form-label">كلمة المرور الجديدة</label>
+              <input type="password" class="form-input" id="newPassword" placeholder="أدخل كلمة المرور الجديدة">
+            </div>
+            
+            <div class="form-group">
+              <label class="form-label">تأكيد كلمة المرور الجديدة</label>
+              <input type="password" class="form-input" id="confirmPassword" placeholder="أعد إدخال كلمة المرور الجديدة">
+            </div>
+          </div>
+        </div>
+        
+        <div class="settings-section">
+          <h3>التخصص والمهارات</h3>
+          <div class="form-group">
+            <label class="form-label">التخصص الرئيسي</label>
+            <select class="form-select" id="specialization">
+              <option value="">اختر تخصصك</option>
+              <option value="astronomy" selected>علم الفلك</option>
+              <option value="physics">الفيزياء</option>
+              <option value="engineering">الهندسة</option>
+              <option value="programming">برمجة</option>
+              <option value="data-analysis">تحليل البيانات</option>
+              <option value="other">آخر</option>
+            </select>
+          </div>
+          
+          <div class="form-group">
+            <label class="form-label">المهارات (افصل بينها بفواصل)</label>
+            <input type="text" class="form-input" id="skills" value="رصد بصري, تحليل بيانات, محاكاة" placeholder="مثال: رصد، تحليل، برمجة">
+          </div>
+        </div>
+      </div>
+      
+      <!-- تبويب المظهر والواجهة -->
+      <div id="settings-appearance" class="settings-content">
+        <div class="settings-section">
+          <h3>السمة اللونية</h3>
+          <div class="color-picker">
+            <div class="color-option active" style="background: #05060a;" onclick="selectTheme('dark')"></div>
+            <div class="color-option" style="background: #0f172a;" onclick="selectTheme('deep-blue')"></div>
+            <div class="color-option" style="background: #1e293b;" onclick="selectTheme('slate')"></div>
+            <div class="color-option" style="background: #1c1917;" onclick="selectTheme('brown')"></div>
+            <div class="color-option" style="background: #0f0f23;" onclick="selectTheme('space')"></div>
+          </div>
+        </div>
+        
+        <div class="settings-section">
+          <h3>نمط الواجهة</h3>
+          <div class="theme-preview">
+            <div class="theme-card active" onclick="selectThemeStyle('default')">
+              <div class="theme-icon">🌙</div>
+              <strong>الوضع الداكن</strong>
+              <p class="small">المظهر الافتراضي</p>
+            </div>
+            
+            <div class="theme-card" onclick="selectThemeStyle('light')">
+              <div class="theme-icon">☀️</div>
+              <strong>الوضع الفاتح</strong>
+              <p class="small">خلفية فاتحة</p>
+            </div>
+            
+            <div class="theme-card" onclick="selectThemeStyle('auto')">
+              <div class="theme-icon">🔄</div>
+              <strong>تلقائي</strong>
+              <p class="small">يتغير حسب النظام</p>
+            </div>
+            
+            <div class="theme-card" onclick="selectThemeStyle('oled')">
+              <div class="theme-icon">⚫</div>
+              <strong>OLED الداكن</strong>
+              <p class="small">داكن بالكامل</p>
+            </div>
+          </div>
+        </div>
+        
+        <div class="settings-section">
+          <h3>إعدادات العرض</h3>
+          <div class="form-group">
+            <label class="form-label">حجم الخط</label>
+            <div class="slider-container">
+              <input type="range" min="12" max="24" value="16" class="slider" id="fontSize" oninput="updateFontSize(this.value)">
+              <div class="slider-value" id="fontSizeValue">16px</div>
+            </div>
+          </div>
+          
+          <div class="checkbox-group">
+            <div class="checkbox-item">
+              <input type="checkbox" id="smoothScrolling" checked>
+              <label for="smoothScrolling">التمرير السلس</label>
+            </div>
+            
+            <div class="checkbox-item">
+              <input type="checkbox" id="animations" checked>
+              <label for="animations">الحركات والتحريك</label>
+            </div>
+            
+            <div class="checkbox-item">
+              <input type="checkbox" id="reduceMotion">
+              <label for="reduceMotion">تقليل الحركة (لذوي الاحتياجات الخاصة)</label>
+            </div>
+            
+            <div class="checkbox-item">
+              <input type="checkbox" id="highContrast">
+              <label for="highContrast">وضع التباين العالي</label>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <!-- تبويب الإشعارات -->
+      <div id="settings-notifications" class="settings-content">
+        <div class="settings-section">
+          <h3>إعدادات الإشعارات العامة</h3>
+          <div class="checkbox-group">
+            <div class="checkbox-item">
+              <input type="checkbox" id="emailNotifications" checked>
+              <label for="emailNotifications">تفعيل الإشعارات عبر البريد الإلكتروني</label>
+            </div>
+            
+            <div class="checkbox-item">
+              <input type="checkbox" id="pushNotifications">
+              <label for="pushNotifications">تفعيل الإشعارات الفورية (Push)</label>
+            </div>
+            
+            <div class="checkbox-item">
+              <input type="checkbox" id="browserNotifications" checked>
+              <label for="browserNotifications">إشعارات المتصفح</label>
+            </div>
+          </div>
+        </div>
+        
+        <div class="settings-section">
+          <h3>أنواع الإشعارات</h3>
+          <div class="checkbox-group">
+            <div class="checkbox-item">
+              <input type="checkbox" id="notifyReports" checked>
+              <label for="notifyReports">الإشعارات عن التقارير الجديدة</label>
+            </div>
+            
+            <div class="checkbox-item">
+              <input type="checkbox" id="notifyProjects" checked>
+              <label for="notifyProjects">الإشعارات عن المشاريع</label>
+            </div>
+            
+            <div class="checkbox-item">
+              <input type="checkbox" id="notifyAsteroids" checked>
+              <label for="notifyAsteroids">إشعارات الكويكبات القريبة</label>
+            </div>
+            
+            <div class="checkbox-item">
+              <input type="checkbox" id="notifyTeam">
+              <label for="notifyTeam">إشعارات الفريق والأنشطة</label>
+            </div>
+            
+            <div class="checkbox-item">
+              <input type="checkbox" id="notifyComments" checked>
+              <label for="notifyComments">إشعارات التعليقات والتفاعلات</label>
+            </div>
+            
+            <div class="checkbox-item">
+              <input type="checkbox" id="notifySecurity" checked>
+              <label for="notifySecurity">إشعارات الأمان والحساب</label>
+            </div>
+          </div>
+        </div>
+        
+        <div class="settings-section">
+          <h3>توقيت الإشعارات</h3>
+          <div class="form-group">
+            <label class="form-label">توقيت الإشعارات النهارية</label>
+            <div class="form-row">
+              <div class="form-group">
+                <input type="time" class="form-input" id="notifyStart" value="08:00">
+                <div class="small">وقت البدء</div>
+              </div>
+              
+              <div class="form-group">
+                <input type="time" class="form-input" id="notifyEnd" value="22:00">
+                <div class="small">وقت الانتهاء</div>
+              </div>
+            </div>
+          </div>
+          
+          <div class="form-group">
+            <label class="form-label">تواتر الإشعارات</label>
+            <div class="radio-group">
+              <div class="radio-item">
+                <input type="radio" id="freqImmediate" name="notificationFrequency" checked>
+                <label for="freqImmediate">فورية</label>
+              </div>
+              
+              <div class="radio-item">
+                <input type="radio" id="freqHourly" name="notificationFrequency">
+                <label for="freqHourly">كل ساعة (تلخيص)</label>
+              </div>
+              
+              <div class="radio-item">
+                <input type="radio" id="freqDaily" name="notificationFrequency">
+                <label for="freqDaily">يومي (تلخيص)</label>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <!-- تبويب الخصوصية -->
+      <div id="settings-privacy" class="settings-content">
+        <div class="settings-section">
+          <h3>إعدادات الخصوصية</h3>
+          <div class="form-group">
+            <label class="form-label">حالة الحساب</label>
+            <div class="radio-group">
+              <div class="radio-item">
+                <input type="radio" id="privacyPublic" name="accountPrivacy" checked>
+                <label for="privacyPublic">عام (الجميع يمكنهم رؤية ملفك)</label>
+              </div>
+              
+              <div class="radio-item">
+                <input type="radio" id="privacyPrivate" name="accountPrivacy">
+                <label for="privacyPrivate">خاص (أعضاء الفريق فقط)</label>
+              </div>
+              
+              <div class="radio-item">
+                <input type="radio" id="privacyHidden" name="accountPrivacy">
+                <label for="privacyHidden">مخفي (لا أحد يمكنه رؤية ملفك)</label>
+              </div>
+            </div>
+          </div>
+          
+          <div class="checkbox-group">
+            <div class="checkbox-item">
+              <input type="checkbox" id="showEmail" checked>
+              <label for="showEmail">إظهار البريد الإلكتروني في الملف الشخصي</label>
+            </div>
+            
+            <div class="checkbox-item">
+              <input type="checkbox" id="showActivity" checked>
+              <label for="showActivity">إظهار نشاطاتي العامة</label>
+            </div>
+            
+            <div class="checkbox-item">
+              <input type="checkbox" id="showLocation">
+              <label for="showLocation">إظهار موقعي التقريبي</label>
+            </div>
+            
+            <div class="checkbox-item">
+              <input type="checkbox" id="allowIndexing" checked>
+              <label for="allowIndexing">السماح لمحركات البحث بفهرسة ملفي</label>
+            </div>
+          </div>
+        </div>
+        
+        <div class="settings-section">
+          <h3>صلاحيات الوصول</h3>
+          <div class="checkbox-group">
+            <div class="checkbox-item">
+              <input type="checkbox" id="allowMessages" checked>
+              <label for="allowMessages">السماح برسائل الأعضاء الآخرين</label>
+            </div>
+            
+            <div class="checkbox-item">
+              <input type="checkbox" id="allowComments" checked>
+              <label for="allowComments">السماح بالتعليقات على مشاركاتي</label>
+            </div>
+            
+            <div class="checkbox-item">
+              <input type="checkbox" id="allowTags" checked>
+              <label for="allowTags">السماح بالإشارة إلي في المنشورات</label>
+            </div>
+            
+            <div class="checkbox-item">
+              <input type="checkbox" id="allowFollow" checked>
+              <label for="allowFollow">السماح للمستخدمين بمتابعتي</label>
+            </div>
+          </div>
+        </div>
+        
+        <div class="settings-section">
+          <h3>بيانات الموقع والتتبع</h3>
+          <div class="form-group">
+            <label class="form-label">جمع البيانات التحليلية</label>
+            <div class="radio-group">
+              <div class="radio-item">
+                <input type="radio" id="analyticsFull" name="analytics" checked>
+                <label for="analyticsFull">مفصل (يشمل جميع البيانات)</label>
+              </div>
+              
+              <div class="radio-item">
+                <input type="radio" id="analyticsLimited" name="analytics">
+                <label for="analyticsLimited">محدود (بيانات أساسية فقط)</label>
+              </div>
+              
+              <div class="radio-item">
+                <input type="radio" id="analyticsNone" name="analytics">
+                <label for="analyticsNone">لا شيء (تعطيل التحليل)</label>
+              </div>
+            </div>
+          </div>
+          
+          <div class="checkbox-group">
+            <div class="checkbox-item">
+              <input type="checkbox" id="cookieConsent" checked>
+              <label for="cookieConsent">موافقة الكوكيز (Cookies)</label>
+            </div>
+            
+            <div class="checkbox-item">
+              <input type="checkbox" id="trackingProtection">
+              <label for="trackingProtection">حماية من التتبع عبر المواقع</label>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <!-- تبويب API والمطورين -->
+      <div id="settings-api" class="settings-content">
+        <div class="settings-section">
+          <h3>مفاتيح API</h3>
+          <p class="muted">مفاتيح API تسمح للتطبيقات الخارجية بالوصول إلى بياناتك. احفظها في مكان آمن ولا تشاركها.</p>
+          
+          <div class="api-key">
+            <input type="text" class="form-input" id="apiKey" value="paradox_sk_live_51PqRz..." readonly>
+            <button class="btn" onclick="copyApiKey()">نسخ</button>
+            <button class="btn" onclick="generateApiKey()">توليد جديد</button>
+          </div>
+          
+          <div class="checkbox-group" style="margin-top: 20px;">
+            <div class="checkbox-item">
+              <input type="checkbox" id="apiRead" checked>
+              <label for="apiRead">القراءة (قراءة البيانات)</label>
+            </div>
+            
+            <div class="checkbox-item">
+              <input type="checkbox" id="apiWrite">
+              <label for="apiWrite">الكتابة (إضافة بيانات)</label>
+            </div>
+            
+            <div class="checkbox-item">
+              <input type="checkbox" id="apiDelete">
+              <label for="apiDelete">الحذف (حذف البيانات)</label>
+            </div>
+            
+            <div class="checkbox-item">
+              <input type="checkbox" id="apiAdmin">
+              <label for="apiAdmin">إداري (صلاحيات كاملة)</label>
+            </div>
+          </div>
+        </div>
+        
+        <div class="settings-section">
+          <h3>التطبيقات المتصلة</h3>
+          <p class="muted">التطبيقات التي تمتلك صلاحية الوصول إلى حسابك.</p>
+          
+          <div class="card" style="margin-top: 15px; padding: 15px;">
+            <div style="display: flex; justify-content: space-between; align-items: center;">
+              <div>
+                <strong>Paradox Mobile App</strong>
+                <div class="small">تم الوصول في: 2025-01-15</div>
+              </div>
+              <button class="btn danger-btn" onclick="revokeApp(this)">إلغاء الوصول</button>
+            </div>
+          </div>
+          
+          <div class="card" style="margin-top: 10px; padding: 15px;">
+            <div style="display: flex; justify-content: space-between; align-items: center;">
+              <div>
+                <strong>Asteroid Tracker Desktop</strong>
+                <div class="small">تم الوصول في: 2024-12-20</div>
+              </div>
+              <button class="btn danger-btn" onclick="revokeApp(this)">إلغاء الوصول</button>
+            </div>
+          </div>
+        </div>
+        
+        <div class="settings-section">
+          <h3>مطوري الطرف الثالث</h3>
+          <div class="checkbox-group">
+            <div class="checkbox-item">
+              <input type="checkbox" id="allowThirdParty" checked>
+              <label for="allowThirdParty">السماح بتطبيقات الطرف الثالث</label>
+            </div>
+            
+            <div class="checkbox-item">
+              <input type="checkbox" id="apiLogging" checked>
+              <label for="apiLogging">تفعيل تسجيل نشاطات API</label>
+            </div>
+            
+            <div class="checkbox-item">
+              <input type="checkbox" id="rateLimit">
+              <label for="rateLimit">تفعيل حدود الاستخدام (Rate Limiting)</label>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <!-- تبويب المنطقة الخطرة -->
+      <div id="settings-danger" class="settings-content">
+        <div class="settings-section danger-zone">
+          <h3>تصدير البيانات</h3>
+          <p>يمكنك تصدير جميع بياناتك الشخصية المخزنة على الموقع بصيغة JSON.</p>
+          <button class="btn" onclick="exportData()">📥 تصدير جميع بياناتي</button>
+        </div>
+        
+        <div class="settings-section danger-zone">
+          <h3>حذف بيانات الحساب</h3>
+          <p>هذا الإجراء سيمسح جميع بياناتك الشخصية ولكن سيحتفظ بحسابك نشطاً.</p>
+          <button class="btn danger-btn" onclick="deleteData()">🗑️ حذف بياناتي الشخصية</button>
+        </div>
+        
+        <div class="settings-section danger-zone">
+          <h3>إلغاء تنشيط الحساب</h3>
+          <p>سيتم إخفاء حسابك بشكل مؤقت ويمكنك إعادة تفعيله لاحقاً.</p>
+          <button class="btn danger-btn" onclick="deactivateAccount()">⏸️ إلغاء تنشيط حسابي</button>
+        </div>
+        
+        <div class="settings-section danger-zone">
+          <h3>حذف الحساب نهائياً</h3>
+          <p><strong>تحذير:</strong> هذا الإجراء لا يمكن التراجع عنه. جميع بياناتك، التقارير، والمشاركات ستُحذف نهائياً.</p>
+          <div class="form-group">
+            <label class="form-label">اكتب "DELETE" للتأكيد:</label>
+            <input type="text" class="form-input" id="deleteConfirm" placeholder="اكتب DELETE هنا">
+          </div>
+          <button class="btn danger-btn" onclick="deleteAccount()" disabled>💀 حذف حسابي نهائياً</button>
+        </div>
+      </div>
+      
+      <!-- أزرار الحفظ والإلغاء -->
+      <div class="settings-actions">
+        <button class="btn reset-btn" onclick="resetSettings()">إعادة تعيين</button>
+        <button class="btn" onclick="cancelChanges()">إلغاء التغييرات</button>
+        <button class="btn primary" onclick="saveSettings()">💾 حفظ الإعدادات</button>
+      </div>
+      
+      <div class="settings-footer">
+        <p>جميع الإعدادات يتم حفظها تلقائياً في متصفحك. للتخزين الدائم، قم بتسجيل الدخول وحفظها على الخادم.</p>
+        <p class="small">إصدار النظام: 2.1.4 • آخر تحديث: 2025-01-20</p>
+      </div>
+    </div>
+  </main>
+
+  <footer class="footer">
+    <div>© <span id="year"></span> Paradox Team</div>
+    <div class="links">
+      <a data-social="facebook" target="_blank">فيسبوك</a> • 
+      <a data-social="linkedin" target="_blank">لينكدإن</a>
+    </div>
+  </footer>
+</div>
+
+<script>
+// تهيئة السنة في الفوتر
+document.getElementById('year').textContent = new Date().getFullYear();
+
+// دالة تبديل تبويبات الإعدادات
+function switchSettingsTab(tabName) {
+  // إزالة النشط من جميع أزرار التبويب
+  document.querySelectorAll('.settings-tab').forEach(tab => {
+    tab.classList.remove('active');
+  });
+  
+  // إخفاء جميع محتويات التبويبات
+  document.querySelectorAll('.settings-content').forEach(content => {
+    content.classList.remove('active');
+  });
+  
+  // تفعيل التبويب المحدد
+  document.querySelector(`[onclick="switchSettingsTab('${tabName}')"]`).classList.add('active');
+  document.getElementById(`settings-${tabName}`).classList.add('active');
+}
+
+// تحديث قيمة حجم الخط
+function updateFontSize(value) {
+  document.getElementById('fontSizeValue').textContent = value + 'px';
+  document.documentElement.style.fontSize = value + 'px';
+}
+
+// اختيار سمة لونية
+function selectTheme(theme) {
+  const colorOptions = document.querySelectorAll('.color-option');
+  colorOptions.forEach(option => option.classList.remove('active'));
+  event.target.classList.add('active');
+  
+  // تطبيق السمة (في التطبيق الحقيقي، سيتم حفظ هذا في localStorage)
+  console.log('تم اختيار السمة:', theme);
+}
+
+// اختيار نمط الواجهة
+function selectThemeStyle(style) {
+  const themeCards = document.querySelectorAll('.theme-card');
+  themeCards.forEach(card => card.classList.remove('active'));
+  event.target.closest('.theme-card').classList.add('active');
+  
+  console.log('تم اختيار نمط الواجهة:', style);
+}
+
+// نسخ مفتاح API
+function copyApiKey() {
+  const apiKeyInput = document.getElementById('apiKey');
+  apiKeyInput.select();
+  document.execCommand('copy');
+  
+  alert('تم نسخ مفتاح API إلى الحافظة');
+}
+
+// توليد مفتاح API جديد
+function generateApiKey() {
+  const chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+  let key = 'paradox_sk_live_';
+  for (let i = 0; i < 24; i++) {
+    key += chars.charAt(Math.floor(Math.random() * chars.length));
+  }
+  
+  document.getElementById('apiKey').value = key;
+  alert('تم توليد مفتاح API جديد');
+}
+
+// إلغاء وصول تطبيق
+function revokeApp(button) {
+  if (confirm('هل أنت متأكد من إلغاء وصول هذا التطبيق؟')) {
+    const card = button.closest('.card');
+    card.style.opacity = '0.5';
+    card.style.pointerEvents = 'none';
+    button.textContent = 'تم الإلغاء';
+    button.disabled = true;
+  }
+}
+
+// تحقق من إدخال تأكيد الحذف
+document.getElementById('deleteConfirm')?.addEventListener('input', function(e) {
+  const deleteBtn = document.querySelector('[onclick="deleteAccount()"]');
+  deleteBtn.disabled = e.target.value !== 'DELETE';
+});
+
+// تصدير البيانات
+function exportData() {
+  const userData = {
+    profile: {
+      name: document.getElementById('fullName').value,
+      email: document.getElementById('email').value,
+      phone: document.getElementById('phone').value,
+      country: document.getElementById('country').value
+    },
+    settings: {
+      theme: 'dark',
+      fontSize: document.getElementById('fontSize').value,
+      notifications: {
+        email: document.getElementById('emailNotifications').checked,
+        push: document.getElementById('pushNotifications').checked
+      }
+    },
+    exportDate: new Date().toISOString()
+  };
+  
+  const dataStr = JSON.stringify(userData, null, 2);
+  const dataUri = 'data:application/json;charset=utf-8,'+ encodeURIComponent(dataStr);
+  
+  const exportFileDefaultName = `paradox-data-${new Date().toISOString().split('T')[0]}.json`;
+  
+  const linkElement = document.createElement('a');
+  linkElement.setAttribute('href', dataUri);
+  linkElement.setAttribute('download', exportFileDefaultName);
+  linkElement.click();
+  
+  alert('تم تصدير البيانات بنجاح');
+}
+
+// حذف البيانات الشخصية
+function deleteData() {
+  if (confirm('هل أنت متأكد من حذف جميع بياناتك الشخصية؟ هذا الإجراء لا يمكن التراجع عنه.')) {
+    alert('في النسخة الكاملة، سيتم حذف البيانات. هذه نسخة تجريبية.');
+  }
+}
+
+// إلغاء تنشيط الحساب
+function deactivateAccount() {
+  if (confirm('هل أنت متأكد من إلغاء تنشيط حسابك؟ يمكنك إعادة التنشيط لاحقاً عن طريق تسجيل الدخول.')) {
+    alert('في النسخة الكاملة، سيتم إلغاء تنشيط الحساب. هذه نسخة تجريبية.');
+  }
+}
+
+// حذف الحساب نهائياً
+function deleteAccount() {
+  if (confirm('⚠️ تحذير نهائي: هل أنت متأكد تماماً من حذف حسابك نهائياً؟ جميع بياناتك ستُفقد ولا يمكن استعادتها.')) {
+    alert('في النسخة الكاملة، سيتم حذف الحساب. هذه نسخة تجريبية.');
+  }
+}
+
+// حفظ الإعدادات
+function saveSettings() {
+  // جمع جميع الإعدادات
+  const settings = {
+    account: {
+      fullName: document.getElementById('fullName').value,
+      email: document.getElementById('email').value,
+      phone: document.getElementById('phone').value,
+      country: document.getElementById('country').value,
+      specialization: document.getElementById('specialization').value,
+      skills: document.getElementById('skills').value
+    },
+    appearance: {
+      theme: document.querySelector('.color-option.active')?.style.background || '#05060a',
+      fontSize: document.getElementById('fontSize').value,
+      smoothScrolling: document.getElementById('smoothScrolling').checked,
+      animations: document.getElementById('animations').checked,
+      reduceMotion: document.getElementById('reduceMotion').checked,
+      highContrast: document.getElementById('highContrast').checked
+    },
+    notifications: {
+      emailNotifications: document.getElementById('emailNotifications').checked,
+      pushNotifications: document.getElementById('pushNotifications').checked,
+      browserNotifications: document.getElementById('browserNotifications').checked,
+      notifyStart: document.getElementById('notifyStart').value,
+      notifyEnd: document.getElementById('notifyEnd').value
+    },
+    privacy: {
+      accountPrivacy: document.querySelector('input[name="accountPrivacy"]:checked')?.id || 'privacyPublic',
+      showEmail: document.getElementById('showEmail').checked,
+      showActivity: document.getElementById('showActivity').checked,
+      allowIndexing: document.getElementById('allowIndexing').checked
+    },
+    savedAt: new Date().toISOString()
+  };
+  
+  // حفظ في localStorage
+  localStorage.setItem('paradox_settings', JSON.stringify(settings));
+  
+  // إظهار رسالة نجاح
+  alert('✅ تم حفظ الإعدادات بنجاح!');
+  
+  // تطبيق بعض الإعدادات مباشرة
+  document.documentElement.style.fontSize = settings.appearance.fontSize + 'px';
+}
+
+// تحميل الإعدادات المحفوظة
+function loadSettings() {
+  const savedSettings = localStorage.getItem('paradox_settings');
+  if (savedSettings) {
+    const settings = JSON.parse(savedSettings);
+    
+    // تطبيق إعدادات الحساب
+    if (settings.account) {
+      document.getElementById('fullName').value = settings.account.fullName || '';
+      document.getElementById('email').value = settings.account.email || '';
+      document.getElementById('phone').value = settings.account.phone || '';
+      document.getElementById('country').value = settings.account.country || '';
+      document.getElementById('specialization').value = settings.account.specialization || '';
+      document.getElementById('skills').value = settings.account.skills || '';
+    }
+    
+    // تطبيق إعدادات المظهر
+    if (settings.appearance) {
+      document.getElementById('fontSize').value = settings.appearance.fontSize || 16;
+      document.getElementById('fontSizeValue').textContent = (settings.appearance.fontSize || 16) + 'px';
+      document.getElementById('smoothScrolling').checked = settings.appearance.smoothScrolling || false;
+      document.getElementById('animations').checked = settings.appearance.animations || false;
+      document.getElementById('reduceMotion').checked = settings.appearance.reduceMotion || false;
+      document.getElementById('highContrast').checked = settings.appearance.highContrast || false;
+      
+      // تطبيق حجم الخط
+      document.documentElement.style.fontSize = (settings.appearance.fontSize || 16) + 'px';
+    }
+  }
+}
+
+// إعادة تعيين الإعدادات
+function resetSettings() {
+  if (confirm('هل تريد إعادة تعيين جميع الإعدادات إلى القيم الافتراضية؟')) {
+    localStorage.removeItem('paradox_settings');
+    location.reload();
+  }
+}
+
+// إلغاء التغييرات
+function cancelChanges() {
+  if (confirm('هل تريد التخلي عن جميع التغييرات غير المحفوظة؟')) {
+    loadSettings();
+  }
+}
+
+// تهيئة الإعدادات عند تحميل الصفحة
+document.addEventListener('DOMContentLoaded', function() {
+  loadSettings();
+  
+  // ربط روابط التواصل الاجتماعي
+  const fbLinks = document.querySelectorAll('[data-social="facebook"]');
+  const liLinks = document.querySelectorAll('[data-social="linkedin"]');
+  
+  fbLinks.forEach(link => {
+    link.href = 'https://www.facebook.com/Paradox2026/';
+    link.target = '_blank';
+  });
+  
+  liLinks.forEach(link => {
+    link.href = 'https://www.linkedin.com/company/paradox2024';
+    link.target = '_blank';
+  });
+});
+</script>
+</body>
+</html>

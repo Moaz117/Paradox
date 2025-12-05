@@ -1,60 +1,466 @@
 <!DOCTYPE html>
-<html>
+<html lang="ar">
 <head>
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE-edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="description" contact="Paradox Team" />
-    <title>Paradox</title>
-    <script src="app.js"></script>
+    <meta name="description" content="تعرف على فريق Paradox، رؤيتنا، رسالتنا، وأهدافنا في مجال علوم الفضاء ورصد الكويكبات" />
+    <title>عن فريق Paradox - من نحن</title>
     <link rel="stylesheet" href="styles.css">
-</head> 
+    <script src="js/app.js" defer></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
 <body>
+  <div class="stars" id="stars"></div>
+  
   <div class="site">
     <header class="header">
       <div class="brand">
         <div class="logo">🪐</div>
-        <div class="title">Paradox Team</div>
+        <div class="title">عن Paradox</div>
       </div>
       <nav class="nav">
-        <a href="Index.html">الرئيسية</a>
-        <a href="asteroids.html">الكويكبات</a>
-        <a href="research.html">البحث</a>
-        <a href="projects.html">المشاريع</a>
-        <a href="reports.html">التقارير</a>
-        <a href="about-us.html">من نحن</a>
-        <a href="contact-us.html">تواصل معنا</a>
+        <a href="index.html"><i class="fas fa-home"></i> الرئيسية</a>
+        <a href="asteroids.html"><i class="fas fa-meteor"></i> الكويكبات</a>
+        <a href="search-asteroids.html"><i class="fas fa-search"></i> بحث</a>
+        <a href="projects.html"><i class="fas fa-satellite"></i> المشاريع</a>
+        <a href="reports.html"><i class="fas fa-file-alt"></i> التقارير</a>
+        <a href="teams.html"><i class="fas fa-users"></i> فرقنا</a>
+        <a href="about-us.html" class="active"><i class="fas fa-info-circle"></i> من نحن</a>
+        <a href="dashboard.html"><i class="fas fa-tachometer-alt"></i> لوحة التحكم</a>
       </nav>
       <div class="cta">
-        <button id="loginBtn" class="btn ghost">تسجيل دخول</button>
-        <button id="joinBtn" class="btn primary">Join the Team</button>
+        <a href="login.html" class="btn ghost"><i class="fas fa-sign-in-alt"></i> تسجيل دخول</a>
+        <a href="join.html" class="btn primary"><i class="fas fa-user-plus"></i> انضم للفريق</a>
       </div>
     </header>
 
-<main class="section">
-  <h1>من نحن</h1>
-  <p class="muted">
-    فريق Paradox هو مجموعة بحثية عربية تهتم برصد الأجرام القريبة من الأرض،
-    تحليل المدارات، بناء أدوات محاكاة، وتطوير مشاريع مفتوحة المصدر.
-  </p>
+    <main>
+      <section class="hero">
+        <div class="hero-text">
+          <h1>فريق Paradox: مستقبل الفضاء العربي</h1>
+          <p class="muted">
+            مبادرة عربية بحثية مستقلة تجمع علماء وهواة لبناء أدوات رصد وتحليل الكويكبات والأجرام القريبة من الأرض.
+            نحن نعمل على تطوير تقنيات الرصد والمحاكاة، وبناء شراكات مع وكالات الفضاء العالمية.
+          </p>
 
-  <div class="card">
-    <h3>رؤيتنا</h3>
-    <p>تحقيق بيئة بحثية عربية متقدمة في علوم الفضاء.</p>
-  </div>
+          <div class="hero-actions">
+            <a href="#story" class="btn primary"><i class="fas fa-history"></i> قصتنا</a>
+            <a href="#mission" class="btn"><i class="fas fa-bullseye"></i> رسالتنا</a>
+            <a href="#team" class="btn secondary"><i class="fas fa-users"></i> فريقنا</a>
+          </div>
+        </div>
 
-  <div class="card" style="margin-top:12px">
-    <h3>رسالتنا</h3>
-    <p>نشر المعرفة، دعم الباحثين، وتطوير أدوات تساعد الهواة والمحترفين.</p>
-  </div>
-</main>
+        <div class="hero-media">
+          <div class="map-placeholder" style="background: linear-gradient(135deg, rgba(10, 14, 22, 0.9), rgba(6, 9, 14, 0.9));">
+            <div style="text-align: center; padding: 20px;">
+              <div style="font-size: 4rem; margin-bottom: 20px;">🪐</div>
+              <h3 style="color: white; margin-bottom: 10px;">Paradox Team</h3>
+              <p class="small">نكتشف ما حول الأرض... ونحمي مستقبلها</p>
+              <div class="tag" style="margin-top: 20px; background: rgba(110, 231, 243, 0.1); color: var(--accent);">
+                تأسس 2020
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
 
-          <footer class="footer">
-      <div>© <span id="year"></span>Paradox - All rights reserved</div>
-      <div class="links">البريد • تويتر • انستغرام</div>
+      <!-- قصتنا -->
+      <section class="section" id="story">
+        <h2><i class="fas fa-history"></i> قصتنا</h2>
+        <p class="muted">رحلة تأسيس فريق Paradox وتطوره</p>
+        
+        <div class="card">
+          <div class="grid" style="grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 30px; margin-bottom: 30px;">
+            <div style="text-align: center;">
+              <div style="
+                width: 80px;
+                height: 80px;
+                border-radius: 50%;
+                background: linear-gradient(135deg, var(--accent-2), var(--accent));
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                margin: 0 auto 15px;
+                font-size: 2rem;
+                color: #021124;
+                font-weight: 800;
+              ">
+                2020
+              </div>
+              <div style="font-weight: 800; margin-bottom: 10px;">التأسيس</div>
+              <p class="small">بداية كمبادرة صغيرة تضم 5 باحثين عرب</p>
+            </div>
+            
+            <div style="text-align: center;">
+              <div style="
+                width: 80px;
+                height: 80px;
+                border-radius: 50%;
+                background: linear-gradient(135deg, var(--accent-2), var(--accent));
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                margin: 0 auto 15px;
+                font-size: 2rem;
+                color: #021124;
+                font-weight: 800;
+              ">
+                2021
+              </div>
+              <div style="font-weight: 800; margin-bottom: 10px;">أول مشروع رصد</div>
+              <p class="small">بداية مشروع الرصد المنتظم للكويكبات</p>
+            </div>
+            
+            <div style="text-align: center;">
+              <div style="
+                width: 80px;
+                height: 80px;
+                border-radius: 50%;
+                background: linear-gradient(135deg, var(--accent-2), var(--accent));
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                margin: 0 auto 15px;
+                font-size: 2rem;
+                color: #021124;
+                font-weight: 800;
+              ">
+                2022
+              </div>
+              <div style="font-weight: 800; margin-bottom: 10px;">التوسع</div>
+              <p class="small">الوصول إلى 50 باحثاً من 12 دولة عربية</p>
+            </div>
+            
+            <div style="text-align: center;">
+              <div style="
+                width: 80px;
+                height: 80px;
+                border-radius: 50%;
+                background: linear-gradient(135deg, var(--accent-2), var(--accent));
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                margin: 0 auto 15px;
+                font-size: 2rem;
+                color: #021124;
+                font-weight: 800;
+              ">
+                2024
+              </div>
+              <div style="font-weight: 800; margin-bottom: 10px;">الشراكات</div>
+              <p class="small">شراكات مع وكالات فضاء عربية ودولية</p>
+            </div>
+          </div>
+          
+          <div style="border-top: 1px solid rgba(255,255,255,0.1); padding-top: 20px;">
+            <h3 style="margin-top: 0;">كيف بدأنا؟</h3>
+            <p>
+              بدأ فريق Paradox كفكرة بين مجموعة من الباحثين العرب المهتمين بعلوم الفضاء الذين لاحظوا ندرة المبادرات 
+              العربية المستقلة في مجال رصد الكويكبات. في عام 2020، قررنا تحويل هذه الفكرة إلى واقع ملموس.
+            </p>
+            <p>
+              بدأنا بتأسيس شبكة صغيرة من التلسكوبات، وتطوير أدوات برمجية لتحليل البيانات، وبناء قاعدة معرفية 
+              عربية في هذا المجال المتخصص. اليوم، أصبح Paradox أحد أهم المبادرات العربية في علوم الفضاء.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <!-- رسالتنا ورؤيتنا -->
+      <section class="section" id="mission">
+        <h2><i class="fas fa-bullseye"></i> رسالتنا ورؤيتنا</h2>
+        <p class="muted">ما نؤمن به وما نسعى لتحقيقه</p>
+        
+        <div class="grid">
+          <div class="card">
+            <h3><i class="fas fa-eye" style="color: var(--accent);"></i> رؤيتنا</h3>
+            <p style="font-size: 1.2rem; font-weight: 600; color: var(--accent);">
+              تحقيق ريادة عربية في علوم الفضاء ورصد الكويكبات
+            </p>
+            <p>
+              نطمح لأن يكون للعالم العربي دور ريادي في أبحاث الفضاء، وأن نساهم بشكل فعال في حماية الأرض 
+              من الكويكبات الخطرة، وأن نكون مصدراً موثوقاً للمعرفة العلمية في هذا المجال.
+            </p>
+          </div>
+          
+          <div class="card">
+            <h3><i class="fas fa-bullhorn" style="color: var(--accent-2);"></i> رسالتنا</h3>
+            <p style="font-size: 1.2rem; font-weight: 600; color: var(--accent-2);">
+              نشر المعرفة، دعم الباحثين، وتطوير تقنيات الرصد
+            </p>
+            <p>
+              نعمل على بناء مجتمع علمي عربي متكامل في علوم الفضاء، وتطوير أدوات وتقنيات مفتوحة المصدر، 
+              وتقديم بيانات ودراسات علمية دقيقة تساهم في تطور هذا المجال الحيوي.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <!-- قيمنا -->
+      <section class="section">
+        <h2 style="text-align: center;"><i class="fas fa-heart"></i> قيمنا الأساسية</h2>
+        <p class="muted" style="text-align: center;">المبادئ التي تحكم عملنا وسلوكنا</p>
+        
+        <div class="grid" style="grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px;">
+          <div class="card" style="text-align: center;">
+            <div style="
+              width: 70px;
+              height: 70px;
+              border-radius: 50%;
+              background: rgba(76, 175, 80, 0.1);
+              display: flex;
+              align-items: center;
+              justify-content: center;
+              margin: 0 auto 15px;
+              font-size: 1.8rem;
+              color: #4CAF50;
+            ">
+              <i class="fas fa-shield-alt"></i>
+            </div>
+            <div style="font-weight: 800; margin-bottom: 10px;">المصداقية العلمية</div>
+            <p class="small">نلتزم بأعلى معايير الدقة والموضوعية في جميع أبحاثنا وتقاريرنا</p>
+          </div>
+          
+          <div class="card" style="text-align: center;">
+            <div style="
+              width: 70px;
+              height: 70px;
+              border-radius: 50%;
+              background: rgba(33, 150, 243, 0.1);
+              display: flex;
+              align-items: center;
+              justify-content: center;
+              margin: 0 auto 15px;
+              font-size: 1.8rem;
+              color: #2196F3;
+            ">
+              <i class="fas fa-handshake"></i>
+            </div>
+            <div style="font-weight: 800; margin-bottom: 10px;">التعاون المفتوح</div>
+            <p class="small">نؤمن بقوة العمل الجماعي ونشارك معارفنا وخبراتنا بحرية</p>
+          </div>
+          
+          <div class="card" style="text-align: center;">
+            <div style="
+              width: 70px;
+              height: 70px;
+              border-radius: 50%;
+              background: rgba(156, 39, 176, 0.1);
+              display: flex;
+              align-items: center;
+              justify-content: center;
+              margin: 0 auto 15px;
+              font-size: 1.8rem;
+              color: #9C27B0;
+            ">
+              <i class="fas fa-lightbulb"></i>
+            </div>
+            <div style="font-weight: 800; margin-bottom: 10px;">الابتكار المستمر</div>
+            <p class="small">نسعى دائماً لتطوير أدوات وطرق جديدة في رصد وتحليل الكويكبات</p>
+          </div>
+          
+          <div class="card" style="text-align: center;">
+            <div style="
+              width: 70px;
+              height: 70px;
+              border-radius: 50%;
+              background: rgba(255, 193, 7, 0.1);
+              display: flex;
+              align-items: center;
+              justify-content: center;
+              margin: 0 auto 15px;
+              font-size: 1.8rem;
+              color: #FFC107;
+            ">
+              <i class="fas fa-graduation-cap"></i>
+            </div>
+            <div style="font-weight: 800; margin-bottom: 10px;">التعليم والتأهيل</div>
+            <p class="small">نستثمر في بناء قدرات الباحثين العرب في علوم الفضاء</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- فريق القيادة -->
+      <section class="section" id="team">
+        <h2><i class="fas fa-users"></i> فريق القيادة</h2>
+        <p class="muted">الأشخاص الذين يقودون رحلة Paradox</p>
+        
+        <div class="grid">
+          <div class="card">
+            <div style="display: flex; align-items: center; gap: 15px; margin-bottom: 20px;">
+              <div style="
+                width: 80px;
+                height: 80px;
+                border-radius: 50%;
+                background: linear-gradient(135deg, var(--accent-2), var(--accent));
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                font-size: 2rem;
+                color: #021124;
+                font-weight: 800;
+              ">
+                د.م
+              </div>
+              <div>
+                <div style="font-weight: 800; font-size: 1.2rem;">د. محمد العلي</div>
+                <div class="small">المدير العلمي والرئيس التنفيذي</div>
+              </div>
+            </div>
+            <p class="small">
+              دكتوراه في الفيزياء الفلكية من MIT، عمل سابقاً في مختبر الدفع النفاث التابع لناسا.
+              يقود الفريق العلمي ويسعى لتعزيز مكانة Paradox كمركز بحثي رائد.
+            </p>
+            <div style="margin-top: 15px;">
+              <span class="tag" style="margin-right: 5px;">الفيزياء الفلكية</span>
+              <span class="tag">ديناميكا الكويكبات</span>
+            </div>
+          </div>
+          
+          <div class="card">
+            <div style="display: flex; align-items: center; gap: 15px; margin-bottom: 20px;">
+              <div style="
+                width: 80px;
+                height: 80px;
+                border-radius: 50%;
+                background: linear-gradient(135deg, var(--accent-2), var(--accent));
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                font-size: 2rem;
+                color: #021124;
+                font-weight: 800;
+              ">
+                د.س
+              </div>
+              <div>
+                <div style="font-weight: 800; font-size: 1.2rem;">د. سارة الخليفة</div>
+                <div class="small">مديرة البحوث والتطوير</div>
+              </div>
+            </div>
+            <p class="small">
+              دكتوراه في علوم الكواكب من جامعة كاليفورنيا، متخصصة في تحليل بيانات الكويكبات.
+              تشرف على مشاريع البحث والتطوير وتدريب الباحثين الشباب.
+            </p>
+            <div style="margin-top: 15px;">
+              <span class="tag" style="margin-right: 5px;">علوم الكواكب</span>
+              <span class="tag">تحليل البيانات</span>
+            </div>
+          </div>
+          
+          <div class="card">
+            <div style="display: flex; align-items: center; gap: 15px; margin-bottom: 20px;">
+              <div style="
+                width: 80px;
+                height: 80px;
+                border-radius: 50%;
+                background: linear-gradient(135deg, var(--accent-2), var(--accent));
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                font-size: 2rem;
+                color: #021124;
+                font-weight: 800;
+              ">
+                م.خ
+              </div>
+              <div>
+                <div style="font-weight: 800; font-size: 1.2rem;">م. خالد السديري</div>
+                <div class="small">مدير التقنية والبرمجيات</div>
+              </div>
+            </div>
+            <p class="small">
+              ماجستير في هندسة البرمجيات، متخصص في تطوير أنظمة الرصد والتحليل.
+              يقود فريق المطورين ويسعى لبناء منصات تقنية متقدمة لفريق Paradox.
+            </p>
+            <div style="margin-top: 15px;">
+              <span class="tag" style="margin-right: 5px;">هندسة البرمجيات</span>
+              <span class="tag">الذكاء الاصطناعي</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- الإنجازات -->
+      <section class="section">
+        <h2 style="text-align: center;"><i class="fas fa-trophy"></i> إنجازاتنا</h2>
+        <p class="muted" style="text-align: center;">بعض الإنجازات التي نفخر بها</p>
+        
+        <div class="grid" style="grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px;">
+          <div class="card" style="text-align: center;">
+            <div style="font-size: 3rem; color: var(--accent); margin-bottom: 15px;">
+              <i class="fas fa-satellite"></i>
+            </div>
+            <div style="font-weight: 800; margin-bottom: 10px;">24 كويكب مكتشف</div>
+            <p class="small">اكتشاف ورصد 24 كويكباً جديداً</p>
+          </div>
+          
+          <div class="card" style="text-align: center;">
+            <div style="font-size: 3rem; color: var(--accent-2); margin-bottom: 15px;">
+              <i class="fas fa-file-alt"></i>
+            </div>
+            <div style="font-weight: 800; margin-bottom: 10px;">47 بحث منشور</div>
+            <p class="small">أبحاث وتقارير علمية محكمة</p>
+          </div>
+          
+          <div class="card" style="text-align: center;">
+            <div style="font-size: 3rem; color: var(--accent-3); margin-bottom: 15px;">
+              <i class="fas fa-users"></i>
+            </div>
+            <div style="font-weight: 800; margin-bottom: 10px;">156 باحث</div>
+            <p class="small">فريق بحثي عربي متنوع</p>
+          </div>
+          
+          <div class="card" style="text-align: center;">
+            <div style="font-size: 3rem; color: #4CAF50; margin-bottom: 15px;">
+              <i class="fas fa-handshake"></i>
+            </div>
+            <div style="font-weight: 800; margin-bottom: 10px;">8 وكالات فضاء</div>
+            <p class="small">شراكات مع وكالات فضاء عالمية</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- انضم إلينا -->
+      <section class="section" style="background: rgba(255,255,255,0.02); border-radius: 20px; padding: 40px;">
+        <div style="text-align: center;">
+          <h2 style="margin-bottom: 20px;">كن جزءاً من رحلتنا</h2>
+          <p class="muted" style="max-width: 600px; margin: 0 auto 30px;">
+            سواء كنت عالماً، مهندساً، مبرمجاً، أو مجرد هاوٍ متحمس لعلوم الفضاء، 
+            هناك مكان لك في فريق Paradox.
+          </p>
+          <a href="join.html" class="btn primary" style="padding: 16px 40px; font-size: 1.1rem;">
+            <i class="fas fa-rocket"></i> انضم إلى فريق Paradox
+          </a>
+        </div>
+      </section>
+    </main>
+
+    <footer class="footer">
+      <div>
+        © <span id="year"></span> فريق Paradox - من نحن
+        <br>
+        <small class="muted">مستقبل الفضاء يبدأ بخطوة</small>
+      </div>
+      <div class="links">
+        <a href="index.html"><i class="fas fa-home"></i> الرئيسية</a> • 
+        <a href="teams.html"><i class="fas fa-users"></i> فرقنا</a> •
+        <a href="contact-us.html"><i class="fas fa-envelope"></i> تواصل معنا</a>
+      </div>
     </footer>
   </div>
 
-  <script src="app.js"></script>
-    </body>
-    </html>
+  <script>
+  // تهيئة الصفحة
+  window.addEventListener('DOMContentLoaded', function() {
+    // إضافة السنة للفوتر
+    const yearElement = document.getElementById('year');
+    if(yearElement) yearElement.textContent = new Date().getFullYear();
+    
+    // إنشاء النجوم
+    if(typeof createStars === 'function') createStars();
+  });
+  </script>
+</body>
+</html>

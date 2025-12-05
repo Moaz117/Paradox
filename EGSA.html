@@ -3,91 +3,379 @@
 <head>
   <meta charset="utf-8"/>
   <meta name="viewport" content="width=device-width,initial-scale=1"/>
-  <title>Paradox Team</title>
+  <title>التعاون مع وكالة الفضاء المصرية - Paradox</title>
+  <meta name="description" content="شراكة فريق Paradox مع وكالة الفضاء المصرية (EGSA) في مجالات البحث العلمي وتطوير الأقمار الصناعية"/>
   <link rel="stylesheet" href="styles.css">
-  <script src="app.js" defer></script>
+  <script src="js/app.js" defer></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 
 <body>
-<div class="site">
+  <div class="stars" id="stars"></div>
+  
+  <div class="site">
+    <header class="header">
+      <div class="brand">
+        <div class="logo">🪐</div>
+        <div class="title">Paradox × EGSA</div>
+      </div>
 
-  <header class="header">
-    <div class="brand">
-      <div class="logo">🪐</div>
-      <div class="title">Paradox Team</div>
-    </div>
+      <nav class="nav">
+        <a href="index.html"><i class="fas fa-home"></i> الرئيسية</a>
+        <a href="asteroids.html"><i class="fas fa-meteor"></i> الكويكبات</a>
+        <a href="search-asteroids.html"><i class="fas fa-search"></i> البحث المتقدم</a>
+        <a href="projects.html"><i class="fas fa-satellite"></i> المشاريع</a>
+        <a href="reports.html"><i class="fas fa-file-alt"></i> التقارير</a>
+        <a href="about-us.html"><i class="fas fa-info-circle"></i> من نحن</a>
+        <a href="AESA.html"><i class="fas fa-globe-africa"></i> وكالة الفضاء الأفريقية</a>
+        <a href="EGSA.html" class="active"><i class="fas fa-globe-africa"></i> وكالة الفضاء المصرية</a>
+      </nav>
 
-    <nav class="nav">
-      <a href="index.html">الرئيسية</a>
-      <a href="asteroids.html">الكويكبات</a>
-      <a href="search-asteroids.html">بحث</a>
-      <a href="projects.html">المشاريع</a>
-      <a href="reports.html">التقارير</a>
-      <a href="about-us.html">من نحن</a>
-      <a href="dashboard.html">لوحة التحكم</a>
-      <a href="join.html">انضم للفريق</a>
-    </nav>
+      <div class="cta">
+        <a href="login.html" class="btn ghost"><i class="fas fa-sign-in-alt"></i> تسجيل دخول</a>
+        <a href="join.html" class="btn primary"><i class="fas fa-user-plus"></i> انضم للفريق</a>
+      </div>
+    </header>
 
-    <div class="cta">
-      <a data-social="facebook" class="btn" href="#" target="_blank">فيسبوك</a>
-      <a data-social="linkedin" class="btn" href="#" target="_blank">لينكدإن</a>
-      <a href="login.html" class="btn ghost">تسجيل دخول</a>
-      <a href="join.html" class="btn primary">انضم الآن</a>
-    </div>
-  </header>
+    <main>
+      <section class="hero">
+        <div class="hero-text">
+          <h1>تعاون استراتيجي مع وكالة الفضاء المصرية</h1>
+          <p class="muted">
+            نعمل مع وكالة الفضاء المصرية (Egyptian Space Agency - EGSA) لتطوير برامج بحثية مشتركة، 
+            بناء الأقمار الصناعية، وتدريب الكوادر العربية في مجال علوم وتكنولوجيا الفضاء.
+          </p>
 
-  <main>
+          <div class="hero-actions">
+            <a href="#projects" class="btn primary"><i class="fas fa-satellite"></i> المشاريع المشتركة</a>
+            <a href="#training" class="btn"><i class="fas fa-user-graduate"></i> برامج التدريب</a>
+            <a href="#research" class="btn secondary"><i class="fas fa-flask"></i> الأبحاث المشتركة</a>
+          </div>
+        </div>
 
-    <section class="hero">
-      <div class="hero-text">
-        <h1>نكتشف ما حول الأرض… ونحمي مستقبلها</h1>
-        <p class="muted">
-          فريق Paradox يجمع علماء وهواة لبناء أدوات رصد وتحليل الكويكبات والأجرام القريبة من الأرض.
+        <div class="hero-media">
+          <div class="map-placeholder" style="background: linear-gradient(135deg, #0a2e5c, #1a1035);">
+            <div style="text-align: center; padding: 20px;">
+              <i class="fas fa-monument" style="font-size: 80px; margin-bottom: 20px; color: #FFD700;"></i>
+              <h3 style="color: white; margin-bottom: 10px;">وكالة الفضاء المصرية</h3>
+              <p class="small">Egyptian Space Agency</p>
+              <div class="tag" style="margin-top: 20px; background: rgba(255, 215, 0, 0.1); color: #FFD700;">
+                تعاون منذ 2022
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="section">
+        <h2><i class="fas fa-handshake"></i> مجالات التعاون</h2>
+        <p class="muted">مجالات العمل المشترك بين Paradox ووكالة الفضاء المصرية</p>
+        
+        <div class="grid">
+          <div class="card">
+            <h3><i class="fas fa-satellite"></i> تطوير الأقمار الصناعية</h3>
+            <p>تصميم وتطوير أقمار صناعية صغيرة مخصصة لرصد الكويكبات</p>
+            <div class="kv">
+              <span class="small">الحالة:</span>
+              <span class="tag" style="background: rgba(76, 175, 80, 0.1); color: #4CAF50;">نشط</span>
+            </div>
+            <a href="#satellite-projects" class="btn" style="margin-top: 15px;">
+              <i class="fas fa-external-link-alt"></i> تفاصيل المشاريع
+            </a>
+          </div>
+          
+          <div class="card">
+            <h3><i class="fas fa-graduation-cap"></i> تدريب الكوادر</h3>
+            <p>برامج تدريبية متقدمة في مركز التدريب الفضائي المصري</p>
+            <div class="kv">
+              <span class="small">الحالة:</span>
+              <span class="tag" style="background: rgba(76, 175, 80, 0.1); color: #4CAF50;">نشط</span>
+            </div>
+            <a href="#training-programs" class="btn" style="margin-top: 15px;">
+              <i class="fas fa-external-link-alt"></i> عرض البرامج
+            </a>
+          </div>
+          
+          <div class="card">
+            <h3><i class="fas fa-flask"></i> أبحاث مشتركة</h3>
+            <p>مشاريع بحثية مشتركة في مجال ديناميكا الكويكبات</p>
+            <div class="kv">
+              <span class="small">الحالة:</span>
+              <span class="tag">في مرحلة التخطيط</span>
+            </div>
+            <a href="#joint-research" class="btn" style="margin-top: 15px;">
+              <i class="fas fa-external-link-alt"></i> الاطلاع على الأبحاث
+            </a>
+          </div>
+        </div>
+      </section>
+
+      <section class="section" id="projects">
+        <h2><i class="fas fa-satellite"></i> المشاريع المشتركة</h2>
+        <p class="muted">مشاريع تقنية وبحثية تنفذ بالتعاون مع EGSA</p>
+        
+        <div class="grid">
+          <div class="card">
+            <h3><i class="fas fa-space-shuttle"></i> مشروع "نيل سات" للرصد</h3>
+            <p>تطوير قمر صناعي مصغر مخصص لرصد الكويكبات والأجرام القريبة من الأرض</p>
+            
+            <div style="margin: 20px 0;">
+              <div class="kv">
+                <span class="small">الحالة:</span>
+                <span class="tag" style="background: rgba(255, 193, 7, 0.1); color: #FFC107;">قيد التطوير</span>
+              </div>
+              <div class="kv">
+                <span class="small">الميزانية:</span>
+                <span>$800,000</span>
+              </div>
+              <div class="kv">
+                <span class="small">الإطلاق المتوقع:</span>
+                <span>Q4 2025</span>
+              </div>
+            </div>
+            
+            <div class="progress-bar">
+              <div class="progress-fill" style="width: 45%;"></div>
+            </div>
+            <div class="small" style="text-align: center; margin-top: 8px;">45% مكتمل</div>
+          </div>
+          
+          <div class="card">
+            <h3><i class="fas fa-tachometer-alt"></i> نظام تتبع الكويكبات</h3>
+            <p>تطوير نظام تتبع وتنبؤ بمدارات الكويكبات باستخدام بيانات من محطات الرصد المصرية</p>
+            
+            <div style="margin: 20px 0;">
+              <div class="kv">
+                <span class="small">الحالة:</span>
+                <span class="tag" style="background: rgba(76, 175, 80, 0.1); color: #4CAF50;">نشط</span>
+              </div>
+              <div class="kv">
+                <span class="small">المحطات المشاركة:</span>
+                <span>3 محطات رصد</span>
+              </div>
+              <div class="kv">
+                <span class="small">الدقة:</span>
+                <span>± 50 كم</span>
+              </div>
+            </div>
+            
+            <div class="progress-bar">
+              <div class="progress-fill" style="width: 70%;"></div>
+            </div>
+            <div class="small" style="text-align: center; margin-top: 8px;">70% مكتمل</div>
+          </div>
+        </div>
+      </section>
+
+      <section class="section" id="training">
+        <h2><i class="fas fa-user-graduate"></i> برامج التدريب المشتركة</h2>
+        <p class="muted">برامج تدريبية وتأهيلية بالشراكة مع وكالة الفضاء المصرية</p>
+        
+        <div class="grid">
+          <div class="card">
+            <h3><i class="fas fa-certificate"></i> دبلوم علوم الفضاء</h3>
+            <p>برنامج تدريبي مكثف لمدة 6 أشهر في علوم الفضاء وتكنولوجيا الأقمار الصناعية</p>
+            
+            <div style="margin: 15px 0;">
+              <div class="kv">
+                <span class="small">المدة:</span>
+                <span>6 أشهر</span>
+              </div>
+              <div class="kv">
+                <span class="small">المقاعد:</span>
+                <span>25 مقعداً</span>
+              </div>
+              <div class="kv">
+                <span class="small">الدورة القادمة:</span>
+                <span>مارس 2025</span>
+              </div>
+            </div>
+            
+            <a href="join.html" class="btn primary" style="margin-top: 10px; width: 100%; text-align: center;">
+              <i class="fas fa-user-plus"></i> التقديم للدبلوم
+            </a>
+          </div>
+          
+          <div class="card">
+            <h3><i class="fas fa-briefcase"></i> برنامج التدريب الصيفي</h3>
+            <p>تدريب عملي لمدة 3 أشهر في مراكز وكالة الفضاء المصرية</p>
+            
+            <div style="margin: 15px 0;">
+              <div class="kv">
+                <span class="small">المدة:</span>
+                <span>3 أشهر</span>
+              </div>
+              <div class="kv">
+                <span class="small">المقاعد:</span>
+                <span>40 مقعداً</span>
+              </div>
+              <div class="kv">
+                <span class="small">الدورة القادمة:</span>
+                <span>يونيو 2025</span>
+              </div>
+            </div>
+            
+            <a href="join.html" class="btn secondary" style="margin-top: 10px; width: 100%; text-align: center;">
+              <i class="fas fa-user-plus"></i> التقديم للتدريب الصيفي
+            </a>
+          </div>
+          
+          <div class="card">
+            <h3><i class="fas fa-chalkboard-teacher"></i> ورش عمل متخصصة</h3>
+            <p>ورش عمل قصيرة في مجالات محددة من علوم الفضاء</p>
+            
+            <div style="margin: 15px 0;">
+              <div class="kv">
+                <span class="small">المدة:</span>
+                <span>2-5 أيام</span>
+              </div>
+              <div class="kv">
+                <span class="small">التكرار:</span>
+                <span>شهرياً</span>
+              </div>
+              <div class="kv">
+                <span class="small">الورشة القادمة:</span>
+                <span>"رصد الكويكبات" - فبراير 2025</span>
+              </div>
+            </div>
+            
+            <a href="join.html" class="btn" style="margin-top: 10px; width: 100%; text-align: center;">
+              <i class="fas fa-calendar-alt"></i> التسجيل في الورش
+            </a>
+          </div>
+        </div>
+      </section>
+
+      <section class="section" id="research">
+        <h2><i class="fas fa-flask"></i> الأبحاث والمؤتمرات المشتركة</h2>
+        <p class="muted">أنشطة بحثية وفعاليات علمية بالتعاون مع EGSA</p>
+        
+        <div class="grid">
+          <div class="card">
+            <h3><i class="fas fa-microscope"></i> مختبر الأبحاث المشترك</h3>
+            <p>مختبر مجهز بأحدث التقنيات للبحث في ديناميكا الكويكبات</p>
+            <div class="small" style="margin-top: 10px;">
+              <strong>المكان:</strong> مدينة الفضاء، القاهرة<br>
+              <strong>المعدات:</strong> محاكي مدارات، حاسوب فائق<br>
+              <strong>الباحثون:</strong> 12 باحثاً من Paradox وEGSA
+            </div>
+            <a href="contact-us.html" class="btn" style="margin-top: 15px;">
+              <i class="fas fa-envelope"></i> الاستفسار عن الزيارات البحثية
+            </a>
+          </div>
+          
+          <div class="card">
+            <h3><i class="fas fa-calendar-alt"></i> المؤتمر السنوي المشترك</h3>
+            <p>مؤتمر "الفضاء العربي" السنوي الذي تنظمه Paradox وEGSA</p>
+            <div class="small" style="margin-top: 10px;">
+              <strong>الدورة القادمة:</strong> المؤتمر الخامس<br>
+              <strong>التاريخ:</strong> أكتوبر 2025<br>
+              <strong>المكان:</strong> القاهرة، مصر<br>
+              <strong>المتحدثون:</strong> 40 خبيراً عربياً وعالمياً
+            </div>
+            <a href="#" class="btn primary" style="margin-top: 15px;">
+              <i class="fas fa-ticket-alt"></i> التسجيل المبكر للمؤتمر
+            </a>
+          </div>
+          
+          <div class="card">
+            <h3><i class="fas fa-book"></i> المجلة العلمية المشتركة</h3>
+            <p>مجلة "أبحاث الفضاء العربية" المحكمة التي تصدر بالشراكة</p>
+            <div class="small" style="margin-top: 10px;">
+              <strong>الدورية:</strong> فصلية<br>
+              <strong>معامل التأثير:</strong> 2.3<br>
+              <strong>الاصدار الأخير:</strong> ديسمبر 2024<br>
+              <strong>المقالات:</strong> 8 أبحاث في العدد
+            </div>
+            <a href="reports.html" class="btn secondary" style="margin-top: 15px;">
+              <i class="fas fa-download"></i> تحميل الأعداد السابقة
+            </a>
+          </div>
+        </div>
+      </section>
+
+      <section class="section" style="background: rgba(255,255,255,0.02); border-radius: 20px; padding: 40px;">
+        <h2 style="text-align: center;"><i class="fas fa-users"></i> كيفية المشاركة في الأنشطة المشتركة</h2>
+        <p class="muted" style="text-align: center; max-width: 700px; margin: 0 auto 30px;">
+          يمكن للباحثين والطلاب العرب المشاركة في أنشطة التعاون مع وكالة الفضاء المصرية
         </p>
-
-        <div class="hero-actions">
-          <a href="asteroids.html" class="btn primary">استكشف الكويكبات</a>
-          <a href="dashboard.html" class="btn">لوحة التحكم</a>
+        
+        <div class="grid" style="grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));">
+          <div style="text-align: center; padding: 20px;">
+            <div style="
+              width: 70px;
+              height: 70px;
+              border-radius: 50%;
+              background: rgba(110, 231, 243, 0.1);
+              display: flex;
+              align-items: center;
+              justify-content: center;
+              margin: 0 auto 15px;
+              font-size: 1.8rem;
+              color: var(--accent);
+            ">
+              <i class="fas fa-user-plus"></i>
+            </div>
+            <div style="font-weight: 600; margin-bottom: 10px;">الانضمام لفريق Paradox</div>
+            <p class="small">قدم طلب انضمام وسيتم توجيهك للأنشطة المناسبة</p>
+            <a href="join.html" class="btn small">تقديم طلب الانضمام</a>
+          </div>
+          
+          <div style="text-align: center; padding: 20px;">
+            <div style="
+              width: 70px;
+              height: 70px;
+              border-radius: 50%;
+              background: rgba(255, 215, 0, 0.1);
+              display: flex;
+              align-items: center;
+              justify-content: center;
+              margin: 0 auto 15px;
+              font-size: 1.8rem;
+              color: #FFD700;
+            ">
+              <i class="fas fa-graduation-cap"></i>
+            </div>
+            <div style="font-weight: 600; margin-bottom: 10px;">برامج EGSA التدريبية</div>
+            <p class="small">التقديم مباشرة لبرامج وكالة الفضاء المصرية</p>
+            <a href="https://egsa.gov.eg" target="_blank" class="btn small">موقع EGSA الرسمي</a>
+          </div>
+          
+          <div style="text-align: center; padding: 20px;">
+            <div style="
+              width: 70px;
+              height: 70px;
+              border-radius: 50%;
+              background: rgba(76, 175, 80, 0.1);
+              display: flex;
+              align-items: center;
+              justify-content: center;
+              margin: 0 auto 15px;
+              font-size: 1.8rem;
+              color: #4CAF50;
+            ">
+              <i class="fas fa-paper-plane"></i>
+            </div>
+            <div style="font-weight: 600; margin-bottom: 10px">تقديم أبحاث للمؤتمر</div>
+            <p class="small">إرسال ملخصات أبحاث للمؤتمر السنوي المشترك</p>
+            <a href="contact-us.html" class="btn small">إرسال بحث للمؤتمر</a>
+          </div>
         </div>
+      </section>
+    </main>
 
-        <div class="features">
-          <div class="feature">رصد<br><small>شبكة تلسكوبات</small></div>
-          <div class="feature">محاكاة مدار<br><small>نمذجة الاصطدام</small></div>
-          <div class="feature">تعليم ومجتمع<br><small>ورش ودورات</small></div>
-          <div class="feature">مشاريع مستقبلية<br><small>مرصد، تتبع آلي</small></div>
-        </div>
+    <footer class="footer">
+      <div>
+        © <span id="year"></span> فريق Paradox × وكالة الفضاء المصرية
+        <br>
+        <small class="muted">شراكة علمية من أجل تطور الفضاء العربي</small>
       </div>
-
-      <div class="hero-media">
-        <div class="map-placeholder">3D map preview</div>
+      <div class="links">
+        <a href="index.html"><i class="fas fa-home"></i> الرئيسية</a> • 
+        <a href="contact-us.html"><i class="fas fa-envelope"></i> اتصل بنا</a> •
+        <a href="https://www.facebook.com/Paradox2026/" target="_blank"><i class="fab fa-facebook"></i> فيسبوك</a>
       </div>
-    </section>
-
-    <section class="section">
-      <h2>أحدث الاكتشافات</h2>
-      <div id="asteroidList" class="grid"></div>
-    </section>
-
-    <section class="section">
-      <h2>فرقنا</h2>
-      <div id="teamsGrid" class="grid"></div>
-    </section>
-
-    <section class="section">
-      <h2>مشاريعنا</h2>
-      <div id="projectsGrid" class="grid"></div>
-    </section>
-
-  </main>
-
-  <footer class="footer">
-    <div>© <span id="year"></span> Paradox Team</div>
-    <div class="links">
-      <a data-social="facebook" href="#" target="_blank">فيسبوك</a> • 
-      <a data-social="linkedin" href="#" target="_blank">لينكدإن</a>
-    </div>
-  </footer>
-
-</div>
+    </footer>
+  </div>
 </body>
 </html>

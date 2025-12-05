@@ -1,0 +1,542 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width,initial-scale=1"/>
+  <title>الملف الشخصي - Paradox</title>
+  <link rel="stylesheet" href="styles.css">
+  <script src="js/app.js" defer></script>
+  <script src="js/profile.js" defer></script>
+  <style>
+    .profile-container {
+      max-width: 1000px;
+      margin: 0 auto;
+    }
+    
+    .profile-header {
+      display: flex;
+      gap: 30px;
+      align-items: center;
+      margin-bottom: 40px;
+      padding: 25px;
+      background: var(--card);
+      border-radius: 16px;
+      border: 1px solid rgba(255, 255, 255, 0.05);
+    }
+    
+    .profile-avatar {
+      width: 120px;
+      height: 120px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--accent), var(--accent-2));
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 48px;
+      color: #021124;
+      flex-shrink: 0;
+    }
+    
+    .profile-info {
+      flex: 1;
+    }
+    
+    .profile-info h1 {
+      margin: 0 0 5px 0;
+      font-size: 28px;
+    }
+    
+    .user-title {
+      color: var(--accent);
+      font-weight: 600;
+      margin-bottom: 10px;
+    }
+    
+    .user-stats {
+      display: flex;
+      gap: 30px;
+      margin-top: 20px;
+    }
+    
+    .stat {
+      text-align: center;
+    }
+    
+    .stat-number {
+      display: block;
+      font-size: 24px;
+      font-weight: 800;
+      color: var(--accent);
+    }
+    
+    .stat-label {
+      font-size: 13px;
+      color: var(--muted);
+    }
+    
+    .profile-tabs {
+      display: flex;
+      gap: 10px;
+      margin-bottom: 20px;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+      padding-bottom: 10px;
+    }
+    
+    .tab-btn {
+      padding: 10px 20px;
+      background: none;
+      border: none;
+      color: var(--muted);
+      cursor: pointer;
+      font-weight: 700;
+      border-radius: 8px;
+      transition: all 0.3s;
+    }
+    
+    .tab-btn:hover {
+      background: rgba(255, 255, 255, 0.05);
+      color: var(--text);
+    }
+    
+    .tab-btn.active {
+      background: linear-gradient(90deg, rgba(110, 231, 243, 0.1), rgba(124, 58, 237, 0.1));
+      color: var(--accent);
+    }
+    
+    .tab-content {
+      display: none;
+      animation: fadeIn 0.3s;
+    }
+    
+    .tab-content.active {
+      display: block;
+    }
+    
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    
+    .activities-list {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+    
+    .activity-item {
+      display: flex;
+      align-items: center;
+      gap: 15px;
+      padding: 15px;
+      background: rgba(255, 255, 255, 0.02);
+      border-radius: 12px;
+      border: 1px solid rgba(255, 255, 255, 0.03);
+    }
+    
+    .activity-icon {
+      width: 40px;
+      height: 40px;
+      border-radius: 10px;
+      background: rgba(110, 231, 243, 0.1);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--accent);
+    }
+    
+    .activity-content {
+      flex: 1;
+    }
+    
+    .activity-title {
+      font-weight: 700;
+      margin-bottom: 3px;
+    }
+    
+    .activity-time {
+      font-size: 12px;
+      color: var(--muted);
+    }
+    
+    .edit-btn {
+      margin-top: 20px;
+      display: inline-block;
+    }
+    
+    .achievements-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+      gap: 15px;
+      margin-top: 20px;
+    }
+    
+    .achievement-card {
+      text-align: center;
+      padding: 20px;
+      background: rgba(255, 255, 255, 0.02);
+      border-radius: 12px;
+      border: 1px solid rgba(255, 255, 255, 0.03);
+    }
+    
+    .achievement-icon {
+      font-size: 32px;
+      margin-bottom: 10px;
+    }
+    
+    .achievement-locked {
+      opacity: 0.4;
+    }
+  </style>
+</head>
+
+<body>
+<div class="site">
+  <header class="header">
+    <div class="brand">
+      <div class="logo">🪐</div>
+      <div class="title">الملف الشخصي</div>
+    </div>
+
+    <nav class="nav">
+      <a href="index.html">الرئيسية</a>
+      <a href="asteroids.html">الكويكبات</a>
+      <a href="research.html">البحث</a>
+      <a href="projects.html">المشاريع</a>
+      <a href="reports.html">التقارير</a>
+      <a href="dashboard.html">لوحة التحكم</a>
+      <a href="profile.html" class="active">ملفي</a>
+      <a href="upload-report.html">رفع تقرير</a>
+    </nav>
+
+    <div class="cta">
+      <a href="login.html" class="btn ghost">تسجيل خروج</a>
+    </div>
+  </header>
+
+  <main class="section">
+    <div class="profile-container">
+      <div class="profile-header">
+        <div class="profile-avatar">
+          👨‍🚀
+        </div>
+        <div class="profile-info">
+          <h1 id="userName">أحمد محمد</h1>
+          <div class="user-title" id="userRole">عضو فريق الرصد البصري</div>
+          <p class="muted" id="userBio">مهتم برصد الكويكبات والمذنبات، عضو في فريق Paradox منذ 2024.</p>
+          
+          <div class="user-stats">
+            <div class="stat">
+              <span class="stat-number" id="reportsCount">7</span>
+              <span class="stat-label">تقارير منشورة</span>
+            </div>
+            <div class="stat">
+              <span class="stat-number" id="projectsCount">3</span>
+              <span class="stat-label">مشاريع مشارك</span>
+            </div>
+            <div class="stat">
+              <span class="stat-number" id="activityDays">142</span>
+              <span class="stat-label">يوم نشاط</span>
+            </div>
+            <div class="stat">
+              <span class="stat-number" id="memberSince">2024</span>
+              <span class="stat-label">سنة الانضمام</span>
+            </div>
+          </div>
+        </div>
+        <a href="#edit-profile" class="btn primary edit-btn">تعديل الملف</a>
+      </div>
+      
+      <div class="profile-tabs">
+        <button class="tab-btn active" onclick="switchTab('activity')">النشاطات</button>
+        <button class="tab-btn" onclick="switchTab('reports')">تقاريري</button>
+        <button class="tab-btn" onclick="switchTab('projects')">مشاريعي</button>
+        <button class="tab-btn" onclick="switchTab('achievements')">الإنجازات</button>
+        <button class="tab-btn" onclick="switchTab('settings')">الإعدادات</button>
+      </div>
+      
+      <!-- تبويب النشاطات -->
+      <div id="tab-activity" class="tab-content active">
+        <h3>آخر النشاطات</h3>
+        <div class="activities-list">
+          <div class="activity-item">
+            <div class="activity-icon">📄</div>
+            <div class="activity-content">
+              <div class="activity-title">رفعت تقرير "تحليل مدار الكويكب 2025 AB"</div>
+              <div class="activity-time">منذ ساعتين</div>
+            </div>
+          </div>
+          
+          <div class="activity-item">
+            <div class="activity-icon">🔭</div>
+            <div class="activity-content">
+              <div class="activity-title">شاركت في جلسة رصد مع فريق التلسكوبات</div>
+              <div class="activity-time">منذ يومين</div>
+            </div>
+          </div>
+          
+          <div class="activity-item">
+            <div class="activity-icon">✓</div>
+            <div class="activity-content">
+              <div class="activity-title">تمت الموافقة على تقريرك "محاكاة تأثير الكويكب"</div>
+              <div class="activity-time">منذ 5 أيام</div>
+            </div>
+          </div>
+          
+          <div class="activity-item">
+            <div class="activity-icon">👥</div>
+            <div class="activity-content">
+              <div class="activity-title">انضممت إلى مشروع "بناء مرصد متنقل"</div>
+              <div class="activity-time">منذ أسبوع</div>
+            </div>
+          </div>
+          
+          <div class="activity-item">
+            <div class="activity-icon">🏆</div>
+            <div class="activity-content">
+              <div class="activity-title">حصلت على إنجاز "باحث ناشط"</div>
+              <div class="activity-time">منذ أسبوعين</div>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <!-- تبويب التقارير -->
+      <div id="tab-reports" class="tab-content">
+        <div class="kv" style="margin-bottom: 20px;">
+          <h3>تقاريري المنشورة</h3>
+          <a href="upload-report.html" class="btn primary">رفع تقرير جديد</a>
+        </div>
+        
+        <div class="grid">
+          <div class="card">
+            <strong>تحليل مدار الكويكب 2025 AB</strong>
+            <div class="small" style="margin: 8px 0;">رصدي • منشور</div>
+            <div class="small">تم النشر: 2025-01-15</div>
+            <div style="margin-top: 10px;">
+              <a href="#" class="btn" style="margin-right: 5px;">عرض</a>
+              <a href="#" class="btn">تحميل</a>
+            </div>
+          </div>
+          
+          <div class="card">
+            <strong>محاكاة تأثير الكويكب على المناطق الحضرية</strong>
+            <div class="small" style="margin: 8px 0;">محاكاة • منشور</div>
+            <div class="small">تم النشر: 2024-12-03</div>
+            <div style="margin-top: 10px;">
+              <a href="#" class="btn" style="margin-right: 5px;">عرض</a>
+              <a href="#" class="btn">تحميل</a>
+            </div>
+          </div>
+          
+          <div class="card">
+            <strong>مراجعة أدوات رصد الكويكبات للهواة</strong>
+            <div class="small" style="margin: 8px 0;">مراجعة • تحت المراجعة</div>
+            <div class="small">مرفوع: 2025-01-20</div>
+            <div style="margin-top: 10px;">
+              <span class="tag" style="background: rgba(245, 158, 11, 0.2); color: #f59e0b;">قيد المراجعة</span>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <!-- تبويب المشاريع -->
+      <div id="tab-projects" class="tab-content">
+        <h3>المشاريع المشارك فيها</h3>
+        <div class="grid">
+          <div class="card">
+            <strong>بناء مرصد متنقل</strong>
+            <div class="small" style="margin: 8px 0;">دور: مساعد رصد</div>
+            <div class="progress-container" style="margin: 10px 0;">
+              <div style="height: 6px; background: rgba(255,255,255,0.1); border-radius: 3px; overflow: hidden;">
+                <div style="width: 65%; height: 100%; background: linear-gradient(90deg, var(--accent-2), var(--accent));"></div>
+              </div>
+              <div class="small" style="text-align: right; margin-top: 3px;">65% مكتمل</div>
+            </div>
+            <a href="projects.html" class="btn" style="margin-top: 10px;">عرض المشروع</a>
+          </div>
+          
+          <div class="card">
+            <strong>أنظمة فرز الصور الفلكية</strong>
+            <div class="small" style="margin: 8px 0;">دور: محلل بيانات</div>
+            <div class="progress-container" style="margin: 10px 0;">
+              <div style="height: 6px; background: rgba(255,255,255,0.1); border-radius: 3px; overflow: hidden;">
+                <div style="width: 78%; height: 100%; background: linear-gradient(90deg, var(--accent-2), var(--accent));"></div>
+              </div>
+              <div class="small" style="text-align: right; margin-top: 3px;">78% مكتمل</div>
+            </div>
+            <a href="projects.html" class="btn" style="margin-top: 10px;">عرض المشروع</a>
+          </div>
+        </div>
+      </div>
+      
+      <!-- تبويب الإنجازات -->
+      <div id="tab-achievements" class="tab-content">
+        <h3>الإنجازات والأوسمة</h3>
+        <div class="achievements-grid">
+          <div class="achievement-card">
+            <div class="achievement-icon">📚</div>
+            <strong>باحث مبتدئ</strong>
+            <p class="small">أول تقرير منشور</p>
+          </div>
+          
+          <div class="achievement-card">
+            <div class="achievement-icon">🔭</div>
+            <strong>راصد نشط</strong>
+            <p class="small">10 جلسات رصد</p>
+          </div>
+          
+          <div class="achievement-card">
+            <div class="achievement-icon">👥</div>
+            <strong>عضو فريق</strong>
+            <p class="small">انضمام لمشروعين</p>
+          </div>
+          
+          <div class="achievement-card achievement-locked">
+            <div class="achievement-icon">🏆</div>
+            <strong>باحث متميز</strong>
+            <p class="small">5 تقارير منشورة</p>
+          </div>
+          
+          <div class="achievement-card achievement-locked">
+            <div class="achievement-icon">⭐</div>
+            <strong>نجم المنتدى</strong>
+            <p class="small">50 مشاركة مفيدة</p>
+          </div>
+          
+          <div class="achievement-card achievement-locked">
+            <div class="achievement-icon">🚀</div>
+            <strong>رائد الفضاء</strong>
+            <p class="small">سنة كاملة من النشاط</p>
+          </div>
+        </div>
+      </div>
+      
+      <!-- تبويب الإعدادات -->
+      <div id="tab-settings" class="tab-content">
+        <h3>إعدادات الحساب</h3>
+        <div class="card">
+          <form id="profileForm">
+            <div style="margin-bottom: 20px;">
+              <label class="form-label">الاسم الكامل</label>
+              <input type="text" class="form-input" value="أحمد محمد" style="width: 100%;">
+            </div>
+            
+            <div style="margin-bottom: 20px;">
+              <label class="form-label">البريد الإلكتروني</label>
+              <input type="email" class="form-input" value="ahmed@paradox.team" style="width: 100%;">
+            </div>
+            
+            <div style="margin-bottom: 20px;">
+              <label class="form-label">نبذة عنك</label>
+              <textarea class="form-textarea" style="width: 100%; height: 100px;">مهتم برصد الكويكبات والمذنبات، عضو في فريق Paradox منذ 2024.</textarea>
+            </div>
+            
+            <div style="margin-bottom: 20px;">
+              <label class="form-label">التخصصات</label>
+              <div style="display: flex; gap: 10px; flex-wrap: wrap; margin-top: 8px;">
+                <span class="tag" style="cursor: pointer;">رصد بصري</span>
+                <span class="tag" style="cursor: pointer;">تحليل بيانات</span>
+                <span class="tag" style="cursor: pointer;">محاكاة</span>
+                <button type="button" class="btn" style="padding: 5px 10px; font-size: 12px;">+ إضافة</button>
+              </div>
+            </div>
+            
+            <div style="margin-top: 30px;">
+              <button type="button" class="btn primary" onclick="saveProfile()">حفظ التغييرات</button>
+              <button type="button" class="btn" onclick="resetForm()">إلغاء</button>
+            </div>
+          </form>
+        </div>
+        
+        <div style="margin-top: 30px;">
+          <h3>خيارات متقدمة</h3>
+          <div class="card">
+            <div style="margin-bottom: 15px;">
+              <button class="btn" onclick="changePassword()">تغيير كلمة المرور</button>
+            </div>
+            <div style="margin-bottom: 15px;">
+              <button class="btn" onclick="exportData()">تصدير بياناتي</button>
+            </div>
+            <div>
+              <button class="btn" style="background: rgba(239, 68, 68, 0.1); color: #f87171;" onclick="deleteAccount()">حذف الحساب</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <footer class="footer">
+    <div>© <span id="year"></span> Paradox Team</div>
+    <div class="links">
+      <a data-social="facebook" target="_blank">فيسبوك</a> • 
+      <a data-social="linkedin" target="_blank">لينكدإن</a>
+    </div>
+  </footer>
+</div>
+
+<script>
+// تهيئة السنة في الفوتر
+document.getElementById('year').textContent = new Date().getFullYear();
+
+// دالة تبديل التبويبات
+function switchTab(tabName) {
+  // إزالة النشط من جميع الأزرار
+  document.querySelectorAll('.tab-btn').forEach(btn => {
+    btn.classList.remove('active');
+  });
+  
+  // إخفاء جميع المحتويات
+  document.querySelectorAll('.tab-content').forEach(content => {
+    content.classList.remove('active');
+  });
+  
+  // تفعيل التبويب المحدد
+  document.querySelector(`[onclick="switchTab('${tabName}')"]`).classList.add('active');
+  document.getElementById(`tab-${tabName}`).classList.add('active');
+}
+
+// دوال الإعدادات
+function saveProfile() {
+  alert('تم حفظ التغييرات بنجاح!');
+}
+
+function resetForm() {
+  document.getElementById('profileForm').reset();
+}
+
+function changePassword() {
+  const newPassword = prompt('أدخل كلمة المرور الجديدة:');
+  if (newPassword) {
+    alert('سيتم تغيير كلمة المرور في النسخة الكاملة من التطبيق');
+  }
+}
+
+function exportData() {
+  alert('جاري تصدير بياناتك... (هذه ميزة تجريبية)');
+}
+
+function deleteAccount() {
+  if (confirm('هل أنت متأكد من حذف حسابك؟ هذا الإجراء لا يمكن التراجع عنه.')) {
+    alert('سيتم حذف حسابك في النسخة الكاملة من التطبيق');
+  }
+}
+
+// ربط روابط التواصل الاجتماعي
+document.addEventListener('DOMContentLoaded', function() {
+  const fbLinks = document.querySelectorAll('[data-social="facebook"]');
+  const liLinks = document.querySelectorAll('[data-social="linkedin"]');
+  
+  fbLinks.forEach(link => {
+    link.href = 'https://www.facebook.com/Paradox2026/';
+    link.target = '_blank';
+  });
+  
+  liLinks.forEach(link => {
+    link.href = 'https://www.linkedin.com/company/paradox2024';
+    link.target = '_blank';
+  });
+});
+</script>
+</body>
+</html>
